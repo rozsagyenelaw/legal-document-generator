@@ -525,30 +525,153 @@ Annual Income: $${formData.party2Income || '[AMOUNT]'}
 
   const generateContingencyDocument = () => {
     return `
-CONTINGENCY FEE AGREEMENT
+CONTINGENCY FEE AGREEMENT FOR TRUST LITIGATION
 
-This Contingency Fee Agreement ("Agreement") is entered into between ${firmInfo.name}, a California law firm ("Attorney"), and ${formData.clientName || '[CLIENT NAME]'} ("Client").
+This CONTINGENCY FEE AGREEMENT ("Agreement") is entered into as of ${formData.effectiveDate || '_________'}, 2025, between:
+
+CLIENT: ${formData.clientName || '[CLIENT NAME]'} ("Client")
+ATTORNEY: Law Offices of Rozsa Gyene, by Rozsa Gyene, Esq. (State Bar No. 208356) ("Attorney")
+
+RE: ${formData.caseDescription || '[CASE DESCRIPTION]'}
+
+RECITALS
+
+WHEREAS, Client seeks legal representation in connection with ${formData.caseDescription || 'a trust dispute'};
+
+WHEREAS, Client has previously retained Attorney on an hourly basis but is unable to continue paying hourly fees;
+
+WHEREAS, the parties wish to convert the representation to a contingency fee basis;
+
+NOW, THEREFORE, in consideration of the mutual promises contained herein, the parties agree:
 
 1. SCOPE OF REPRESENTATION
-Attorney agrees to represent Client in the matter of: ${formData.caseDescription || '[CASE DESCRIPTION]'}
+
+Attorney agrees to represent Client in the above-referenced matter, including but not limited to:
+• Challenging the validity of trusts and/or estates
+• Pursuing claims for elder abuse, undue influence, fraud, and conversion
+• Seeking recovery of real property and assets
+• Recovering damages, costs, and attorney's fees
+• All proceedings through trial and post-judgment enforcement
 
 2. CONTINGENCY FEE
-Attorney's fee shall be ${formData.contingencyPercentage || '33.33'}% of any recovery obtained through settlement, judgment, or other resolution of the matter.
+
+A. Percentage Fee: Client agrees to pay Attorney the following percentage of the "gross recovery":
+• ${formData.preTrialPercentage || '33'}% if the matter is resolved before trial
+• ${formData.trialPercentage || '40'}% if the matter proceeds to trial, arbitration, or is appealed by any party
+
+B. "Gross Recovery" means the total of all amounts recovered by settlement, judgment, or otherwise, whether by cash, property, or other consideration, BEFORE deduction of costs and expenses.
+
+C. Property Recovery: If recovery includes real property, the fee percentage applies to the fair market value of the property or Client's interest therein.
 
 3. COSTS AND EXPENSES
-Client is responsible for all costs and expenses incurred in connection with this matter, including but not limited to court filing fees, deposition costs, expert witness fees, and investigation expenses.
 
-4. NO RECOVERY, NO FEE
-If no recovery is obtained, Client owes no attorney's fees to Attorney, but Client remains responsible for costs and expenses advanced by Attorney.
+A. Client's Responsibility: Client remains responsible for all costs and expenses, including but not limited to:
+• Filing fees
+• Service of process fees
+• Deposition costs
+• Expert witness fees
+• Court reporter fees
+• Investigation costs
+• Travel expenses
 
-This Agreement is governed by the laws of the State of California and the Rules of Professional Conduct.
+B. Advance of Costs: Attorney may, but is not obligated to, advance costs. Any costs advanced by Attorney shall be reimbursed from the gross recovery before calculation of attorney's fees.
 
-Client Name: ${formData.clientName || '[CLIENT NAME]'}
-Client Signature: _________________________ Date: _____________
+C. Prior Costs: Client acknowledges responsibility for all costs previously incurred under the hourly fee arrangement. All costs were paid by client as of today.
 
-Attorney: ${firmInfo.name}
-By: Rozsa Gyene, Esq.
-Attorney Signature: _________________________ Date: _____________
+4. ATTORNEY'S LIEN
+
+A. STATUTORY LIEN: Client acknowledges that Attorney has a lien under California Code of Civil Procedure § 708.410 et seq. and California Business and Professions Code § 6146 on any recovery obtained.
+
+B. CONTRACTUAL LIEN ON REAL PROPERTY: To secure payment of attorney's fees and costs, Client hereby grants Attorney a lien on:
+• Any real property recovered in this action
+• Client's interest in the property located at ${formData.propertyAddress || '[Property Address]'}
+• Any proceeds from the sale or refinancing of said property
+
+C. NOTICE OF LIEN: Attorney may file a Notice of Attorney's Lien with the County Recorder to perfect this lien. Client agrees to cooperate in perfecting and enforcing this lien.
+
+5. NO RECOVERY
+
+If there is no recovery, Client shall not owe Attorney any attorney's fees for work performed after the date of this Agreement. However, Client remains responsible for:
+• All costs and expenses
+• Previously incurred hourly fees
+• Any sanctions awarded against Client personally
+
+6. DISCHARGE OF ATTORNEY
+
+A. Client may discharge Attorney at any time.
+
+B. If Client discharges Attorney without good cause, Attorney shall be entitled to:
+• All unpaid hourly fees incurred before this Agreement
+• Reasonable value of services (quantum meruit) after this Agreement
+• All unreimbursed costs
+
+C. Attorney's lien rights survive discharge.
+
+7. WITHDRAWAL OF ATTORNEY
+
+Attorney may withdraw for good cause as permitted by law and the Rules of Professional Conduct, including if Client:
+• Fails to cooperate
+• Pursues illegal or unethical conduct
+• Makes the representation unreasonably difficult
+
+8. SETTLEMENT AUTHORITY
+
+A. Attorney shall not settle without Client's written consent.
+B. Client agrees not to settle without Attorney present or without Attorney's written consent.
+C. Any settlement that excludes or limits attorney's fees requires Attorney's written consent.
+
+9. ALTERNATIVE DISPUTE RESOLUTION
+
+Any dispute arising under this Agreement shall be resolved by binding arbitration under the California Arbitration Act.
+
+10. INFORMED CONSENT
+
+Client acknowledges:
+• The right to seek advice from independent counsel before signing
+• Understanding all terms of this Agreement
+• That contingency fees are negotiable and not set by law
+• That this Agreement modifies the prior hourly fee arrangement
+
+11. GENERAL PROVISIONS
+
+A. Entire Agreement: This Agreement supersedes all prior agreements regarding fees for this matter after the date hereof.
+
+B. Modifications: Any modifications must be in writing and signed by both parties.
+
+C. Governing Law: This Agreement is governed by California law.
+
+D. Severability: If any provision is invalid, the remainder shall continue in effect.
+
+12. STATUTORY DISCLOSURE
+
+"THE CONTINGENCY FEE IS NOT SET BY LAW BUT IS NEGOTIABLE BETWEEN THE ATTORNEY AND CLIENT"
+
+CLIENT ACKNOWLEDGMENT AND SIGNATURE
+
+I have read and understood this entire Agreement. I have had the opportunity to ask questions and seek independent legal advice. I agree to all terms stated herein.
+
+CLIENT:
+
+_______________
+${formData.clientName || '[CLIENT NAME]'}
+Date: _____________
+
+Address: ${formData.clientAddress || '_______________________'}
+
+Phone: ${formData.clientPhone || '________________________'} Email: ${formData.clientEmail || '________________________'}
+
+ATTORNEY:
+
+___________________
+Rozsa Gyene, Esq.
+State Bar No. 208356
+Date: _____________
+
+LAW OFFICES OF ROZSA GYENE
+450 N Brand Blvd, Suite 600
+Glendale, CA 91203
+(818) 291-6217
+rozsagyenelaw@yahoo.com
     `;
   };
 
@@ -871,15 +994,70 @@ Attorney Signature: _________________________ Date: _____________
               />
             </div>
             <div className="form-group">
-              <label>Contingency Percentage</label>
+              <label>Pre-Trial Percentage</label>
               <select
-                value={formData.contingencyPercentage || '33.33'}
-                onChange={(e) => handleInputChange('contingencyPercentage', e.target.value)}
+                value={formData.preTrialPercentage || '33'}
+                onChange={(e) => handleInputChange('preTrialPercentage', e.target.value)}
               >
                 <option value="25">25%</option>
-                <option value="33.33">33.33%</option>
+                <option value="33">33%</option>
                 <option value="40">40%</option>
               </select>
+            </div>
+            <div className="form-group">
+              <label>Trial Percentage</label>
+              <select
+                value={formData.trialPercentage || '40'}
+                onChange={(e) => handleInputChange('trialPercentage', e.target.value)}
+              >
+                <option value="33">33%</option>
+                <option value="40">40%</option>
+                <option value="45">45%</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Property Address</label>
+              <input
+                type="text"
+                value={formData.propertyAddress || ''}
+                onChange={(e) => handleInputChange('propertyAddress', e.target.value)}
+                placeholder="Enter property address (if applicable)"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Address</label>
+              <input
+                type="text"
+                value={formData.clientAddress || ''}
+                onChange={(e) => handleInputChange('clientAddress', e.target.value)}
+                placeholder="Enter client address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Phone</label>
+              <input
+                type="tel"
+                value={formData.clientPhone || ''}
+                onChange={(e) => handleInputChange('clientPhone', e.target.value)}
+                placeholder="Enter client phone"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Email</label>
+              <input
+                type="email"
+                value={formData.clientEmail || ''}
+                onChange={(e) => handleInputChange('clientEmail', e.target.value)}
+                placeholder="Enter client email"
+              />
+            </div>
+            <div className="form-group">
+              <label>Effective Date</label>
+              <input
+                type="date"
+                value={formData.effectiveDate || ''}
+                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
+              />
             </div>
           </div>
         );
