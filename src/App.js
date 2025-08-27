@@ -55,39 +55,151 @@ function App() {
 
   const generateLLCDocument = () => {
     return `
-LIMITED LIABILITY COMPANY OPERATING AGREEMENT
+                        OPERATING AGREEMENT
+                              OF
+                    ${formData.llcName || '[COMPANY NAME]'} LLC
+                    A CALIFORNIA LIMITED LIABILITY COMPANY
 
-THIS OPERATING AGREEMENT (this "Agreement") is made effective as of ${formData.effectiveDate || '[DATE]'}, by and among the Members listed herein of ${formData.llcName || '[LLC NAME]'}, a California limited liability company (the "Company").
+THIS OPERATING AGREEMENT (this "Agreement") of ${formData.llcName || '[COMPANY NAME]'} LLC, a California limited liability company (the "Company"), is made and entered into as of ${formData.effectiveDate || '[DATE]'}, by and among the persons whose names and signatures appear on the signature pages hereof, each of whom is referred to herein as a "Member" and all of whom are referred to herein collectively as the "Members."
 
-ARTICLE I - FORMATION
+                                RECITALS
 
-1.1 Formation. The Company was formed by filing Articles of Organization with the California Secretary of State on ${formData.formationDate || '[DATE]'}.
+WHEREAS, the Members desire to form a limited liability company pursuant to the California Revised Uniform Limited Liability Company Act (Corporations Code Section 17701.01 et seq.) (the "Act");
 
-1.2 Business Purpose. The purpose of the Company is ${formData.businessPurpose || '[BUSINESS PURPOSE]'}.
+WHEREAS, the Members desire to continue the Company as a limited liability company under the Act and to set forth the terms and conditions of their agreement as to the affairs of the Company and the conduct of its business;
 
-1.3 Principal Place of Business. The Company's principal place of business is located at ${formData.businessAddress || '[ADDRESS]'}.
+NOW, THEREFORE, in consideration of the agreements and obligations set forth herein and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:
 
-1.4 Registered Agent. The Company's registered agent is ${formData.registeredAgent || '[AGENT NAME]'}, located at ${formData.agentAddress || '[AGENT ADDRESS]'}.
+                            ARTICLE I
+                           FORMATION
 
-ARTICLE II - MEMBERS AND MEMBERSHIP INTERESTS
+1.1 Formation. The Company was formed by filing Articles of Organization with the California Secretary of State on ${formData.formationDate || '[FORMATION DATE]'}. The rights and liabilities of the Members shall be as provided in the Act, except as otherwise provided herein.
 
-2.1 Members. The initial Members of the Company and their respective Membership Interests are as follows:
+1.2 Name. The name of the Company is "${formData.llcName || '[COMPANY NAME]'} LLC."
 
-Member 1: ${formData.member1Name || '[MEMBER 1 NAME]'}
-Percentage Interest: ${formData.member1Percentage || '[%]'}%
-Capital Contribution: ${formData.member1Contribution || '[AMOUNT]'}
+1.3 Principal Office. The principal office of the Company shall be located at ${formData.businessAddress || '[BUSINESS ADDRESS]'}, or at such other location as may be determined by the Members.
 
-Member 2: ${formData.member2Name || '[MEMBER 2 NAME]'}
-Percentage Interest: ${formData.member2Percentage || '[%]'}%
-Capital Contribution: ${formData.member2Contribution || '[AMOUNT]'}
+1.4 Registered Office and Agent. The registered office of the Company required by the Act to be maintained in California shall be ${formData.agentAddress || '[AGENT ADDRESS]'}. The registered agent of the Company at such address shall be ${formData.registeredAgent || '[REGISTERED AGENT NAME]'}. The registered office and registered agent may be changed from time to time by the Members.
 
-This Operating Agreement is governed by the laws of the State of California.
+1.5 Term. The Company shall commence upon the filing of the Articles of Organization and shall continue until dissolved in accordance with the provisions of this Agreement or as otherwise provided by law.
 
-IN WITNESS WHEREOF, the Members have executed this Operating Agreement as of the date first written above.
+1.6 Purpose. The purpose of the Company is to engage in ${formData.businessPurpose || 'any lawful business purpose'}, and to engage in any other activities necessary or incidental thereto.
 
-_________________________               _________________________
-${formData.member1Name || '[MEMBER 1 NAME]'}      ${formData.member2Name || '[MEMBER 2 NAME]'}
-Date: _____________                     Date: _____________
+                           ARTICLE II
+                        CAPITAL CONTRIBUTIONS
+
+2.1 Initial Contributions. The Members have contributed or agreed to contribute to the Company the amounts set forth below their respective names:
+
+${formData.member1Name || '[MEMBER 1 NAME]'}: $${formData.member1Contribution || '[AMOUNT]'}
+${formData.member2Name || '[MEMBER 2 NAME]'}: $${formData.member2Contribution || '[AMOUNT]'}
+
+2.2 Additional Contributions. Except as otherwise provided herein, no Member shall be obligated to make any additional contributions to the Company.
+
+2.3 Return of Contributions. Except as otherwise provided in this Agreement or required by law, no Member shall have the right to demand the return of such Member's capital contribution or to receive any distribution from the Company.
+
+2.4 Interest on Contributions. No Member shall be entitled to interest on any capital contribution.
+
+                          ARTICLE III
+                       MEMBERSHIP INTERESTS
+
+3.1 Membership Interests. The membership interests of the Members shall be as follows:
+
+${formData.member1Name || '[MEMBER 1 NAME]'}: ${formData.member1Percentage || '50'}%
+${formData.member2Name || '[MEMBER 2 NAME]'}: ${formData.member2Percentage || '50'}%
+
+3.2 Certificates. No certificates shall be issued to evidence membership interests.
+
+3.3 Transfer of Membership Interests. No Member may transfer, assign, or otherwise dispose of all or any portion of such Member's membership interest without the prior written consent of all other Members.
+
+                          ARTICLE IV
+                            MANAGEMENT
+
+4.1 Management by Members. The Company shall be managed by its Members. Each Member shall have the authority to bind the Company.
+
+4.2 Voting. Except as otherwise provided herein or by law, all decisions shall require the unanimous consent of all Members.
+
+4.3 Fiduciary Duties. Each Member owes to the Company and the other Members the fiduciary duties of loyalty and care in the discharge of such Member's duties.
+
+4.4 Limitation of Liability. No Member shall be liable, responsible, or accountable in damages or otherwise to the Company or any other Member for any loss, damage, or claim incurred by reason of any act or omission performed or omitted by such Member in good faith on behalf of the Company.
+
+                           ARTICLE V
+                    ALLOCATIONS AND DISTRIBUTIONS
+
+5.1 Allocations of Net Income and Net Loss. Except as otherwise provided herein, Net Income and Net Loss (and, to the extent necessary, individual items of income, gain, loss, deduction, and credit) of the Company for each fiscal year shall be allocated among the Members in accordance with their respective Membership Interest percentages.
+
+5.2 Distributions. Distributions shall be made to the Members at the times and in the aggregate amounts determined by the unanimous consent of the Members. All distributions shall be made to the Members in accordance with their respective Membership Interest percentages.
+
+5.3 Limitation on Distributions. No distribution shall be made if, after the distribution: (a) the Company would not be able to pay its debts as they become due in the ordinary course of business; or (b) the Company's total assets would be less than the sum of its total liabilities.
+
+                          ARTICLE VI
+                            ACCOUNTING
+
+6.1 Books and Records. The Company shall maintain complete and accurate books and records of account and shall maintain minutes of the proceedings of the Members.
+
+6.2 Fiscal Year. The fiscal year of the Company shall be the calendar year.
+
+6.3 Tax Elections. The Company shall make the election under Section 754 of the Internal Revenue Code if such an election is requested by any Member.
+
+                          ARTICLE VII
+                   DISSOLUTION AND LIQUIDATION
+
+7.1 Dissolution. The Company shall be dissolved upon the first to occur of the following:
+   (a) The unanimous written consent of all Members;
+   (b) The entry of a decree of judicial dissolution under Section 17707.03 of the Act; or
+   (c) At any time there are no remaining Members.
+
+7.2 Liquidation. Upon dissolution of the Company, the Members shall proceed with reasonable promptness to liquidate the business and affairs of the Company.
+
+7.3 Distribution of Assets. The proceeds of liquidation shall be distributed in the following order of priority:
+   (a) To creditors (including Members who are creditors) in satisfaction of liabilities of the Company;
+   (b) To Members in accordance with their positive capital account balances.
+
+                         ARTICLE VIII
+                          MISCELLANEOUS
+
+8.1 Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of California.
+
+8.2 Amendments. This Agreement may be amended only by the written consent of all Members.
+
+8.3 Binding Effect. This Agreement shall be binding upon and inure to the benefit of the parties hereto and their respective successors and permitted assigns.
+
+8.4 Severability. If any provision of this Agreement is held invalid or unenforceable, the remainder of this Agreement shall remain in full force and effect.
+
+8.5 Counterparts. This Agreement may be executed in counterparts, each of which shall be deemed an original and all of which together shall constitute one and the same instrument.
+
+8.6 Attorney Fees. In any action or proceeding to enforce any provision of this Agreement, the prevailing party shall be entitled to recover reasonable attorney fees and costs.
+
+IN WITNESS WHEREOF, the parties have executed this Operating Agreement as of the date first written above.
+
+MEMBERS:
+
+_________________________________    Date: _______________
+${formData.member1Name || '[MEMBER 1 NAME]'}
+
+_________________________________    Date: _______________
+${formData.member2Name || '[MEMBER 2 NAME]'}
+
+STATE OF CALIFORNIA   )
+                     ) ss.
+COUNTY OF LOS ANGELES )
+
+On ________________, before me, ________________________, Notary Public, personally appeared ${formData.member1Name || '[MEMBER 1 NAME]'} and ${formData.member2Name || '[MEMBER 2 NAME]'}, who proved to me on the basis of satisfactory evidence to be the persons whose names are subscribed to the within instrument and acknowledged to me that they executed the same in their authorized capacities, and that by their signatures on the instrument the persons, or the entity upon behalf of which the persons acted, executed the instrument.
+
+I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
+
+WITNESS my hand and official seal.
+
+Signature _________________________
+
+[Notary Seal]
+
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+Attorney for the Company
     `;
   };
 
@@ -258,6 +370,14 @@ Attorney Signature: _________________________ Date: _____________
                 value={formData.businessPurpose || ''}
                 onChange={(e) => handleInputChange('businessPurpose', e.target.value)}
                 placeholder="Describe the business purpose"
+              />
+            </div>
+            <div className="form-group">
+              <label>Formation Date</label>
+              <input
+                type="date"
+                value={formData.formationDate || ''}
+                onChange={(e) => handleInputChange('formationDate', e.target.value)}
               />
             </div>
             <div className="form-group">
