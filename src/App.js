@@ -316,28 +316,210 @@ Cash: $${formData.member2Contribution || '50.00'}
     return `
 PRENUPTIAL AGREEMENT
 
-This Prenuptial Agreement ("Agreement") is entered into on ${formData.effectiveDate || '[DATE]'}, between ${formData.party1Name || '[PARTY 1 NAME]'} ("Party 1") and ${formData.party2Name || '[PARTY 2 NAME]'} ("Party 2"), who intend to marry each other.
+THIS PRENUPTIAL AGREEMENT (this "Agreement") is made and entered into on ${formData.effectiveDate || '[DATE]'}, by and between ${formData.party1Name || '[PARTY 1 NAME]'} ("${formData.party1Name || 'Party 1'}") and ${formData.party2Name || '[PARTY 2 NAME]'} ("${formData.party2Name || 'Party 2'}"), who contemplate marriage to each other.
 
 RECITALS
 
-The parties desire to enter into this Agreement to establish their respective rights and obligations regarding property, support, and other matters in the event of separation, divorce, or death.
+WHEREAS, the parties desire to marry each other and wish to fix and determine by agreement their respective rights and obligations which may arise from their marital relationship;
 
-1. SEPARATE PROPERTY
-Each party's separate property shall remain their separate property, including but not limited to property owned before marriage and property acquired by gift or inheritance during marriage.
+WHEREAS, each party acknowledges that they have been advised to obtain independent legal counsel in connection with this Agreement and have had the opportunity to do so;
 
-2. MARITAL PROPERTY
-Property acquired during marriage through the joint efforts of both parties shall be considered marital property and divided equitably upon dissolution.
+WHEREAS, each party acknowledges that they have made full and complete disclosure to the other party of their assets, liabilities, income, and financial circumstances;
 
-3. SPOUSAL SUPPORT
-Each party waives any right to seek spousal support from the other, except as may be required by law.
+WHEREAS, each party enters into this Agreement freely and voluntarily, with full knowledge of its contents and legal significance;
 
-This Agreement shall be governed by the laws of the State of California.
+NOW, THEREFORE, in consideration of the mutual promises and covenants contained herein and the contemplated marriage, the parties agree as follows:
 
-IN WITNESS WHEREOF, the parties have executed this Agreement on the date first written above.
+1. DEFINITIONS
 
-_________________________               _________________________
-${formData.party1Name || '[PARTY 1 NAME]'}           ${formData.party2Name || '[PARTY 2 NAME]'}
-Date: _____________                     Date: _____________
+1.1 "Separate Property" shall mean and include:
+    (a) All property owned by each party prior to marriage;
+    (b) All property acquired by either party during marriage by gift, inheritance, or bequest;
+    (c) All income, rents, profits, and appreciation from separate property;
+    (d) All property acquired with separate property funds;
+    (e) All property designated as separate property by written agreement between the parties.
+
+1.2 "Community Property" shall mean all property acquired by either party during marriage that is not separate property as defined above.
+
+2. PROPERTY RIGHTS AND CHARACTERIZATION
+
+2.1 Separate Property. Each party's separate property, as defined above, shall remain that party's sole and separate property, free from any claim by the other party. Each party may manage, control, and dispose of their separate property without the consent of the other party.
+
+2.2 Community Property. Subject to the provisions of this Agreement, all community property shall be managed and controlled according to California law governing community property.
+
+2.3 Transmutation. No transmutation of separate property to community property or community property to separate property shall occur except by written agreement signed by both parties.
+
+2.4 Business Interests. Each party's business interests existing prior to marriage, including but not limited to ${formData.party1Business || '[PARTY 1 BUSINESS INTERESTS]'} owned by ${formData.party1Name || 'Party 1'} and ${formData.party2Business || '[PARTY 2 BUSINESS INTERESTS]'} owned by ${formData.party2Name || 'Party 2'}, shall remain the separate property of the owning party. Any appreciation in value of such business interests during marriage shall also remain separate property.
+
+3. DISCLOSURE OF ASSETS AND LIABILITIES
+
+3.1 Full Disclosure. Each party represents that they have made full and complete disclosure of all assets, liabilities, income, and financial circumstances to the other party as set forth in the Financial Disclosure Statements attached hereto as Exhibits A and B and incorporated herein by reference.
+
+3.2 Reliance on Disclosure. Each party acknowledges that they are entering into this Agreement in reliance upon the financial disclosures made by the other party.
+
+4. SPOUSAL SUPPORT
+
+4.1 Waiver of Spousal Support. Each party hereby waives and releases any and all rights to receive spousal support (alimony) from the other party, whether temporary, rehabilitative, permanent, or lump sum, in the event of separation, dissolution of marriage, or legal separation.
+
+4.2 Exception for Unconscionability. Notwithstanding the above waiver, if a court of competent jurisdiction determines that the enforcement of this spousal support waiver would be unconscionable at the time of enforcement, the court may order spousal support in such amount and for such time as the court deems just and reasonable under the circumstances.
+
+5. ESTATE PLANNING AND INHERITANCE RIGHTS
+
+5.1 Waiver of Inheritance Rights. Each party waives all rights to inherit from the other party's estate as a surviving spouse under California law, including but not limited to:
+    (a) Rights to elect against the other party's will;
+    (b) Rights to intestate succession;
+    (c) Rights as a pretermitted spouse;
+    (d) Rights to family allowance and homestead allowance.
+
+5.2 Right to Make Gifts. Nothing in this Agreement shall prevent either party from making gifts or bequests to the other party by will, trust, or other estate planning document.
+
+6. DEBTS AND OBLIGATIONS
+
+6.1 Separate Debts. Each party shall be solely responsible for their separate debts and obligations incurred prior to marriage. These debts are set forth in the Financial Disclosure Statements referenced above.
+
+6.2 Community Debts. Debts incurred during marriage for the benefit of the community shall be community debts and the responsibility of both parties according to California law.
+
+6.3 Separate Debts During Marriage. Any debt incurred by either party during marriage that is not for the benefit of the community shall be the separate debt of the party incurring such debt.
+
+7. REAL PROPERTY
+
+7.1 Separate Real Property. The real property located at ${formData.party1RealEstate || '[PARTY 1 REAL ESTATE]'} owned by ${formData.party1Name || 'Party 1'} and the real property located at ${formData.party2RealEstate || '[PARTY 2 REAL ESTATE]'} owned by ${formData.party2Name || 'Party 2'} shall remain the separate property of the respective owner.
+
+7.2 Future Real Property. Any real property acquired during marriage shall be characterized as separate or community property based upon the source of funds used for acquisition and the manner in which title is held.
+
+8. RETIREMENT BENEFITS
+
+8.1 Separate Retirement Benefits. All retirement benefits, including but not limited to pension plans, 401(k) plans, IRAs, and other retirement accounts, earned or accrued by each party prior to marriage shall remain the separate property of that party.
+
+8.2 Community Interest in Retirement Benefits. Each party acknowledges that retirement benefits earned during marriage may be subject to community property rights under California law, except as otherwise provided in this Agreement.
+
+9. INSURANCE
+
+9.1 Life Insurance. Each party may maintain life insurance policies and designate beneficiaries as they see fit, subject to any requirements of this Agreement or subsequent written agreements.
+
+9.2 Health Insurance. The parties shall cooperate in maintaining health insurance coverage for the family as circumstances permit.
+
+10. MODIFICATIONS AND AMENDMENTS
+
+10.1 Written Modifications Only. This Agreement may be modified or amended only by written agreement signed by both parties and notarized.
+
+10.2 No Oral Modifications. No oral modifications to this Agreement shall be valid or enforceable.
+
+11. ENFORCEMENT AND VALIDITY
+
+11.1 Severability. If any provision of this Agreement is held invalid or unenforceable by a court of competent jurisdiction, the remainder of this Agreement shall remain in full force and effect.
+
+11.2 Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of California.
+
+11.3 Jurisdiction. The parties consent to the jurisdiction of the courts of California for any action arising under this Agreement.
+
+12. INDEPENDENT LEGAL COUNSEL
+
+12.1 Advice of Counsel. Each party acknowledges that they have been advised to seek independent legal counsel regarding this Agreement and have had adequate opportunity to do so.
+
+12.2 ${firmInfo.name} represents ${formData.representedParty || 'Party 1'} in connection with this Agreement. ${formData.party2Counsel || '[PARTY 2 COUNSEL]'} represents ${formData.party2Name || 'Party 2'} in connection with this Agreement.
+
+13. ACKNOWLEDGMENTS
+
+13.1 Voluntary Execution. Each party acknowledges that they are executing this Agreement voluntarily, without duress, coercion, or undue influence.
+
+13.2 Full Understanding. Each party acknowledges that they have read this Agreement, understand its contents, and agree to be bound by its terms.
+
+13.3 Fair and Reasonable. Each party acknowledges that they believe this Agreement is fair and reasonable under the circumstances.
+
+14. WAITING PERIOD
+
+14.1 Seven-Day Waiting Period. Each party acknowledges that they have received a copy of this Agreement at least seven (7) days before its execution, as required by California Family Code Section 1615.
+
+15. EFFECTIVE DATE AND TERMINATION
+
+15.1 Effective Date. This Agreement shall become effective upon the marriage of the parties.
+
+15.2 Termination. This Agreement shall terminate upon the death of either party or upon written agreement of both parties.
+
+16. GENERAL PROVISIONS
+
+16.1 Entire Agreement. This Agreement constitutes the entire agreement between the parties regarding the subject matter herein and supersedes all prior negotiations, representations, or agreements relating thereto.
+
+16.2 Binding Effect. This Agreement shall be binding upon the parties and their respective heirs, successors, and assigns.
+
+16.3 Counterparts. This Agreement may be executed in counterparts, each of which shall be deemed an original and all of which together shall constitute one and the same instrument.
+
+16.4 Attorney Fees. In any action to enforce this Agreement, the prevailing party shall be entitled to reasonable attorney fees and costs.
+
+IN WITNESS WHEREOF, the parties have executed this Prenuptial Agreement on the date first written above.
+
+_________________________________    Date: _______________
+${formData.party1Name || '[PARTY 1 NAME]'}
+
+_________________________________    Date: _______________
+${formData.party2Name || '[PARTY 2 NAME]'}
+
+STATE OF CALIFORNIA   )
+                     ) ss.
+COUNTY OF LOS ANGELES )
+
+On ${formData.notaryDate || '[DATE]'}, before me, _________________________, Notary Public, personally appeared ${formData.party1Name || '[PARTY 1 NAME]'} and ${formData.party2Name || '[PARTY 2 NAME]'}, who proved to me on the basis of satisfactory evidence to be the persons whose names are subscribed to the within instrument and acknowledged to me that they executed the same in their authorized capacities, and that by their signatures on the instrument the persons, or the entity upon behalf of which the persons acted, executed the instrument.
+
+I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
+
+WITNESS my hand and official seal.
+
+Signature _________________________
+
+[Notary Seal]
+
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+Attorney for ${formData.representedParty || 'the Parties'}
+
+
+FINANCIAL DISCLOSURE STATEMENT - EXHIBIT A
+${formData.party1Name || '[PARTY 1 NAME]'}
+
+ASSETS:
+Real Property: ${formData.party1RealEstate || 'N/A'}
+Personal Property: ${formData.party1PersonalProperty || 'N/A'}
+Bank Accounts: ${formData.party1BankAccounts || 'N/A'}
+Investment Accounts: ${formData.party1Investments || 'N/A'}
+Retirement Accounts: ${formData.party1Retirement || 'N/A'}
+Business Interests: ${formData.party1Business || 'N/A'}
+Other Assets: ${formData.party1OtherAssets || 'N/A'}
+
+LIABILITIES:
+Mortgages: ${formData.party1Mortgages || 'N/A'}
+Credit Cards: ${formData.party1CreditCards || 'N/A'}
+Student Loans: ${formData.party1StudentLoans || 'N/A'}
+Other Debts: ${formData.party1OtherDebts || 'N/A'}
+
+INCOME:
+Annual Income: $${formData.party1Income || '[AMOUNT]'}
+
+
+FINANCIAL DISCLOSURE STATEMENT - EXHIBIT B
+${formData.party2Name || '[PARTY 2 NAME]'}
+
+ASSETS:
+Real Property: ${formData.party2RealEstate || 'N/A'}
+Personal Property: ${formData.party2PersonalProperty || 'N/A'}
+Bank Accounts: ${formData.party2BankAccounts || 'N/A'}
+Investment Accounts: ${formData.party2Investments || 'N/A'}
+Retirement Accounts: ${formData.party2Retirement || 'N/A'}
+Business Interests: ${formData.party2Business || 'N/A'}
+Other Assets: ${formData.party2OtherAssets || 'N/A'}
+
+LIABILITIES:
+Mortgages: ${formData.party2Mortgages || 'N/A'}
+Credit Cards: ${formData.party2CreditCards || 'N/A'}
+Student Loans: ${formData.party2StudentLoans || 'N/A'}
+Other Debts: ${formData.party2OtherDebts || 'N/A'}
+
+INCOME:
+Annual Income: $${formData.party2Income || '[AMOUNT]'}
     `;
   };
 
@@ -554,6 +736,120 @@ Attorney Signature: _________________________ Date: _____________
           </div>
         );
       
+      case 'prenup':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Party 1 Name</label>
+              <input
+                type="text"
+                value={formData.party1Name || ''}
+                onChange={(e) => handleInputChange('party1Name', e.target.value)}
+                placeholder="Enter party 1 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 2 Name</label>
+              <input
+                type="text"
+                value={formData.party2Name || ''}
+                onChange={(e) => handleInputChange('party2Name', e.target.value)}
+                placeholder="Enter party 2 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 1 Business Interests</label>
+              <input
+                type="text"
+                value={formData.party1Business || ''}
+                onChange={(e) => handleInputChange('party1Business', e.target.value)}
+                placeholder="Describe business interests"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 2 Business Interests</label>
+              <input
+                type="text"
+                value={formData.party2Business || ''}
+                onChange={(e) => handleInputChange('party2Business', e.target.value)}
+                placeholder="Describe business interests"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 1 Real Estate</label>
+              <input
+                type="text"
+                value={formData.party1RealEstate || ''}
+                onChange={(e) => handleInputChange('party1RealEstate', e.target.value)}
+                placeholder="Property address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 2 Real Estate</label>
+              <input
+                type="text"
+                value={formData.party2RealEstate || ''}
+                onChange={(e) => handleInputChange('party2RealEstate', e.target.value)}
+                placeholder="Property address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 1 Annual Income</label>
+              <input
+                type="number"
+                value={formData.party1Income || ''}
+                onChange={(e) => handleInputChange('party1Income', e.target.value)}
+                placeholder="Enter annual income"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 2 Annual Income</label>
+              <input
+                type="number"
+                value={formData.party2Income || ''}
+                onChange={(e) => handleInputChange('party2Income', e.target.value)}
+                placeholder="Enter annual income"
+              />
+            </div>
+            <div className="form-group">
+              <label>Represented Party</label>
+              <select
+                value={formData.representedParty || 'Party 1'}
+                onChange={(e) => handleInputChange('representedParty', e.target.value)}
+              >
+                <option value="Party 1">Party 1</option>
+                <option value="Party 2">Party 2</option>
+                <option value="Both Parties">Both Parties</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Party 2 Counsel</label>
+              <input
+                type="text"
+                value={formData.party2Counsel || ''}
+                onChange={(e) => handleInputChange('party2Counsel', e.target.value)}
+                placeholder="Enter attorney name for Party 2"
+              />
+            </div>
+            <div className="form-group">
+              <label>Effective Date</label>
+              <input
+                type="date"
+                value={formData.effectiveDate || ''}
+                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Notary Date</label>
+              <input
+                type="date"
+                value={formData.notaryDate || ''}
+                onChange={(e) => handleInputChange('notaryDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
       case 'contingency':
         return (
           <div className="form-grid">
