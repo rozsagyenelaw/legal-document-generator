@@ -19,7 +19,8 @@ function App() {
     { id: 'llc', name: 'LLC Operating Agreement', icon: Users },
     { id: 'prenup', name: 'Prenuptial Agreement', icon: Heart },
     { id: 'contingency', name: 'Contingency Fee Agreement', icon: DollarSign },
-    { id: 'corp', name: 'Corporation Formation', icon: Building },
+    { id: 'articles', name: 'Articles of Incorporation', icon: Building },
+    { id: 'bylaws', name: 'Corporate Bylaws', icon: FileText },
     { id: 'retainer', name: 'CA Retainer Agreement', icon: FileText }
   ];
 
@@ -40,8 +41,11 @@ function App() {
       case 'contingency':
         template = generateContingencyDocument();
         break;
-      case 'corp':
-        template = generateCorpDocument();
+      case 'articles':
+        template = generateArticlesDocument();
+        break;
+      case 'bylaws':
+        template = generateBylawsDocument();
         break;
       case 'retainer':
         template = generateRetainerDocument();
@@ -675,32 +679,261 @@ rozsagyenelaw@yahoo.com
     `;
   };
 
-  const generateCorpDocument = () => {
+  const generateArticlesDocument = () => {
     return `
 ARTICLES OF INCORPORATION
+OF
+${formData.corpName || '[CORPORATION NAME]'}
 
-ARTICLE I - NAME
-The name of this corporation is ${formData.corpName || '[CORPORATION NAME]'}.
+The undersigned, for the purpose of forming a corporation under the laws of the State of California, hereby certifies:
 
-ARTICLE II - PURPOSE
-The purpose of this corporation is to engage in any lawful act or activity for which a corporation may be organized under the General Corporation Law of California.
+ARTICLE I
+NAME
 
-ARTICLE III - AGENT FOR SERVICE OF PROCESS
+The name of the corporation is ${formData.corpName || '[CORPORATION NAME]'}.
+
+ARTICLE II
+PURPOSES AND POWERS
+
+(a) The purpose of this corporation is to engage in any lawful act or activity for which a corporation may be organized under the General Corporation Law of California other than the banking business, the trust company business or the practice of a profession permitted to be incorporated by the California Corporations Code.
+
+(b) Specific Business Purpose: ${formData.businessPurpose || 'To engage in general business activities as permitted by law.'}.
+
+(c) The corporation is organized and operated exclusively for business purposes within the meaning of applicable California law.
+
+ARTICLE III
+REGISTERED AGENT
+
 The name and address in California of this corporation's initial agent for service of process is:
-${formData.registeredAgent || '[AGENT NAME]'}
-${formData.agentAddress || '[AGENT ADDRESS]'}
+${formData.registeredAgent || '[REGISTERED AGENT NAME]'}
+${formData.agentAddress || '[REGISTERED AGENT ADDRESS]'}
 
-ARTICLE IV - CAPITAL STOCK
-This corporation is authorized to issue only one class of shares, designated as common stock. The total number of shares authorized is ${formData.authorizedShares || '1,000,000'} shares.
+ARTICLE IV
+CAPITAL STOCK
 
-ARTICLE V - DIRECTORS
-The number of directors of this corporation is ${formData.numberOfDirectors || '3'}.
+(a) The corporation is authorized to issue only one class of shares of stock, and the total number of shares which the corporation is authorized to issue is ${formData.authorizedShares || '1,000,000'} shares of common stock, no par value per share.
 
-IN WITNESS WHEREOF, the undersigned, being the incorporator of this corporation, has executed these Articles of Incorporation on ${formData.effectiveDate || '[DATE]'}.
+(b) The rights, preferences, privileges, and restrictions granted to or imposed upon the respective classes or series of shares, or the holders thereof, shall be as set forth below or in the resolution or resolutions providing for the issue of such shares adopted by the board of directors pursuant to authority expressly vested in it by the provisions of this Article IV.
 
-_________________________
-Incorporator Signature
+(c) Common Stock: The holders of the common stock are entitled to one vote for each share held at all meetings of shareholders. There are no preemptive rights.
+
+ARTICLE V
+DIRECTORS
+
+(a) The number of directors of this corporation is ${formData.numberOfDirectors || '3'}, which number may be increased or decreased by amendment to the Bylaws of the corporation, provided that the number of directors shall not be less than three (3).
+
+(b) The names and addresses of the persons who are to serve as the initial directors are:
+
+${formData.director1Name || '[DIRECTOR 1 NAME]'}
+${formData.director1Address || '[DIRECTOR 1 ADDRESS]'}
+
+${formData.director2Name || '[DIRECTOR 2 NAME]'}
+${formData.director2Address || '[DIRECTOR 2 ADDRESS]'}
+
+${formData.director3Name || '[DIRECTOR 3 NAME]'}
+${formData.director3Address || '[DIRECTOR 3 ADDRESS]'}
+
+ARTICLE VI
+INCORPORATOR
+
+The name and address of the incorporator is:
 ${formData.incorporatorName || '[INCORPORATOR NAME]'}
+${formData.incorporatorAddress || '[INCORPORATOR ADDRESS]'}
+
+ARTICLE VII
+LIABILITY OF DIRECTORS
+
+A director of the corporation shall not be personally liable to the corporation or its shareholders for monetary damages for breach of fiduciary duty as a director, except for liability for:
+
+(a) Acts or omissions not in good faith or which involve intentional misconduct or a knowing violation of law;
+(b) Dividends or distributions paid in violation of the California Corporations Code; or
+(c) Transactions from which the director derived an improper personal benefit.
+
+Any repeal or modification of this Article VII shall not adversely affect any right or protection of a director existing at the time of such repeal or modification.
+
+ARTICLE VIII
+INDEMNIFICATION
+
+The corporation shall indemnify its directors, officers, employees, and agents to the fullest extent permitted by the California Corporations Code, as it may be amended from time to time.
+
+ARTICLE IX
+AMENDMENT
+
+The corporation reserves the right to amend, alter, change, or repeal any provision contained in these Articles of Incorporation, in the manner now or hereafter prescribed by statute, and all rights conferred upon shareholders herein are granted subject to this reservation.
+
+ARTICLE X
+DURATION
+
+The period of existence of the corporation shall be perpetual.
+
+IN WITNESS WHEREOF, I have executed these Articles of Incorporation this ${formData.incorporationDate || '_____ day of _________, 2025'}.
+
+_________________________________
+${formData.incorporatorName || '[INCORPORATOR NAME]'}
+Incorporator
+
+STATE OF CALIFORNIA   )
+                     ) ss.
+COUNTY OF LOS ANGELES )
+
+On ${formData.incorporationDate || '[DATE]'}, before me, _________________________, Notary Public, personally appeared ${formData.incorporatorName || '[INCORPORATOR NAME]'}, who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument.
+
+I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
+
+WITNESS my hand and official seal.
+
+Signature _________________________
+
+[Notary Seal]
+
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+Attorney for the Corporation
+    `;
+  };
+
+  const generateBylawsDocument = () => {
+    return `
+BYLAWS
+OF
+${formData.corpName || '[CORPORATION NAME]'}
+(A California Corporation)
+
+ARTICLE I
+OFFICES
+
+Section 1.1 Principal Office. The principal office for the transaction of the business of the corporation is located at ${formData.businessAddress || '[BUSINESS ADDRESS]'}, or at such other address as the board of directors may from time to time determine.
+
+Section 1.2 Other Offices. The board of directors may at any time establish branch or subordinate offices at any place or places where the corporation is qualified to do business.
+
+ARTICLE II
+SHAREHOLDERS
+
+Section 2.1 Annual Meetings. The annual meeting of shareholders shall be held on ${formData.annualMeetingDate || 'the first Monday in May'} of each year at ${formData.annualMeetingTime || '10:00 a.m.'}, or at such other date and time as shall be designated from time to time by the board of directors and stated in the notice of the meeting. At the annual meeting, directors shall be elected and any other proper business may be transacted.
+
+Section 2.2 Special Meetings. Special meetings of the shareholders may be called by the board of directors, the chairman of the board, the president, or by the holders of shares entitled to cast not less than ten percent (10%) of the votes at such meeting.
+
+Section 2.3 Place of Meetings. Meetings of shareholders shall be held at the principal office of the corporation, or at such other place as may be designated from time to time by the board of directors.
+
+Section 2.4 Notice of Meetings. Written or printed notice stating the place, date and hour of any meeting of shareholders shall be delivered, either personally or by mail, to each shareholder entitled to vote at such meeting, not less than ten (10) nor more than sixty (60) days before the date of such meeting.
+
+Section 2.5 Quorum. The holders of a majority of the outstanding shares of the corporation entitled to vote, represented in person or by proxy, shall constitute a quorum at a meeting of shareholders.
+
+Section 2.6 Voting of Shares. Each outstanding share entitled to vote shall be entitled to one vote upon each matter submitted to a vote at a meeting of shareholders.
+
+Section 2.7 Proxies. At any meeting of shareholders, a shareholder may vote by proxy executed in writing by the shareholder or by his duly authorized attorney-in-fact.
+
+ARTICLE III
+BOARD OF DIRECTORS
+
+Section 3.1 General Powers. The business and affairs of the corporation shall be managed by its board of directors.
+
+Section 3.2 Number, Tenure and Qualifications. The number of directors of the corporation shall be ${formData.numberOfDirectors || 'three (3)'} unless changed by amendment to these Bylaws. Each director shall hold office until the next annual meeting of shareholders and until his successor shall have been elected and qualified.
+
+Section 3.3 Regular Meetings. A regular meeting of the board of directors shall be held without other notice than this Bylaw immediately after, and at the same place as, the annual meeting of shareholders.
+
+Section 3.4 Special Meetings. Special meetings of the board of directors may be called by or at the request of the president or any two directors.
+
+Section 3.5 Notice. Notice of any special meeting of the board of directors shall be given at least two (2) days previously thereto by written notice delivered personally or mailed to each director at his business address.
+
+Section 3.6 Quorum. A majority of the number of directors fixed by Section 3.2 shall constitute a quorum for the transaction of business at any meeting of the board of directors.
+
+Section 3.7 Manner of Acting. The act of the majority of the directors present at a meeting at which a quorum is present shall be the act of the board of directors.
+
+Section 3.8 Vacancies. Any vacancy occurring in the board of directors may be filled by the affirmative vote of a majority of the remaining directors.
+
+Section 3.9 Compensation. By resolution of the board of directors, each director may be paid his expenses, if any, of attendance at each meeting of the board of directors.
+
+ARTICLE IV
+OFFICERS
+
+Section 4.1 Officers. The officers of the corporation shall be a president, one or more vice presidents (the number thereof to be determined by the board of directors), a secretary, and a treasurer, each of whom shall be elected by the board of directors.
+
+Section 4.2 Election and Term of Office. The officers of the corporation to be elected by the board of directors shall be elected annually by the board of directors at the first meeting of the board of directors held after each annual meeting of the shareholders.
+
+Section 4.3 Removal. Any officer elected or appointed by the board of directors may be removed by the board of directors whenever in its judgment the best interests of the corporation would be served thereby.
+
+Section 4.4 Vacancies. A vacancy in any office because of death, resignation, removal, disqualification or otherwise, may be filled by the board of directors for the unexpired portion of the term.
+
+Section 4.5 President. The president shall be the principal executive officer of the corporation and, subject to the control of the board of directors, shall in general supervise and control all of the business and affairs of the corporation.
+
+Section 4.6 Vice President. In the absence of the president or in event of his death, inability or refusal to act, the vice president shall perform the duties of the president.
+
+Section 4.7 Treasurer. The treasurer shall:
+(a) Have charge and custody of and be responsible for all funds and securities of the corporation;
+(b) Receive and give receipts for moneys due and payable to the corporation;
+(c) Deposit all such moneys in the name of the corporation in such banks as shall be selected in accordance with the provisions of these Bylaws; and
+(d) In general perform all the duties incident to the office of treasurer.
+
+Section 4.8 Secretary. The secretary shall:
+(a) Keep the minutes of the proceedings of the shareholders and of the board of directors;
+(b) See that all notices are duly given in accordance with the provisions of these Bylaws;
+(c) Be custodian of the corporate records and of the seal of the corporation;
+(d) Keep a register of the post office address of each shareholder; and
+(e) In general perform all duties incident to the office of secretary.
+
+ARTICLE V
+CONTRACTS, LOANS, CHECKS AND DEPOSITS
+
+Section 5.1 Contracts. The board of directors may authorize any officer or officers, agent or agents, to enter into any contract or execute and deliver any instrument in the name of and on behalf of the corporation.
+
+Section 5.2 Loans. No loans shall be contracted on behalf of the corporation and no evidences of indebtedness shall be issued in its name unless authorized by a resolution of the board of directors.
+
+Section 5.3 Checks, Drafts, etc. All checks, drafts or other orders for the payment of money, notes or other evidences of indebtedness issued in the name of the corporation, shall be signed by such officer or officers, agent or agents of the corporation as shall from time to time be determined by resolution of the board of directors.
+
+Section 5.4 Deposits. All funds of the corporation not otherwise employed shall be deposited from time to time to the credit of the corporation in such banks as the board of directors may select.
+
+ARTICLE VI
+CERTIFICATES FOR SHARES AND THEIR TRANSFER
+
+Section 6.1 Certificates for Shares. Certificates representing shares of the corporation shall be in such form as shall be determined by the board of directors.
+
+Section 6.2 Transfer of Shares. Transfer of shares of the corporation shall be made only on the stock transfer books of the corporation by the holder of record thereof or by his legal representative.
+
+ARTICLE VII
+FISCAL YEAR
+
+Section 7.1 Fiscal Year. The fiscal year of the corporation shall begin on the first day of January and end on the last day of December in each year.
+
+ARTICLE VIII
+DIVIDENDS
+
+Section 8.1 Dividends. Dividends upon the capital stock of the corporation, subject to the provisions of the Articles of Incorporation, if any, may be declared by the board of directors at any regular or special meeting.
+
+ARTICLE IX
+CORPORATE SEAL
+
+Section 9.1 Corporate Seal. The corporate seal shall have inscribed thereon the name of the corporation, the year of its organization and the words "Corporate Seal, California."
+
+ARTICLE X
+WAIVER OF NOTICE
+
+Section 10.1 Waiver of Notice. Whenever any notice is required to be given under the provisions of the California Corporations Code or under the provisions of the Articles of Incorporation or the Bylaws of the corporation, a waiver thereof in writing signed by the person or persons entitled to such notice shall be deemed equivalent to the giving of such notice.
+
+ARTICLE XI
+AMENDMENTS TO BYLAWS
+
+Section 11.1 Amendments. These Bylaws may be altered, amended or repealed and new Bylaws may be adopted by the board of directors at any regular or special meeting of the board of directors.
+
+CERTIFICATE OF SECRETARY
+
+I hereby certify that the foregoing is a true and correct copy of the Bylaws of the above-named corporation, as adopted by the board of directors of said corporation on ${formData.bylawsDate || '[DATE]'}.
+
+_________________________________
+${formData.secretaryName || '[SECRETARY NAME]'}
+Secretary
+
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+Attorney for the Corporation
     `;
   };
 
@@ -708,32 +941,153 @@ ${formData.incorporatorName || '[INCORPORATOR NAME]'}
     return `
 RETAINER AGREEMENT FOR LEGAL SERVICES
 
-This Retainer Agreement ("Agreement") is entered into between ${firmInfo.name} ("Attorney") and ${formData.clientName || '[CLIENT NAME]'} ("Client").
+This Retainer Agreement ("Agreement") is entered into on ${formData.effectiveDate || '[DATE]'}, between:
+
+CLIENT: ${formData.clientName || '[CLIENT NAME]'} ("Client")
+ATTORNEY: ${firmInfo.name}, by Rozsa Gyene, Esq. (State Bar No. 208356) ("Attorney")
 
 1. SCOPE OF SERVICES
+
 Attorney agrees to represent Client in the following matter: ${formData.matterDescription || '[MATTER DESCRIPTION]'}
 
-2. RETAINER AND FEES
-Client agrees to pay a retainer of $${formData.retainerAmount || '[AMOUNT]'} upon execution of this Agreement. Attorney's hourly rate is ${firmInfo.hourlyRate}. Time will be billed in increments of one-tenth (1/10) of an hour.
+The scope of representation includes the following services:
+• ${formData.scopeService1 || 'Initial consultation and case evaluation'}
+• ${formData.scopeService2 || 'Legal research and analysis'}
+• ${formData.scopeService3 || 'Preparation of legal documents'}
+• ${formData.scopeService4 || 'Negotiation on behalf of Client'}
+• ${formData.scopeService5 || 'Court appearances as necessary'}
 
-3. BILLING AND PAYMENT
-Attorney will bill Client monthly for services rendered and costs incurred. Payment is due within thirty (30) days of the billing date.
+This Agreement does not include representation in appeals, post-judgment proceedings, or other matters not specifically described above unless agreed to in writing.
 
-4. TRUST ACCOUNT
-The retainer will be deposited in Attorney's trust account and withdrawn as fees are earned and costs are incurred.
+2. ATTORNEY FEES AND BILLING
 
-5. TERMINATION
-Either party may terminate this Agreement upon written notice. Upon termination, any unused retainer will be refunded to Client.
+A. Hourly Rate: Attorney's hourly rate is ${formData.hourlyRate || '$400'} per hour for attorney time. Time will be billed in increments of one-tenth (1/10) of an hour (6 minutes).
 
-This Agreement is governed by the laws of the State of California.
+B. Paralegal and Staff Rates: Paralegal time is billed at ${formData.paralegalRate || '$150'} per hour. Administrative assistant time is billed at ${formData.adminRate || '$75'} per hour.
 
-Client Name: ${formData.clientName || '[CLIENT NAME]'}
-Client Signature: _________________________ Date: _____________
+C. Minimum Billing: There is no minimum billing requirement for telephone conferences, but office conferences will be billed for a minimum of fifteen (15) minutes.
 
-Attorney: ${firmInfo.name}
-By: Rozsa Gyene, Esq.
-State Bar No. [NUMBER]
-Attorney Signature: _________________________ Date: _____________
+D. Travel Time: Travel time for court appearances, depositions, meetings, and other case-related activities will be billed at full hourly rates.
+
+3. RETAINER
+
+Client agrees to pay a retainer of ${formData.retainerAmount || '[AMOUNT]'} upon execution of this Agreement. This retainer will be deposited in Attorney's trust account and will be applied against fees and costs as they are incurred.
+
+When the retainer is reduced to ${formData.replenishmentAmount || '500'}, Client agrees to replenish the retainer to the original amount within ten (10) days of written notice from Attorney.
+
+4. COSTS AND EXPENSES
+
+In addition to attorney fees, Client is responsible for all costs and expenses incurred in connection with this matter, including but not limited to:
+• Court filing fees
+• Service of process fees
+• Deposition costs
+• Court reporter fees
+• Expert witness fees
+• Investigation costs
+• Copying charges at ${formData.copyingRate || '0.25'} per page
+• Postage and courier fees
+• Long-distance telephone charges
+• Computer research charges (Westlaw, Lexis)
+• Travel expenses (mileage, parking, hotels, meals)
+
+5. BILLING AND PAYMENT
+
+Attorney will send Client monthly billing statements showing:
+• Services performed and time spent
+• Costs and expenses incurred
+• Payments received
+• Current trust account balance
+
+Payment is due within thirty (30) days of the billing date. If payment is not received within thirty (30) days, Attorney may charge interest at the rate of 1.5% per month (18% per annum) on the unpaid balance.
+
+6. TRUST ACCOUNT PROCEDURES
+
+The retainer and any advance cost deposits will be deposited in Attorney's Client Trust Account, which is maintained separate from Attorney's operating accounts. Fees will be withdrawn from the trust account only as they are earned. Costs will be withdrawn as they are incurred or advanced by Attorney.
+
+Client will receive quarterly trust account statements showing all deposits, withdrawals, and the current balance.
+
+7. TERMINATION
+
+A. Client's Right to Terminate: Client may terminate this Agreement at any time by giving written notice to Attorney. Upon termination, Client will pay for all services rendered and costs incurred to the date of termination.
+
+B. Attorney's Right to Terminate: Attorney may terminate this Agreement for good cause, including but not limited to:
+• Client's failure to pay fees or costs when due
+• Client's failure to cooperate or communicate
+• Conflict of interest
+• Client's insistence on pursuing frivolous claims
+• Breakdown in the attorney-client relationship
+
+C. Refund of Unused Retainer: Upon termination, any unused portion of the retainer will be refunded to Client within thirty (30) days, less any unpaid fees and costs.
+
+8. FILE RETENTION AND RETURN
+
+Attorney will maintain Client's file for seven (7) years after the conclusion of the matter. After seven years, Attorney may destroy the file unless Client requests its return. Client may obtain a copy of the file at any time upon payment of copying costs.
+
+Upon termination of representation, Attorney will provide Client with copies of all documents in the file that belong to Client or are necessary for Client's protection, regardless of whether Client has paid all fees and costs.
+
+9. COMMUNICATION
+
+Attorney will keep Client informed of significant developments in the case and will respond to Client's reasonable requests for information about the status of the matter. Client agrees to keep Attorney informed of any changes in address, telephone number, or other contact information.
+
+Client acknowledges that Attorney cannot guarantee the outcome of any legal matter and that no promises have been made regarding the results of representation.
+
+10. DISPUTE RESOLUTION
+
+Any dispute arising under this Agreement, including disputes over fees, shall be resolved by binding arbitration under the California Arbitration Act. The arbitration shall be conducted by a retired judge or experienced attorney agreed upon by the parties, or if no agreement can be reached, by an arbitrator appointed by the Los Angeles County Bar Association.
+
+11. CLIENT ACKNOWLEDGMENTS
+
+Client acknowledges:
+• The right to seek advice from independent counsel before signing this Agreement
+• Receipt of a copy of this Agreement
+• Understanding of all terms of this Agreement
+• That attorney fees are negotiable and not set by law
+• Receipt of the State Bar of California publication "The Attorney's Guide to Fee Agreements"
+
+12. LIEN
+
+Attorney shall have a lien on all files, documents, and property of Client in Attorney's possession for payment of fees and costs. Attorney also shall have a lien on any recovery obtained for Client in this matter to secure payment of fees and costs.
+
+13. GENERAL PROVISIONS
+
+A. Entire Agreement: This Agreement constitutes the entire agreement between the parties regarding the subject matter herein and supersedes all prior negotiations, representations, or agreements relating thereto.
+
+B. Modifications: Any modifications must be in writing and signed by both parties.
+
+C. Governing Law: This Agreement is governed by California law and the Rules of Professional Conduct of the State Bar of California.
+
+D. Severability: If any provision is invalid, the remainder shall continue in effect.
+
+E. Assignment: This Agreement may not be assigned by either party without the written consent of the other party.
+
+CLIENT ACKNOWLEDGMENT
+
+I have read and understood this entire Agreement. I have received a copy of this Agreement. I acknowledge that I have been advised of my right to seek independent legal advice regarding this Agreement. I agree to all terms stated herein.
+
+CLIENT:
+
+_________________________________    Date: _______________
+${formData.clientName || '[CLIENT NAME]'}
+
+Address: ${formData.clientAddress || '[CLIENT ADDRESS]'}
+Phone: ${formData.clientPhone || '[CLIENT PHONE]'}
+Email: ${formData.clientEmail || '[CLIENT EMAIL]'}
+
+ATTORNEY:
+
+_________________________________    Date: _______________
+Rozsa Gyene, Esq.
+State Bar No. 208356
+
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+${firmInfo.email}
+
+NOTICE TO CLIENT:
+
+This agreement is subject to California Business and Professions Code Section 6148, which requires that certain fee agreements be in writing. You have the right to cancel this agreement within three business days after you sign it by sending written notice to the attorney. If you cancel this agreement within three business days, you will not owe the attorney any fees, although you may be responsible for actual costs incurred by the attorney on your behalf.
     `;
   };
 
@@ -854,6 +1208,29 @@ Attorney Signature: _________________________ Date: _____________
                 type="date"
                 value={formData.effectiveDate || ''}
                 onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Client Name</label>
+              <input
+                type="text"
+                value={formData.clientName || ''}
+                onChange={(e) => handleInputChange('clientName', e.target.value)}
+                placeholder="Enter client name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Matter Description</label>
+              <textarea
+                value={formData.matterDescription || ''}
+                onChange={(e) => handleInputChange('matterDescription', e.target.value)}
+                placeholder="Describe the legal matter"
               />
             </div>
           </div>
@@ -1062,7 +1439,214 @@ Attorney Signature: _________________________ Date: _____________
           </div>
         );
 
-      default:
+      case 'articles':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Corporation Name</label>
+              <input
+                type="text"
+                value={formData.corpName || ''}
+                onChange={(e) => handleInputChange('corpName', e.target.value)}
+                placeholder="Enter corporation name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Business Purpose</label>
+              <textarea
+                value={formData.businessPurpose || ''}
+                onChange={(e) => handleInputChange('businessPurpose', e.target.value)}
+                placeholder="Describe the specific business purpose"
+              />
+            </div>
+            <div className="form-group">
+              <label>Registered Agent Name</label>
+              <input
+                type="text"
+                value={formData.registeredAgent || ''}
+                onChange={(e) => handleInputChange('registeredAgent', e.target.value)}
+                placeholder="Enter registered agent name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Agent Address</label>
+              <input
+                type="text"
+                value={formData.agentAddress || ''}
+                onChange={(e) => handleInputChange('agentAddress', e.target.value)}
+                placeholder="Enter agent address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Authorized Shares</label>
+              <input
+                type="number"
+                value={formData.authorizedShares || ''}
+                onChange={(e) => handleInputChange('authorizedShares', e.target.value)}
+                placeholder="Enter number of authorized shares"
+              />
+            </div>
+            <div className="form-group">
+              <label>Number of Directors</label>
+              <input
+                type="number"
+                value={formData.numberOfDirectors || ''}
+                onChange={(e) => handleInputChange('numberOfDirectors', e.target.value)}
+                placeholder="Enter number of directors"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 1 Name</label>
+              <input
+                type="text"
+                value={formData.director1Name || ''}
+                onChange={(e) => handleInputChange('director1Name', e.target.value)}
+                placeholder="Enter director 1 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 1 Address</label>
+              <input
+                type="text"
+                value={formData.director1Address || ''}
+                onChange={(e) => handleInputChange('director1Address', e.target.value)}
+                placeholder="Enter director 1 address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 2 Name</label>
+              <input
+                type="text"
+                value={formData.director2Name || ''}
+                onChange={(e) => handleInputChange('director2Name', e.target.value)}
+                placeholder="Enter director 2 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 2 Address</label>
+              <input
+                type="text"
+                value={formData.director2Address || ''}
+                onChange={(e) => handleInputChange('director2Address', e.target.value)}
+                placeholder="Enter director 2 address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 3 Name</label>
+              <input
+                type="text"
+                value={formData.director3Name || ''}
+                onChange={(e) => handleInputChange('director3Name', e.target.value)}
+                placeholder="Enter director 3 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 3 Address</label>
+              <input
+                type="text"
+                value={formData.director3Address || ''}
+                onChange={(e) => handleInputChange('director3Address', e.target.value)}
+                placeholder="Enter director 3 address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Incorporator Name</label>
+              <input
+                type="text"
+                value={formData.incorporatorName || ''}
+                onChange={(e) => handleInputChange('incorporatorName', e.target.value)}
+                placeholder="Enter incorporator name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Incorporator Address</label>
+              <input
+                type="text"
+                value={formData.incorporatorAddress || ''}
+                onChange={(e) => handleInputChange('incorporatorAddress', e.target.value)}
+                placeholder="Enter incorporator address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Incorporation Date</label>
+              <input
+                type="date"
+                value={formData.incorporationDate || ''}
+                onChange={(e) => handleInputChange('incorporationDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'bylaws':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Corporation Name</label>
+              <input
+                type="text"
+                value={formData.corpName || ''}
+                onChange={(e) => handleInputChange('corpName', e.target.value)}
+                placeholder="Enter corporation name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Business Address</label>
+              <input
+                type="text"
+                value={formData.businessAddress || ''}
+                onChange={(e) => handleInputChange('businessAddress', e.target.value)}
+                placeholder="Enter business address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Annual Meeting Date</label>
+              <input
+                type="text"
+                value={formData.annualMeetingDate || ''}
+                onChange={(e) => handleInputChange('annualMeetingDate', e.target.value)}
+                placeholder="e.g., the first Monday in May"
+              />
+            </div>
+            <div className="form-group">
+              <label>Annual Meeting Time</label>
+              <input
+                type="text"
+                value={formData.annualMeetingTime || ''}
+                onChange={(e) => handleInputChange('annualMeetingTime', e.target.value)}
+                placeholder="e.g., 10:00 a.m."
+              />
+            </div>
+            <div className="form-group">
+              <label>Number of Directors</label>
+              <input
+                type="text"
+                value={formData.numberOfDirectors || ''}
+                onChange={(e) => handleInputChange('numberOfDirectors', e.target.value)}
+                placeholder="e.g., three (3)"
+              />
+            </div>
+            <div className="form-group">
+              <label>Secretary Name</label>
+              <input
+                type="text"
+                value={formData.secretaryName || ''}
+                onChange={(e) => handleInputChange('secretaryName', e.target.value)}
+                placeholder="Enter secretary name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Bylaws Adoption Date</label>
+              <input
+                type="date"
+                value={formData.bylawsDate || ''}
+                onChange={(e) => handleInputChange('bylawsDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'retainer':
         return (
           <div className="form-grid">
             <div className="form-group">
@@ -1080,6 +1664,95 @@ Attorney Signature: _________________________ Date: _____________
                 value={formData.matterDescription || ''}
                 onChange={(e) => handleInputChange('matterDescription', e.target.value)}
                 placeholder="Describe the legal matter"
+              />
+            </div>
+            <div className="form-group">
+              <label>Retainer Amount</label>
+              <input
+                type="number"
+                value={formData.retainerAmount || ''}
+                onChange={(e) => handleInputChange('retainerAmount', e.target.value)}
+                placeholder="Enter retainer amount"
+              />
+            </div>
+            <div className="form-group">
+              <label>Hourly Rate</label>
+              <input
+                type="text"
+                value={formData.hourlyRate || ''}
+                onChange={(e) => handleInputChange('hourlyRate', e.target.value)}
+                placeholder="e.g., $400"
+              />
+            </div>
+            <div className="form-group">
+              <label>Paralegal Rate</label>
+              <input
+                type="text"
+                value={formData.paralegalRate || ''}
+                onChange={(e) => handleInputChange('paralegalRate', e.target.value)}
+                placeholder="e.g., $150"
+              />
+            </div>
+            <div className="form-group">
+              <label>Admin Rate</label>
+              <input
+                type="text"
+                value={formData.adminRate || ''}
+                onChange={(e) => handleInputChange('adminRate', e.target.value)}
+                placeholder="e.g., $75"
+              />
+            </div>
+            <div className="form-group">
+              <label>Replenishment Amount</label>
+              <input
+                type="number"
+                value={formData.replenishmentAmount || ''}
+                onChange={(e) => handleInputChange('replenishmentAmount', e.target.value)}
+                placeholder="Amount to trigger retainer replenishment"
+              />
+            </div>
+            <div className="form-group">
+              <label>Copying Rate</label>
+              <input
+                type="text"
+                value={formData.copyingRate || ''}
+                onChange={(e) => handleInputChange('copyingRate', e.target.value)}
+                placeholder="e.g., 0.25"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Address</label>
+              <input
+                type="text"
+                value={formData.clientAddress || ''}
+                onChange={(e) => handleInputChange('clientAddress', e.target.value)}
+                placeholder="Enter client address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Phone</label>
+              <input
+                type="tel"
+                value={formData.clientPhone || ''}
+                onChange={(e) => handleInputChange('clientPhone', e.target.value)}
+                placeholder="Enter client phone"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Email</label>
+              <input
+                type="email"
+                value={formData.clientEmail || ''}
+                onChange={(e) => handleInputChange('clientEmail', e.target.value)}
+                placeholder="Enter client email"
+              />
+            </div>
+            <div className="form-group">
+              <label>Effective Date</label>
+              <input
+                type="date"
+                value={formData.effectiveDate || ''}
+                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
               />
             </div>
           </div>
