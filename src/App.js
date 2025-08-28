@@ -302,6 +302,641 @@ ${firmInfo.name}
 ${firmInfo.address}
 ${firmInfo.city}
 ${firmInfo.phone}
+Attorney for the Company
+
+
+Attachment A
+Initial Contributions of the Members
+
+The initial contributions of the Members of ${formData.llcName || '[COMPANY NAME]'} LLC are as follows:
+
+${formData.member1Name || '[MEMBER 1 NAME]'}
+Contribution:
+Cash: $${formData.member1Contribution || '50.00'}
+
+${formData.member2Name || '[MEMBER 2 NAME]'}
+Contribution:
+Cash: $${formData.member2Contribution || '50.00'}
+    `;
+  };
+
+  const generatePrenupDocument = () => {
+    return `
+PRENUPTIAL AGREEMENT
+
+THIS PRENUPTIAL AGREEMENT (this "Agreement") is made and entered into on ${formData.effectiveDate || '[DATE]'}, by and between ${formData.party1Name || '[PARTY 1 NAME]'} ("${formData.party1Name || 'Party 1'}") and ${formData.party2Name || '[PARTY 2 NAME]'} ("${formData.party2Name || 'Party 2'}"), who contemplate marriage to each other.
+
+RECITALS
+
+WHEREAS, the parties desire to marry each other and wish to fix and determine by agreement their respective rights and obligations which may arise from their marital relationship;
+
+WHEREAS, each party acknowledges that they have been advised to obtain independent legal counsel in connection with this Agreement and have had the opportunity to do so;
+
+WHEREAS, each party acknowledges that they have made full and complete disclosure to the other party of their assets, liabilities, income, and financial circumstances;
+
+WHEREAS, each party enters into this Agreement freely and voluntarily, with full knowledge of its contents and legal significance;
+
+NOW, THEREFORE, in consideration of the mutual promises and covenants contained herein and the contemplated marriage, the parties agree as follows:
+
+1. DEFINITIONS
+
+1.1 "Separate Property" shall mean and include:
+    (a) All property owned by each party prior to marriage;
+    (b) All property acquired by either party during marriage by gift, inheritance, or bequest;
+    (c) All income, rents, profits, and appreciation from separate property;
+    (d) All property acquired with separate property funds;
+    (e) All property designated as separate property by written agreement between the parties.
+
+1.2 "Community Property" shall mean all property acquired by either party during marriage that is not separate property as defined above.
+
+2. PROPERTY RIGHTS AND CHARACTERIZATION
+
+2.1 Separate Property. Each party's separate property, as defined above, shall remain that party's sole and separate property, free from any claim by the other party. Each party may manage, control, and dispose of their separate property without the consent of the other party.
+
+2.2 Community Property. Subject to the provisions of this Agreement, all community property shall be managed and controlled according to California law governing community property.
+
+2.3 Transmutation. No transmutation of separate property to community property or community property to separate property shall occur except by written agreement signed by both parties.
+
+2.4 Business Interests. Each party's business interests existing prior to marriage, including but not limited to ${formData.party1Business || '[PARTY 1 BUSINESS INTERESTS]'} owned by ${formData.party1Name || 'Party 1'} and ${formData.party2Business || '[PARTY 2 BUSINESS INTERESTS]'} owned by ${formData.party2Name || 'Party 2'}, shall remain the separate property of the owning party. Any appreciation in value of such business interests during marriage shall also remain separate property.
+
+3. DISCLOSURE OF ASSETS AND LIABILITIES
+
+3.1 Full Disclosure. Each party represents that they have made full and complete disclosure of all assets, liabilities, income, and financial circumstances to the other party as set forth in the Financial Disclosure Statements attached hereto as Exhibits A and B and incorporated herein by reference.
+
+3.2 Reliance on Disclosure. Each party acknowledges that they are entering into this Agreement in reliance upon the financial disclosures made by the other party.
+
+4. SPOUSAL SUPPORT
+
+4.1 Waiver of Spousal Support. Each party hereby waives and releases any and all rights to receive spousal support (alimony) from the other party, whether temporary, rehabilitative, permanent, or lump sum, in the event of separation, dissolution of marriage, or legal separation.
+
+4.2 Exception for Unconscionability. Notwithstanding the above waiver, if a court of competent jurisdiction determines that the enforcement of this spousal support waiver would be unconscionable at the time of enforcement, the court may order spousal support in such amount and for such time as the court deems just and reasonable under the circumstances.
+
+5. ESTATE PLANNING AND INHERITANCE RIGHTS
+
+5.1 Waiver of Inheritance Rights. Each party waives all rights to inherit from the other party's estate as a surviving spouse under California law, including but not limited to:
+    (a) Rights to elect against the other party's will;
+    (b) Rights to intestate succession;
+    (c) Rights as a pretermitted spouse;
+    (d) Rights to family allowance and homestead allowance.
+
+5.2 Right to Make Gifts. Nothing in this Agreement shall prevent either party from making gifts or bequests to the other party by will, trust, or other estate planning document.
+
+6. DEBTS AND OBLIGATIONS
+
+6.1 Separate Debts. Each party shall be solely responsible for their separate debts and obligations incurred prior to marriage. These debts are set forth in the Financial Disclosure Statements referenced above.
+
+6.2 Community Debts. Debts incurred during marriage for the benefit of the community shall be community debts and the responsibility of both parties according to California law.
+
+6.3 Separate Debts During Marriage. Any debt incurred by either party during marriage that is not for the benefit of the community shall be the separate debt of the party incurring such debt.
+
+7. REAL PROPERTY
+
+7.1 Separate Real Property. The real property located at ${formData.party1RealEstate || '[PARTY 1 REAL ESTATE]'} owned by ${formData.party1Name || 'Party 1'} and the real property located at ${formData.party2RealEstate || '[PARTY 2 REAL ESTATE]'} owned by ${formData.party2Name || 'Party 2'} shall remain the separate property of the respective owner.
+
+7.2 Future Real Property. Any real property acquired during marriage shall be characterized as separate or community property based upon the source of funds used for acquisition and the manner in which title is held.
+
+8. RETIREMENT BENEFITS
+
+8.1 Separate Retirement Benefits. All retirement benefits, including but not limited to pension plans, 401(k) plans, IRAs, and other retirement accounts, earned or accrued by each party prior to marriage shall remain the separate property of that party.
+
+8.2 Community Interest in Retirement Benefits. Each party acknowledges that retirement benefits earned during marriage may be subject to community property rights under California law, except as otherwise provided in this Agreement.
+
+9. INSURANCE
+
+9.1 Life Insurance. Each party may maintain life insurance policies and designate beneficiaries as they see fit, subject to any requirements of this Agreement or subsequent written agreements.
+
+9.2 Health Insurance. The parties shall cooperate in maintaining health insurance coverage for the family as circumstances permit.
+
+10. MODIFICATIONS AND AMENDMENTS
+
+10.1 Written Modifications Only. This Agreement may be modified or amended only by written agreement signed by both parties and notarized.
+
+10.2 No Oral Modifications. No oral modifications to this Agreement shall be valid or enforceable.
+
+11. ENFORCEMENT AND VALIDITY
+
+11.1 Severability. If any provision of this Agreement is held invalid or unenforceable by a court of competent jurisdiction, the remainder of this Agreement shall remain in full force and effect.
+
+11.2 Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of California.
+
+11.3 Jurisdiction. The parties consent to the jurisdiction of the courts of California for any action arising under this Agreement.
+
+12. INDEPENDENT LEGAL COUNSEL
+
+12.1 Advice of Counsel. Each party acknowledges that they have been advised to seek independent legal counsel regarding this Agreement and have had adequate opportunity to do so.
+
+12.2 ${firmInfo.name} represents ${formData.representedParty || 'Party 1'} in connection with this Agreement. ${formData.party2Counsel || '[PARTY 2 COUNSEL]'} represents ${formData.party2Name || 'Party 2'} in connection with this Agreement.
+
+13. ACKNOWLEDGMENTS
+
+13.1 Voluntary Execution. Each party acknowledges that they are executing this Agreement voluntarily, without duress, coercion, or undue influence.
+
+13.2 Full Understanding. Each party acknowledges that they have read this Agreement, understand its contents, and agree to be bound by its terms.
+
+13.3 Fair and Reasonable. Each party acknowledges that they believe this Agreement is fair and reasonable under the circumstances.
+
+14. WAITING PERIOD
+
+14.1 Seven-Day Waiting Period. Each party acknowledges that they have received a copy of this Agreement at least seven (7) days before its execution, as required by California Family Code Section 1615.
+
+15. EFFECTIVE DATE AND TERMINATION
+
+15.1 Effective Date. This Agreement shall become effective upon the marriage of the parties.
+
+15.2 Termination. This Agreement shall terminate upon the death of either party or upon written agreement of both parties.
+
+16. GENERAL PROVISIONS
+
+16.1 Entire Agreement. This Agreement constitutes the entire agreement between the parties regarding the subject matter herein and supersedes all prior negotiations, representations, or agreements relating thereto.
+
+16.2 Binding Effect. This Agreement shall be binding upon the parties and their respective heirs, successors, and assigns.
+
+16.3 Counterparts. This Agreement may be executed in counterparts, each of which shall be deemed an original and all of which together shall constitute one and the same instrument.
+
+16.4 Attorney Fees. In any action to enforce this Agreement, the prevailing party shall be entitled to reasonable attorney fees and costs.
+
+IN WITNESS WHEREOF, the parties have executed this Prenuptial Agreement on the date first written above.
+
+_________________________________    Date: _______________
+${formData.party1Name || '[PARTY 1 NAME]'}
+
+_________________________________    Date: _______________
+${formData.party2Name || '[PARTY 2 NAME]'}
+
+STATE OF CALIFORNIA   )
+                     ) ss.
+COUNTY OF LOS ANGELES )
+
+On ${formData.notaryDate || '[DATE]'}, before me, _________________________, Notary Public, personally appeared ${formData.party1Name || '[PARTY 1 NAME]'} and ${formData.party2Name || '[PARTY 2 NAME]'}, who proved to me on the basis of satisfactory evidence to be the persons whose names are subscribed to the within instrument and acknowledged to me that they executed the same in their authorized capacities, and that by their signatures on the instrument the persons, or the entity upon behalf of which the persons acted, executed the instrument.
+
+I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
+
+WITNESS my hand and official seal.
+
+Signature _________________________
+
+[Notary Seal]
+
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+Attorney for ${formData.representedParty || 'the Parties'}
+
+
+FINANCIAL DISCLOSURE STATEMENT - EXHIBIT A
+${formData.party1Name || '[PARTY 1 NAME]'}
+
+ASSETS:
+Real Property: ${formData.party1RealEstate || 'N/A'}
+Personal Property: ${formData.party1PersonalProperty || 'N/A'}
+Bank Accounts: ${formData.party1BankAccounts || 'N/A'}
+Investment Accounts: ${formData.party1Investments || 'N/A'}
+Retirement Accounts: ${formData.party1Retirement || 'N/A'}
+Business Interests: ${formData.party1Business || 'N/A'}
+Other Assets: ${formData.party1OtherAssets || 'N/A'}
+
+LIABILITIES:
+Mortgages: ${formData.party1Mortgages || 'N/A'}
+Credit Cards: ${formData.party1CreditCards || 'N/A'}
+Student Loans: ${formData.party1StudentLoans || 'N/A'}
+Other Debts: ${formData.party1OtherDebts || 'N/A'}
+
+INCOME:
+Annual Income: $${formData.party1Income || '[AMOUNT]'}
+
+
+FINANCIAL DISCLOSURE STATEMENT - EXHIBIT B
+${formData.party2Name || '[PARTY 2 NAME]'}
+
+ASSETS:
+Real Property: ${formData.party2RealEstate || 'N/A'}
+Personal Property: ${formData.party2PersonalProperty || 'N/A'}
+Bank Accounts: ${formData.party2BankAccounts || 'N/A'}
+Investment Accounts: ${formData.party2Investments || 'N/A'}
+Retirement Accounts: ${formData.party2Retirement || 'N/A'}
+Business Interests: ${formData.party2Business || 'N/A'}
+Other Assets: ${formData.party2OtherAssets || 'N/A'}
+
+LIABILITIES:
+Mortgages: ${formData.party2Mortgages || 'N/A'}
+Credit Cards: ${formData.party2CreditCards || 'N/A'}
+Student Loans: ${formData.party2StudentLoans || 'N/A'}
+Other Debts: ${formData.party2OtherDebts || 'N/A'}
+
+INCOME:
+Annual Income: $${formData.party2Income || '[AMOUNT]'}
+    `;
+  };
+
+  const generateContingencyDocument = () => {
+    return `
+CONTINGENCY FEE AGREEMENT FOR TRUST LITIGATION
+
+This CONTINGENCY FEE AGREEMENT ("Agreement") is entered into as of ${formData.effectiveDate || '_________'}, 2025, between:
+
+CLIENT: ${formData.clientName || '[CLIENT NAME]'} ("Client")
+ATTORNEY: Law Offices of Rozsa Gyene, by Rozsa Gyene, Esq. (State Bar No. 208356) ("Attorney")
+
+RE: ${formData.caseDescription || '[CASE DESCRIPTION]'}
+
+RECITALS
+
+WHEREAS, Client seeks legal representation in connection with ${formData.caseDescription || 'a trust dispute'};
+
+WHEREAS, Client has previously retained Attorney on an hourly basis but is unable to continue paying hourly fees;
+
+WHEREAS, the parties wish to convert the representation to a contingency fee basis;
+
+NOW, THEREFORE, in consideration of the mutual promises contained herein, the parties agree:
+
+1. SCOPE OF REPRESENTATION
+
+Attorney agrees to represent Client in the above-referenced matter, including but not limited to:
+• Challenging the validity of trusts and/or estates
+• Pursuing claims for elder abuse, undue influence, fraud, and conversion
+• Seeking recovery of real property and assets
+• Recovering damages, costs, and attorney's fees
+• All proceedings through trial and post-judgment enforcement
+
+2. CONTINGENCY FEE
+
+A. Percentage Fee: Client agrees to pay Attorney the following percentage of the "gross recovery":
+• ${formData.preTrialPercentage || '33'}% if the matter is resolved before trial
+• ${formData.trialPercentage || '40'}% if the matter proceeds to trial, arbitration, or is appealed by any party
+
+B. "Gross Recovery" means the total of all amounts recovered by settlement, judgment, or otherwise, whether by cash, property, or other consideration, BEFORE deduction of costs and expenses.
+
+C. Property Recovery: If recovery includes real property, the fee percentage applies to the fair market value of the property or Client's interest therein.
+
+3. COSTS AND EXPENSES
+
+A. Client's Responsibility: Client remains responsible for all costs and expenses, including but not limited to:
+• Filing fees
+• Service of process fees
+• Deposition costs
+• Expert witness fees
+• Court reporter fees
+• Investigation costs
+• Travel expenses
+
+B. Advance of Costs: Attorney may, but is not obligated to, advance costs. Any costs advanced by Attorney shall be reimbursed from the gross recovery before calculation of attorney's fees.
+
+C. Prior Costs: Client acknowledges responsibility for all costs previously incurred under the hourly fee arrangement. All costs were paid by client as of today.
+
+4. ATTORNEY'S LIEN
+
+A. STATUTORY LIEN: Client acknowledges that Attorney has a lien under California Code of Civil Procedure § 708.410 et seq. and California Business and Professions Code § 6146 on any recovery obtained.
+
+B. CONTRACTUAL LIEN ON REAL PROPERTY: To secure payment of attorney's fees and costs, Client hereby grants Attorney a lien on:
+• Any real property recovered in this action
+• Client's interest in the property located at ${formData.propertyAddress || '[Property Address]'}
+• Any proceeds from the sale or refinancing of said property
+
+C. NOTICE OF LIEN: Attorney may file a Notice of Attorney's Lien with the County Recorder to perfect this lien. Client agrees to cooperate in perfecting and enforcing this lien.
+
+5. NO RECOVERY
+
+If there is no recovery, Client shall not owe Attorney any attorney's fees for work performed after the date of this Agreement. However, Client remains responsible for:
+• All costs and expenses
+• Previously incurred hourly fees
+• Any sanctions awarded against Client personally
+
+6. DISCHARGE OF ATTORNEY
+
+A. Client may discharge Attorney at any time.
+
+B. If Client discharges Attorney without good cause, Attorney shall be entitled to:
+• All unpaid hourly fees incurred before this Agreement
+• Reasonable value of services (quantum meruit) after this Agreement
+• All unreimbursed costs
+
+C. Attorney's lien rights survive discharge.
+
+7. WITHDRAWAL OF ATTORNEY
+
+Attorney may withdraw for good cause as permitted by law and the Rules of Professional Conduct, including if Client:
+• Fails to cooperate
+• Pursues illegal or unethical conduct
+• Makes the representation unreasonably difficult
+
+8. SETTLEMENT AUTHORITY
+
+A. Attorney shall not settle without Client's written consent.
+B. Client agrees not to settle without Attorney present or without Attorney's written consent.
+C. Any settlement that excludes or limits attorney's fees requires Attorney's written consent.
+
+9. ALTERNATIVE DISPUTE RESOLUTION
+
+Any dispute arising under this Agreement shall be resolved by binding arbitration under the California Arbitration Act.
+
+10. INFORMED CONSENT
+
+Client acknowledges:
+• The right to seek advice from independent counsel before signing
+• Understanding all terms of this Agreement
+• That contingency fees are negotiable and not set by law
+• That this Agreement modifies the prior hourly fee arrangement
+
+11. GENERAL PROVISIONS
+
+A. Entire Agreement: This Agreement supersedes all prior agreements regarding fees for this matter after the date hereof.
+
+B. Modifications: Any modifications must be in writing and signed by both parties.
+
+C. Governing Law: This Agreement is governed by California law.
+
+D. Severability: If any provision is invalid, the remainder shall continue in effect.
+
+12. STATUTORY DISCLOSURE
+
+"THE CONTINGENCY FEE IS NOT SET BY LAW BUT IS NEGOTIABLE BETWEEN THE ATTORNEY AND CLIENT"
+
+CLIENT ACKNOWLEDGMENT AND SIGNATURE
+
+I have read and understood this entire Agreement. I have had the opportunity to ask questions and seek independent legal advice. I agree to all terms stated herein.
+
+CLIENT:
+
+_______________
+${formData.clientName || '[CLIENT NAME]'}
+Date: _____________
+
+Address: ${formData.clientAddress || '_______________________'}
+
+Phone: ${formData.clientPhone || '________________________'} Email: ${formData.clientEmail || '________________________'}
+
+ATTORNEY:
+
+___________________
+Rozsa Gyene, Esq.
+State Bar No. 208356
+Date: _____________
+
+LAW OFFICES OF ROZSA GYENE
+450 N Brand Blvd, Suite 600
+Glendale, CA 91203
+(818) 291-6217
+rozsagyenelaw@yahoo.com
+    `;
+  };
+
+  const generateArticlesDocument = () => {
+    return `
+ARTICLES OF INCORPORATION
+OF
+${formData.corpName || '[CORPORATION NAME]'}
+
+The undersigned, for the purpose of forming a corporation under the laws of the State of California, hereby certifies:
+
+ARTICLE I
+NAME
+
+The name of the corporation is ${formData.corpName || '[CORPORATION NAME]'}.
+
+ARTICLE II
+PURPOSES AND POWERS
+
+(a) The purpose of this corporation is to engage in any lawful act or activity for which a corporation may be organized under the General Corporation Law of California other than the banking business, the trust company business or the practice of a profession permitted to be incorporated by the California Corporations Code.
+
+(b) Specific Business Purpose: ${formData.businessPurpose || 'To engage in general business activities as permitted by law.'}.
+
+(c) The corporation is organized and operated exclusively for business purposes within the meaning of applicable California law.
+
+ARTICLE III
+REGISTERED AGENT
+
+The name and address in California of this corporation's initial agent for service of process is:
+${formData.registeredAgent || '[REGISTERED AGENT NAME]'}
+${formData.agentAddress || '[REGISTERED AGENT ADDRESS]'}
+
+ARTICLE IV
+CAPITAL STOCK
+
+(a) The corporation is authorized to issue only one class of shares of stock, and the total number of shares which the corporation is authorized to issue is ${formData.authorizedShares || '1,000,000'} shares of common stock, no par value per share.
+
+(b) The rights, preferences, privileges, and restrictions granted to or imposed upon the respective classes or series of shares, or the holders thereof, shall be as set forth below or in the resolution or resolutions providing for the issue of such shares adopted by the board of directors pursuant to authority expressly vested in it by the provisions of this Article IV.
+
+(c) Common Stock: The holders of the common stock are entitled to one vote for each share held at all meetings of shareholders. There are no preemptive rights.
+
+ARTICLE V
+DIRECTORS
+
+(a) The number of directors of this corporation is ${formData.numberOfDirectors || '3'}, which number may be increased or decreased by amendment to the Bylaws of the corporation, provided that the number of directors shall not be less than three (3).
+
+(b) The names and addresses of the persons who are to serve as the initial directors are:
+
+${formData.director1Name || '[DIRECTOR 1 NAME]'}
+${formData.director1Address || '[DIRECTOR 1 ADDRESS]'}
+
+${formData.director2Name || '[DIRECTOR 2 NAME]'}
+${formData.director2Address || '[DIRECTOR 2 ADDRESS]'}
+
+${formData.director3Name || '[DIRECTOR 3 NAME]'}
+${formData.director3Address || '[DIRECTOR 3 ADDRESS]'}
+
+ARTICLE VI
+INCORPORATOR
+
+The name and address of the incorporator is:
+${formData.incorporatorName || '[INCORPORATOR NAME]'}
+${formData.incorporatorAddress || '[INCORPORATOR ADDRESS]'}
+
+ARTICLE VII
+LIABILITY OF DIRECTORS
+
+A director of the corporation shall not be personally liable to the corporation or its shareholders for monetary damages for breach of fiduciary duty as a director, except for liability for:
+
+(a) Acts or omissions not in good faith or which involve intentional misconduct or a knowing violation of law;
+(b) Dividends or distributions paid in violation of the California Corporations Code; or
+(c) Transactions from which the director derived an improper personal benefit.
+
+Any repeal or modification of this Article VII shall not adversely affect any right or protection of a director existing at the time of such repeal or modification.
+
+ARTICLE VIII
+INDEMNIFICATION
+
+The corporation shall indemnify its directors, officers, employees, and agents to the fullest extent permitted by the California Corporations Code, as it may be amended from time to time.
+
+ARTICLE IX
+AMENDMENT
+
+The corporation reserves the right to amend, alter, change, or repeal any provision contained in these Articles of Incorporation, in the manner now or hereafter prescribed by statute, and all rights conferred upon shareholders herein are granted subject to this reservation.
+
+ARTICLE X
+DURATION
+
+The period of existence of the corporation shall be perpetual.
+
+IN WITNESS WHEREOF, I have executed these Articles of Incorporation this ${formData.incorporationDate || '_____ day of _________, 2025'}.
+
+_________________________________
+${formData.incorporatorName || '[INCORPORATOR NAME]'}
+Incorporator
+
+STATE OF CALIFORNIA   )
+                     ) ss.
+COUNTY OF LOS ANGELES )
+
+On ${formData.incorporationDate || '[DATE]'}, before me, _________________________, Notary Public, personally appeared ${formData.incorporatorName || '[INCORPORATOR NAME]'}, who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument.
+
+I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
+
+WITNESS my hand and official seal.
+
+Signature _________________________
+
+[Notary Seal]
+
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+Attorney for the Corporation
+    `;
+  };
+
+  const generateBylawsDocument = () => {
+    return `
+BYLAWS
+OF
+${formData.corpName || '[CORPORATION NAME]'}
+(A California Corporation)
+
+ARTICLE I
+OFFICES
+
+Section 1.1 Principal Office. The principal office for the transaction of the business of the corporation is located at ${formData.businessAddress || '[BUSINESS ADDRESS]'}, or at such other address as the board of directors may from time to time determine.
+
+Section 1.2 Other Offices. The board of directors may at any time establish branch or subordinate offices at any place or places where the corporation is qualified to do business.
+
+ARTICLE II
+SHAREHOLDERS
+
+Section 2.1 Annual Meetings. The annual meeting of shareholders shall be held on ${formData.annualMeetingDate || 'the first Monday in May'} of each year at ${formData.annualMeetingTime || '10:00 a.m.'}, or at such other date and time as shall be designated from time to time by the board of directors and stated in the notice of the meeting. At the annual meeting, directors shall be elected and any other proper business may be transacted.
+
+Section 2.2 Special Meetings. Special meetings of the shareholders may be called by the board of directors, the chairman of the board, the president, or by the holders of shares entitled to cast not less than ten percent (10%) of the votes at such meeting.
+
+Section 2.3 Place of Meetings. Meetings of shareholders shall be held at the principal office of the corporation, or at such other place as may be designated from time to time by the board of directors.
+
+Section 2.4 Notice of Meetings. Written or printed notice stating the place, date and hour of any meeting of shareholders shall be delivered, either personally or by mail, to each shareholder entitled to vote at such meeting, not less than ten (10) nor more than sixty (60) days before the date of such meeting.
+
+Section 2.5 Quorum. The holders of a majority of the outstanding shares of the corporation entitled to vote, represented in person or by proxy, shall constitute a quorum at a meeting of shareholders.
+
+Section 2.6 Voting of Shares. Each outstanding share entitled to vote shall be entitled to one vote upon each matter submitted to a vote at a meeting of shareholders.
+
+Section 2.7 Proxies. At any meeting of shareholders, a shareholder may vote by proxy executed in writing by the shareholder or by his duly authorized attorney-in-fact.
+
+ARTICLE III
+BOARD OF DIRECTORS
+
+Section 3.1 General Powers. The business and affairs of the corporation shall be managed by its board of directors.
+
+Section 3.2 Number, Tenure and Qualifications. The number of directors of the corporation shall be ${formData.numberOfDirectors || 'three (3)'} unless changed by amendment to these Bylaws. Each director shall hold office until the next annual meeting of shareholders and until his successor shall have been elected and qualified.
+
+Section 3.3 Regular Meetings. A regular meeting of the board of directors shall be held without other notice than this Bylaw immediately after, and at the same place as, the annual meeting of shareholders.
+
+Section 3.4 Special Meetings. Special meetings of the board of directors may be called by or at the request of the president or any two directors.
+
+Section 3.5 Notice. Notice of any special meeting of the board of directors shall be given at least two (2) days previously thereto by written notice delivered personally or mailed to each director at his business address.
+
+Section 3.6 Quorum. A majority of the number of directors fixed by Section 3.2 shall constitute a quorum for the transaction of business at any meeting of the board of directors.
+
+Section 3.7 Manner of Acting. The act of the majority of the directors present at a meeting at which a quorum is present shall be the act of the board of directors.
+
+Section 3.8 Vacancies. Any vacancy occurring in the board of directors may be filled by the affirmative vote of a majority of the remaining directors.
+
+Section 3.9 Compensation. By resolution of the board of directors, each director may be paid his expenses, if any, of attendance at each meeting of the board of directors.
+
+ARTICLE IV
+OFFICERS
+
+Section 4.1 Officers. The officers of the corporation shall be a president, one or more vice presidents (the number thereof to be determined by the board of directors), a secretary, and a treasurer, each of whom shall be elected by the board of directors.
+
+Section 4.2 Election and Term of Office. The officers of the corporation to be elected by the board of directors shall be elected annually by the board of directors at the first meeting of the board of directors held after each annual meeting of the shareholders.
+
+Section 4.3 Removal. Any officer elected or appointed by the board of directors may be removed by the board of directors whenever in its judgment the best interests of the corporation would be served thereby.
+
+Section 4.4 Vacancies. A vacancy in any office because of death, resignation, removal, disqualification or otherwise, may be filled by the board of directors for the unexpired portion of the term.
+
+Section 4.5 President. The president shall be the principal executive officer of the corporation and, subject to the control of the board of directors, shall in general supervise and control all of the business and affairs of the corporation.
+
+Section 4.6 Vice President. In the absence of the president or in event of his death, inability or refusal to act, the vice president shall perform the duties of the president.
+
+Section 4.7 Treasurer. The treasurer shall:
+(a) Have charge and custody of and be responsible for all funds and securities of the corporation;
+(b) Receive and give receipts for moneys due and payable to the corporation;
+(c) Deposit all such moneys in the name of the corporation in such banks as shall be selected in accordance with the provisions of these Bylaws; and
+(d) In general perform all the duties incident to the office of treasurer.
+
+Section 4.8 Secretary. The secretary shall:
+(a) Keep the minutes of the proceedings of the shareholders and of the board of directors;
+(b) See that all notices are duly given in accordance with the provisions of these Bylaws;
+(c) Be custodian of the corporate records and of the seal of the corporation;
+(d) Keep a register of the post office address of each shareholder; and
+(e) In general perform all duties incident to the office of secretary.
+
+ARTICLE V
+CONTRACTS, LOANS, CHECKS AND DEPOSITS
+
+Section 5.1 Contracts. The board of directors may authorize any officer or officers, agent or agents, to enter into any contract or execute and deliver any instrument in the name of and on behalf of the corporation.
+
+Section 5.2 Loans. No loans shall be contracted on behalf of the corporation and no evidences of indebtedness shall be issued in its name unless authorized by a resolution of the board of directors.
+
+Section 5.3 Checks, Drafts, etc. All checks, drafts or other orders for the payment of money, notes or other evidences of indebtedness issued in the name of the corporation, shall be signed by such officer or officers, agent or agents of the corporation as shall from time to time be determined by resolution of the board of directors.
+
+Section 5.4 Deposits. All funds of the corporation not otherwise employed shall be deposited from time to time to the credit of the corporation in such banks as the board of directors may select.
+
+ARTICLE VI
+CERTIFICATES FOR SHARES AND THEIR TRANSFER
+
+Section 6.1 Certificates for Shares. Certificates representing shares of the corporation shall be in such form as shall be determined by the board of directors.
+
+Section 6.2 Transfer of Shares. Transfer of shares of the corporation shall be made only on the stock transfer books of the corporation by the holder of record thereof or by his legal representative.
+
+ARTICLE VII
+FISCAL YEAR
+
+Section 7.1 Fiscal Year. The fiscal year of the corporation shall begin on the first day of January and end on the last day of December in each year.
+
+ARTICLE VIII
+DIVIDENDS
+
+Section 8.1 Dividends. Dividends upon the capital stock of the corporation, subject to the provisions of the Articles of Incorporation, if any, may be declared by the board of directors at any regular or special meeting.
+
+ARTICLE IX
+CORPORATE SEAL
+
+Section 9.1 Corporate Seal. The corporate seal shall have inscribed thereon the name of the corporation, the year of its organization and the words "Corporate Seal, California."
+
+ARTICLE X
+WAIVER OF NOTICE
+
+Section 10.1 Waiver of Notice. Whenever any notice is required to be given under the provisions of the California Corporations Code or under the provisions of the Articles of Incorporation or the Bylaws of the corporation, a waiver thereof in writing signed by the person or persons entitled to such notice shall be deemed equivalent to the giving of such notice.
+
+ARTICLE XI
+AMENDMENTS TO BYLAWS
+
+Section 11.1 Amendments. These Bylaws may be altered, amended or repealed and new Bylaws may be adopted by the board of directors at any regular or special meeting of the board of directors.
+
+CERTIFICATE OF SECRETARY
+
+I hereby certify that the foregoing is a true and correct copy of the Bylaws of the above-named corporation, as adopted by the board of directors of said corporation on ${formData.bylawsDate || '[DATE]'}.
+
+_________________________________
+${formData.secretaryName || '[SECRETARY NAME]'}
+Secretary
+
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
 Attorney for the Corporation
     `;
   };
@@ -1562,639 +2197,4 @@ ${formData.scheduleA}
   );
 }
 
-export default App;firmInfo.name}
-${firmInfo.address}
-${firmInfo.city}
-${firmInfo.phone}
-Attorney for the Company
-
-
-Attachment A
-Initial Contributions of the Members
-
-The initial contributions of the Members of ${formData.llcName || '[COMPANY NAME]'} LLC are as follows:
-
-${formData.member1Name || '[MEMBER 1 NAME]'}
-Contribution:
-Cash: $${formData.member1Contribution || '50.00'}
-
-${formData.member2Name || '[MEMBER 2 NAME]'}
-Contribution:
-Cash: $${formData.member2Contribution || '50.00'}
-    `;
-  };
-
-  const generatePrenupDocument = () => {
-    return `
-PRENUPTIAL AGREEMENT
-
-THIS PRENUPTIAL AGREEMENT (this "Agreement") is made and entered into on ${formData.effectiveDate || '[DATE]'}, by and between ${formData.party1Name || '[PARTY 1 NAME]'} ("${formData.party1Name || 'Party 1'}") and ${formData.party2Name || '[PARTY 2 NAME]'} ("${formData.party2Name || 'Party 2'}"), who contemplate marriage to each other.
-
-RECITALS
-
-WHEREAS, the parties desire to marry each other and wish to fix and determine by agreement their respective rights and obligations which may arise from their marital relationship;
-
-WHEREAS, each party acknowledges that they have been advised to obtain independent legal counsel in connection with this Agreement and have had the opportunity to do so;
-
-WHEREAS, each party acknowledges that they have made full and complete disclosure to the other party of their assets, liabilities, income, and financial circumstances;
-
-WHEREAS, each party enters into this Agreement freely and voluntarily, with full knowledge of its contents and legal significance;
-
-NOW, THEREFORE, in consideration of the mutual promises and covenants contained herein and the contemplated marriage, the parties agree as follows:
-
-1. DEFINITIONS
-
-1.1 "Separate Property" shall mean and include:
-    (a) All property owned by each party prior to marriage;
-    (b) All property acquired by either party during marriage by gift, inheritance, or bequest;
-    (c) All income, rents, profits, and appreciation from separate property;
-    (d) All property acquired with separate property funds;
-    (e) All property designated as separate property by written agreement between the parties.
-
-1.2 "Community Property" shall mean all property acquired by either party during marriage that is not separate property as defined above.
-
-2. PROPERTY RIGHTS AND CHARACTERIZATION
-
-2.1 Separate Property. Each party's separate property, as defined above, shall remain that party's sole and separate property, free from any claim by the other party. Each party may manage, control, and dispose of their separate property without the consent of the other party.
-
-2.2 Community Property. Subject to the provisions of this Agreement, all community property shall be managed and controlled according to California law governing community property.
-
-2.3 Transmutation. No transmutation of separate property to community property or community property to separate property shall occur except by written agreement signed by both parties.
-
-2.4 Business Interests. Each party's business interests existing prior to marriage, including but not limited to ${formData.party1Business || '[PARTY 1 BUSINESS INTERESTS]'} owned by ${formData.party1Name || 'Party 1'} and ${formData.party2Business || '[PARTY 2 BUSINESS INTERESTS]'} owned by ${formData.party2Name || 'Party 2'}, shall remain the separate property of the owning party. Any appreciation in value of such business interests during marriage shall also remain separate property.
-
-3. DISCLOSURE OF ASSETS AND LIABILITIES
-
-3.1 Full Disclosure. Each party represents that they have made full and complete disclosure of all assets, liabilities, income, and financial circumstances to the other party as set forth in the Financial Disclosure Statements attached hereto as Exhibits A and B and incorporated herein by reference.
-
-3.2 Reliance on Disclosure. Each party acknowledges that they are entering into this Agreement in reliance upon the financial disclosures made by the other party.
-
-4. SPOUSAL SUPPORT
-
-4.1 Waiver of Spousal Support. Each party hereby waives and releases any and all rights to receive spousal support (alimony) from the other party, whether temporary, rehabilitative, permanent, or lump sum, in the event of separation, dissolution of marriage, or legal separation.
-
-4.2 Exception for Unconscionability. Notwithstanding the above waiver, if a court of competent jurisdiction determines that the enforcement of this spousal support waiver would be unconscionable at the time of enforcement, the court may order spousal support in such amount and for such time as the court deems just and reasonable under the circumstances.
-
-5. ESTATE PLANNING AND INHERITANCE RIGHTS
-
-5.1 Waiver of Inheritance Rights. Each party waives all rights to inherit from the other party's estate as a surviving spouse under California law, including but not limited to:
-    (a) Rights to elect against the other party's will;
-    (b) Rights to intestate succession;
-    (c) Rights as a pretermitted spouse;
-    (d) Rights to family allowance and homestead allowance.
-
-5.2 Right to Make Gifts. Nothing in this Agreement shall prevent either party from making gifts or bequests to the other party by will, trust, or other estate planning document.
-
-6. DEBTS AND OBLIGATIONS
-
-6.1 Separate Debts. Each party shall be solely responsible for their separate debts and obligations incurred prior to marriage. These debts are set forth in the Financial Disclosure Statements referenced above.
-
-6.2 Community Debts. Debts incurred during marriage for the benefit of the community shall be community debts and the responsibility of both parties according to California law.
-
-6.3 Separate Debts During Marriage. Any debt incurred by either party during marriage that is not for the benefit of the community shall be the separate debt of the party incurring such debt.
-
-7. REAL PROPERTY
-
-7.1 Separate Real Property. The real property located at ${formData.party1RealEstate || '[PARTY 1 REAL ESTATE]'} owned by ${formData.party1Name || 'Party 1'} and the real property located at ${formData.party2RealEstate || '[PARTY 2 REAL ESTATE]'} owned by ${formData.party2Name || 'Party 2'} shall remain the separate property of the respective owner.
-
-7.2 Future Real Property. Any real property acquired during marriage shall be characterized as separate or community property based upon the source of funds used for acquisition and the manner in which title is held.
-
-8. RETIREMENT BENEFITS
-
-8.1 Separate Retirement Benefits. All retirement benefits, including but not limited to pension plans, 401(k) plans, IRAs, and other retirement accounts, earned or accrued by each party prior to marriage shall remain the separate property of that party.
-
-8.2 Community Interest in Retirement Benefits. Each party acknowledges that retirement benefits earned during marriage may be subject to community property rights under California law, except as otherwise provided in this Agreement.
-
-9. INSURANCE
-
-9.1 Life Insurance. Each party may maintain life insurance policies and designate beneficiaries as they see fit, subject to any requirements of this Agreement or subsequent written agreements.
-
-9.2 Health Insurance. The parties shall cooperate in maintaining health insurance coverage for the family as circumstances permit.
-
-10. MODIFICATIONS AND AMENDMENTS
-
-10.1 Written Modifications Only. This Agreement may be modified or amended only by written agreement signed by both parties and notarized.
-
-10.2 No Oral Modifications. No oral modifications to this Agreement shall be valid or enforceable.
-
-11. ENFORCEMENT AND VALIDITY
-
-11.1 Severability. If any provision of this Agreement is held invalid or unenforceable by a court of competent jurisdiction, the remainder of this Agreement shall remain in full force and effect.
-
-11.2 Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of California.
-
-11.3 Jurisdiction. The parties consent to the jurisdiction of the courts of California for any action arising under this Agreement.
-
-12. INDEPENDENT LEGAL COUNSEL
-
-12.1 Advice of Counsel. Each party acknowledges that they have been advised to seek independent legal counsel regarding this Agreement and have had adequate opportunity to do so.
-
-12.2 ${firmInfo.name} represents ${formData.representedParty || 'Party 1'} in connection with this Agreement. ${formData.party2Counsel || '[PARTY 2 COUNSEL]'} represents ${formData.party2Name || 'Party 2'} in connection with this Agreement.
-
-13. ACKNOWLEDGMENTS
-
-13.1 Voluntary Execution. Each party acknowledges that they are executing this Agreement voluntarily, without duress, coercion, or undue influence.
-
-13.2 Full Understanding. Each party acknowledges that they have read this Agreement, understand its contents, and agree to be bound by its terms.
-
-13.3 Fair and Reasonable. Each party acknowledges that they believe this Agreement is fair and reasonable under the circumstances.
-
-14. WAITING PERIOD
-
-14.1 Seven-Day Waiting Period. Each party acknowledges that they have received a copy of this Agreement at least seven (7) days before its execution, as required by California Family Code Section 1615.
-
-15. EFFECTIVE DATE AND TERMINATION
-
-15.1 Effective Date. This Agreement shall become effective upon the marriage of the parties.
-
-15.2 Termination. This Agreement shall terminate upon the death of either party or upon written agreement of both parties.
-
-16. GENERAL PROVISIONS
-
-16.1 Entire Agreement. This Agreement constitutes the entire agreement between the parties regarding the subject matter herein and supersedes all prior negotiations, representations, or agreements relating thereto.
-
-16.2 Binding Effect. This Agreement shall be binding upon the parties and their respective heirs, successors, and assigns.
-
-16.3 Counterparts. This Agreement may be executed in counterparts, each of which shall be deemed an original and all of which together shall constitute one and the same instrument.
-
-16.4 Attorney Fees. In any action to enforce this Agreement, the prevailing party shall be entitled to reasonable attorney fees and costs.
-
-IN WITNESS WHEREOF, the parties have executed this Prenuptial Agreement on the date first written above.
-
-_________________________________    Date: _______________
-${formData.party1Name || '[PARTY 1 NAME]'}
-
-_________________________________    Date: _______________
-${formData.party2Name || '[PARTY 2 NAME]'}
-
-STATE OF CALIFORNIA   )
-                     ) ss.
-COUNTY OF LOS ANGELES )
-
-On ${formData.notaryDate || '[DATE]'}, before me, _________________________, Notary Public, personally appeared ${formData.party1Name || '[PARTY 1 NAME]'} and ${formData.party2Name || '[PARTY 2 NAME]'}, who proved to me on the basis of satisfactory evidence to be the persons whose names are subscribed to the within instrument and acknowledged to me that they executed the same in their authorized capacities, and that by their signatures on the instrument the persons, or the entity upon behalf of which the persons acted, executed the instrument.
-
-I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
-
-WITNESS my hand and official seal.
-
-Signature _________________________
-
-[Notary Seal]
-
-
-This document was prepared by:
-${firmInfo.name}
-${firmInfo.address}
-${firmInfo.city}
-${firmInfo.phone}
-Attorney for ${formData.representedParty || 'the Parties'}
-
-
-FINANCIAL DISCLOSURE STATEMENT - EXHIBIT A
-${formData.party1Name || '[PARTY 1 NAME]'}
-
-ASSETS:
-Real Property: ${formData.party1RealEstate || 'N/A'}
-Personal Property: ${formData.party1PersonalProperty || 'N/A'}
-Bank Accounts: ${formData.party1BankAccounts || 'N/A'}
-Investment Accounts: ${formData.party1Investments || 'N/A'}
-Retirement Accounts: ${formData.party1Retirement || 'N/A'}
-Business Interests: ${formData.party1Business || 'N/A'}
-Other Assets: ${formData.party1OtherAssets || 'N/A'}
-
-LIABILITIES:
-Mortgages: ${formData.party1Mortgages || 'N/A'}
-Credit Cards: ${formData.party1CreditCards || 'N/A'}
-Student Loans: ${formData.party1StudentLoans || 'N/A'}
-Other Debts: ${formData.party1OtherDebts || 'N/A'}
-
-INCOME:
-Annual Income: $${formData.party1Income || '[AMOUNT]'}
-
-
-FINANCIAL DISCLOSURE STATEMENT - EXHIBIT B
-${formData.party2Name || '[PARTY 2 NAME]'}
-
-ASSETS:
-Real Property: ${formData.party2RealEstate || 'N/A'}
-Personal Property: ${formData.party2PersonalProperty || 'N/A'}
-Bank Accounts: ${formData.party2BankAccounts || 'N/A'}
-Investment Accounts: ${formData.party2Investments || 'N/A'}
-Retirement Accounts: ${formData.party2Retirement || 'N/A'}
-Business Interests: ${formData.party2Business || 'N/A'}
-Other Assets: ${formData.party2OtherAssets || 'N/A'}
-
-LIABILITIES:
-Mortgages: ${formData.party2Mortgages || 'N/A'}
-Credit Cards: ${formData.party2CreditCards || 'N/A'}
-Student Loans: ${formData.party2StudentLoans || 'N/A'}
-Other Debts: ${formData.party2OtherDebts || 'N/A'}
-
-INCOME:
-Annual Income: $${formData.party2Income || '[AMOUNT]'}
-    `;
-  };
-
-  const generateContingencyDocument = () => {
-    return `
-CONTINGENCY FEE AGREEMENT FOR TRUST LITIGATION
-
-This CONTINGENCY FEE AGREEMENT ("Agreement") is entered into as of ${formData.effectiveDate || '_________'}, 2025, between:
-
-CLIENT: ${formData.clientName || '[CLIENT NAME]'} ("Client")
-ATTORNEY: Law Offices of Rozsa Gyene, by Rozsa Gyene, Esq. (State Bar No. 208356) ("Attorney")
-
-RE: ${formData.caseDescription || '[CASE DESCRIPTION]'}
-
-RECITALS
-
-WHEREAS, Client seeks legal representation in connection with ${formData.caseDescription || 'a trust dispute'};
-
-WHEREAS, Client has previously retained Attorney on an hourly basis but is unable to continue paying hourly fees;
-
-WHEREAS, the parties wish to convert the representation to a contingency fee basis;
-
-NOW, THEREFORE, in consideration of the mutual promises contained herein, the parties agree:
-
-1. SCOPE OF REPRESENTATION
-
-Attorney agrees to represent Client in the above-referenced matter, including but not limited to:
-• Challenging the validity of trusts and/or estates
-• Pursuing claims for elder abuse, undue influence, fraud, and conversion
-• Seeking recovery of real property and assets
-• Recovering damages, costs, and attorney's fees
-• All proceedings through trial and post-judgment enforcement
-
-2. CONTINGENCY FEE
-
-A. Percentage Fee: Client agrees to pay Attorney the following percentage of the "gross recovery":
-• ${formData.preTrialPercentage || '33'}% if the matter is resolved before trial
-• ${formData.trialPercentage || '40'}% if the matter proceeds to trial, arbitration, or is appealed by any party
-
-B. "Gross Recovery" means the total of all amounts recovered by settlement, judgment, or otherwise, whether by cash, property, or other consideration, BEFORE deduction of costs and expenses.
-
-C. Property Recovery: If recovery includes real property, the fee percentage applies to the fair market value of the property or Client's interest therein.
-
-3. COSTS AND EXPENSES
-
-A. Client's Responsibility: Client remains responsible for all costs and expenses, including but not limited to:
-• Filing fees
-• Service of process fees
-• Deposition costs
-• Expert witness fees
-• Court reporter fees
-• Investigation costs
-• Travel expenses
-
-B. Advance of Costs: Attorney may, but is not obligated to, advance costs. Any costs advanced by Attorney shall be reimbursed from the gross recovery before calculation of attorney's fees.
-
-C. Prior Costs: Client acknowledges responsibility for all costs previously incurred under the hourly fee arrangement. All costs were paid by client as of today.
-
-4. ATTORNEY'S LIEN
-
-A. STATUTORY LIEN: Client acknowledges that Attorney has a lien under California Code of Civil Procedure § 708.410 et seq. and California Business and Professions Code § 6146 on any recovery obtained.
-
-B. CONTRACTUAL LIEN ON REAL PROPERTY: To secure payment of attorney's fees and costs, Client hereby grants Attorney a lien on:
-• Any real property recovered in this action
-• Client's interest in the property located at ${formData.propertyAddress || '[Property Address]'}
-• Any proceeds from the sale or refinancing of said property
-
-C. NOTICE OF LIEN: Attorney may file a Notice of Attorney's Lien with the County Recorder to perfect this lien. Client agrees to cooperate in perfecting and enforcing this lien.
-
-5. NO RECOVERY
-
-If there is no recovery, Client shall not owe Attorney any attorney's fees for work performed after the date of this Agreement. However, Client remains responsible for:
-• All costs and expenses
-• Previously incurred hourly fees
-• Any sanctions awarded against Client personally
-
-6. DISCHARGE OF ATTORNEY
-
-A. Client may discharge Attorney at any time.
-
-B. If Client discharges Attorney without good cause, Attorney shall be entitled to:
-• All unpaid hourly fees incurred before this Agreement
-• Reasonable value of services (quantum meruit) after this Agreement
-• All unreimbursed costs
-
-C. Attorney's lien rights survive discharge.
-
-7. WITHDRAWAL OF ATTORNEY
-
-Attorney may withdraw for good cause as permitted by law and the Rules of Professional Conduct, including if Client:
-• Fails to cooperate
-• Pursues illegal or unethical conduct
-• Makes the representation unreasonably difficult
-
-8. SETTLEMENT AUTHORITY
-
-A. Attorney shall not settle without Client's written consent.
-B. Client agrees not to settle without Attorney present or without Attorney's written consent.
-C. Any settlement that excludes or limits attorney's fees requires Attorney's written consent.
-
-9. ALTERNATIVE DISPUTE RESOLUTION
-
-Any dispute arising under this Agreement shall be resolved by binding arbitration under the California Arbitration Act.
-
-10. INFORMED CONSENT
-
-Client acknowledges:
-• The right to seek advice from independent counsel before signing
-• Understanding all terms of this Agreement
-• That contingency fees are negotiable and not set by law
-• That this Agreement modifies the prior hourly fee arrangement
-
-11. GENERAL PROVISIONS
-
-A. Entire Agreement: This Agreement supersedes all prior agreements regarding fees for this matter after the date hereof.
-
-B. Modifications: Any modifications must be in writing and signed by both parties.
-
-C. Governing Law: This Agreement is governed by California law.
-
-D. Severability: If any provision is invalid, the remainder shall continue in effect.
-
-12. STATUTORY DISCLOSURE
-
-"THE CONTINGENCY FEE IS NOT SET BY LAW BUT IS NEGOTIABLE BETWEEN THE ATTORNEY AND CLIENT"
-
-CLIENT ACKNOWLEDGMENT AND SIGNATURE
-
-I have read and understood this entire Agreement. I have had the opportunity to ask questions and seek independent legal advice. I agree to all terms stated herein.
-
-CLIENT:
-
-_______________
-${formData.clientName || '[CLIENT NAME]'}
-Date: _____________
-
-Address: ${formData.clientAddress || '_______________________'}
-
-Phone: ${formData.clientPhone || '________________________'} Email: ${formData.clientEmail || '________________________'}
-
-ATTORNEY:
-
-___________________
-Rozsa Gyene, Esq.
-State Bar No. 208356
-Date: _____________
-
-LAW OFFICES OF ROZSA GYENE
-450 N Brand Blvd, Suite 600
-Glendale, CA 91203
-(818) 291-6217
-rozsagyenelaw@yahoo.com
-    `;
-  };
-
-  const generateArticlesDocument = () => {
-    return `
-ARTICLES OF INCORPORATION
-OF
-${formData.corpName || '[CORPORATION NAME]'}
-
-The undersigned, for the purpose of forming a corporation under the laws of the State of California, hereby certifies:
-
-ARTICLE I
-NAME
-
-The name of the corporation is ${formData.corpName || '[CORPORATION NAME]'}.
-
-ARTICLE II
-PURPOSES AND POWERS
-
-(a) The purpose of this corporation is to engage in any lawful act or activity for which a corporation may be organized under the General Corporation Law of California other than the banking business, the trust company business or the practice of a profession permitted to be incorporated by the California Corporations Code.
-
-(b) Specific Business Purpose: ${formData.businessPurpose || 'To engage in general business activities as permitted by law.'}.
-
-(c) The corporation is organized and operated exclusively for business purposes within the meaning of applicable California law.
-
-ARTICLE III
-REGISTERED AGENT
-
-The name and address in California of this corporation's initial agent for service of process is:
-${formData.registeredAgent || '[REGISTERED AGENT NAME]'}
-${formData.agentAddress || '[REGISTERED AGENT ADDRESS]'}
-
-ARTICLE IV
-CAPITAL STOCK
-
-(a) The corporation is authorized to issue only one class of shares of stock, and the total number of shares which the corporation is authorized to issue is ${formData.authorizedShares || '1,000,000'} shares of common stock, no par value per share.
-
-(b) The rights, preferences, privileges, and restrictions granted to or imposed upon the respective classes or series of shares, or the holders thereof, shall be as set forth below or in the resolution or resolutions providing for the issue of such shares adopted by the board of directors pursuant to authority expressly vested in it by the provisions of this Article IV.
-
-(c) Common Stock: The holders of the common stock are entitled to one vote for each share held at all meetings of shareholders. There are no preemptive rights.
-
-ARTICLE V
-DIRECTORS
-
-(a) The number of directors of this corporation is ${formData.numberOfDirectors || '3'}, which number may be increased or decreased by amendment to the Bylaws of the corporation, provided that the number of directors shall not be less than three (3).
-
-(b) The names and addresses of the persons who are to serve as the initial directors are:
-
-${formData.director1Name || '[DIRECTOR 1 NAME]'}
-${formData.director1Address || '[DIRECTOR 1 ADDRESS]'}
-
-${formData.director2Name || '[DIRECTOR 2 NAME]'}
-${formData.director2Address || '[DIRECTOR 2 ADDRESS]'}
-
-${formData.director3Name || '[DIRECTOR 3 NAME]'}
-${formData.director3Address || '[DIRECTOR 3 ADDRESS]'}
-
-ARTICLE VI
-INCORPORATOR
-
-The name and address of the incorporator is:
-${formData.incorporatorName || '[INCORPORATOR NAME]'}
-${formData.incorporatorAddress || '[INCORPORATOR ADDRESS]'}
-
-ARTICLE VII
-LIABILITY OF DIRECTORS
-
-A director of the corporation shall not be personally liable to the corporation or its shareholders for monetary damages for breach of fiduciary duty as a director, except for liability for:
-
-(a) Acts or omissions not in good faith or which involve intentional misconduct or a knowing violation of law;
-(b) Dividends or distributions paid in violation of the California Corporations Code; or
-(c) Transactions from which the director derived an improper personal benefit.
-
-Any repeal or modification of this Article VII shall not adversely affect any right or protection of a director existing at the time of such repeal or modification.
-
-ARTICLE VIII
-INDEMNIFICATION
-
-The corporation shall indemnify its directors, officers, employees, and agents to the fullest extent permitted by the California Corporations Code, as it may be amended from time to time.
-
-ARTICLE IX
-AMENDMENT
-
-The corporation reserves the right to amend, alter, change, or repeal any provision contained in these Articles of Incorporation, in the manner now or hereafter prescribed by statute, and all rights conferred upon shareholders herein are granted subject to this reservation.
-
-ARTICLE X
-DURATION
-
-The period of existence of the corporation shall be perpetual.
-
-IN WITNESS WHEREOF, I have executed these Articles of Incorporation this ${formData.incorporationDate || '_____ day of _________, 2025'}.
-
-_________________________________
-${formData.incorporatorName || '[INCORPORATOR NAME]'}
-Incorporator
-
-STATE OF CALIFORNIA   )
-                     ) ss.
-COUNTY OF LOS ANGELES )
-
-On ${formData.incorporationDate || '[DATE]'}, before me, _________________________, Notary Public, personally appeared ${formData.incorporatorName || '[INCORPORATOR NAME]'}, who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument.
-
-I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
-
-WITNESS my hand and official seal.
-
-Signature _________________________
-
-[Notary Seal]
-
-
-This document was prepared by:
-${firmInfo.name}
-${firmInfo.address}
-${firmInfo.city}
-${firmInfo.phone}
-Attorney for the Corporation
-    `;
-  };
-
-  const generateBylawsDocument = () => {
-    return `
-BYLAWS
-OF
-${formData.corpName || '[CORPORATION NAME]'}
-(A California Corporation)
-
-ARTICLE I
-OFFICES
-
-Section 1.1 Principal Office. The principal office for the transaction of the business of the corporation is located at ${formData.businessAddress || '[BUSINESS ADDRESS]'}, or at such other address as the board of directors may from time to time determine.
-
-Section 1.2 Other Offices. The board of directors may at any time establish branch or subordinate offices at any place or places where the corporation is qualified to do business.
-
-ARTICLE II
-SHAREHOLDERS
-
-Section 2.1 Annual Meetings. The annual meeting of shareholders shall be held on ${formData.annualMeetingDate || 'the first Monday in May'} of each year at ${formData.annualMeetingTime || '10:00 a.m.'}, or at such other date and time as shall be designated from time to time by the board of directors and stated in the notice of the meeting. At the annual meeting, directors shall be elected and any other proper business may be transacted.
-
-Section 2.2 Special Meetings. Special meetings of the shareholders may be called by the board of directors, the chairman of the board, the president, or by the holders of shares entitled to cast not less than ten percent (10%) of the votes at such meeting.
-
-Section 2.3 Place of Meetings. Meetings of shareholders shall be held at the principal office of the corporation, or at such other place as may be designated from time to time by the board of directors.
-
-Section 2.4 Notice of Meetings. Written or printed notice stating the place, date and hour of any meeting of shareholders shall be delivered, either personally or by mail, to each shareholder entitled to vote at such meeting, not less than ten (10) nor more than sixty (60) days before the date of such meeting.
-
-Section 2.5 Quorum. The holders of a majority of the outstanding shares of the corporation entitled to vote, represented in person or by proxy, shall constitute a quorum at a meeting of shareholders.
-
-Section 2.6 Voting of Shares. Each outstanding share entitled to vote shall be entitled to one vote upon each matter submitted to a vote at a meeting of shareholders.
-
-Section 2.7 Proxies. At any meeting of shareholders, a shareholder may vote by proxy executed in writing by the shareholder or by his duly authorized attorney-in-fact.
-
-ARTICLE III
-BOARD OF DIRECTORS
-
-Section 3.1 General Powers. The business and affairs of the corporation shall be managed by its board of directors.
-
-Section 3.2 Number, Tenure and Qualifications. The number of directors of the corporation shall be ${formData.numberOfDirectors || 'three (3)'} unless changed by amendment to these Bylaws. Each director shall hold office until the next annual meeting of shareholders and until his successor shall have been elected and qualified.
-
-Section 3.3 Regular Meetings. A regular meeting of the board of directors shall be held without other notice than this Bylaw immediately after, and at the same place as, the annual meeting of shareholders.
-
-Section 3.4 Special Meetings. Special meetings of the board of directors may be called by or at the request of the president or any two directors.
-
-Section 3.5 Notice. Notice of any special meeting of the board of directors shall be given at least two (2) days previously thereto by written notice delivered personally or mailed to each director at his business address.
-
-Section 3.6 Quorum. A majority of the number of directors fixed by Section 3.2 shall constitute a quorum for the transaction of business at any meeting of the board of directors.
-
-Section 3.7 Manner of Acting. The act of the majority of the directors present at a meeting at which a quorum is present shall be the act of the board of directors.
-
-Section 3.8 Vacancies. Any vacancy occurring in the board of directors may be filled by the affirmative vote of a majority of the remaining directors.
-
-Section 3.9 Compensation. By resolution of the board of directors, each director may be paid his expenses, if any, of attendance at each meeting of the board of directors.
-
-ARTICLE IV
-OFFICERS
-
-Section 4.1 Officers. The officers of the corporation shall be a president, one or more vice presidents (the number thereof to be determined by the board of directors), a secretary, and a treasurer, each of whom shall be elected by the board of directors.
-
-Section 4.2 Election and Term of Office. The officers of the corporation to be elected by the board of directors shall be elected annually by the board of directors at the first meeting of the board of directors held after each annual meeting of the shareholders.
-
-Section 4.3 Removal. Any officer elected or appointed by the board of directors may be removed by the board of directors whenever in its judgment the best interests of the corporation would be served thereby.
-
-Section 4.4 Vacancies. A vacancy in any office because of death, resignation, removal, disqualification or otherwise, may be filled by the board of directors for the unexpired portion of the term.
-
-Section 4.5 President. The president shall be the principal executive officer of the corporation and, subject to the control of the board of directors, shall in general supervise and control all of the business and affairs of the corporation.
-
-Section 4.6 Vice President. In the absence of the president or in event of his death, inability or refusal to act, the vice president shall perform the duties of the president.
-
-Section 4.7 Treasurer. The treasurer shall:
-(a) Have charge and custody of and be responsible for all funds and securities of the corporation;
-(b) Receive and give receipts for moneys due and payable to the corporation;
-(c) Deposit all such moneys in the name of the corporation in such banks as shall be selected in accordance with the provisions of these Bylaws; and
-(d) In general perform all the duties incident to the office of treasurer.
-
-Section 4.8 Secretary. The secretary shall:
-(a) Keep the minutes of the proceedings of the shareholders and of the board of directors;
-(b) See that all notices are duly given in accordance with the provisions of these Bylaws;
-(c) Be custodian of the corporate records and of the seal of the corporation;
-(d) Keep a register of the post office address of each shareholder; and
-(e) In general perform all duties incident to the office of secretary.
-
-ARTICLE V
-CONTRACTS, LOANS, CHECKS AND DEPOSITS
-
-Section 5.1 Contracts. The board of directors may authorize any officer or officers, agent or agents, to enter into any contract or execute and deliver any instrument in the name of and on behalf of the corporation.
-
-Section 5.2 Loans. No loans shall be contracted on behalf of the corporation and no evidences of indebtedness shall be issued in its name unless authorized by a resolution of the board of directors.
-
-Section 5.3 Checks, Drafts, etc. All checks, drafts or other orders for the payment of money, notes or other evidences of indebtedness issued in the name of the corporation, shall be signed by such officer or officers, agent or agents of the corporation as shall from time to time be determined by resolution of the board of directors.
-
-Section 5.4 Deposits. All funds of the corporation not otherwise employed shall be deposited from time to time to the credit of the corporation in such banks as the board of directors may select.
-
-ARTICLE VI
-CERTIFICATES FOR SHARES AND THEIR TRANSFER
-
-Section 6.1 Certificates for Shares. Certificates representing shares of the corporation shall be in such form as shall be determined by the board of directors.
-
-Section 6.2 Transfer of Shares. Transfer of shares of the corporation shall be made only on the stock transfer books of the corporation by the holder of record thereof or by his legal representative.
-
-ARTICLE VII
-FISCAL YEAR
-
-Section 7.1 Fiscal Year. The fiscal year of the corporation shall begin on the first day of January and end on the last day of December in each year.
-
-ARTICLE VIII
-DIVIDENDS
-
-Section 8.1 Dividends. Dividends upon the capital stock of the corporation, subject to the provisions of the Articles of Incorporation, if any, may be declared by the board of directors at any regular or special meeting.
-
-ARTICLE IX
-CORPORATE SEAL
-
-Section 9.1 Corporate Seal. The corporate seal shall have inscribed thereon the name of the corporation, the year of its organization and the words "Corporate Seal, California."
-
-ARTICLE X
-WAIVER OF NOTICE
-
-Section 10.1 Waiver of Notice. Whenever any notice is required to be given under the provisions of the California Corporations Code or under the provisions of the Articles of Incorporation or the Bylaws of the corporation, a waiver thereof in writing signed by the person or persons entitled to such notice shall be deemed equivalent to the giving of such notice.
-
-ARTICLE XI
-AMENDMENTS TO BYLAWS
-
-Section 11.1 Amendments. These Bylaws may be altered, amended or repealed and new Bylaws may be adopted by the board of directors at any regular or special meeting of the board of directors.
-
-CERTIFICATE OF SECRETARY
-
-I hereby certify that the foregoing is a true and correct copy of the Bylaws of the above-named corporation, as adopted by the board of directors of said corporation on ${formData.bylawsDate || '[DATE]'}.
-
-_________________________________
-${formData.secretaryName || '[SECRETARY NAME]'}
-Secretary
-
-
-This document was prepared by:
-${
+export default App;
