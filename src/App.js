@@ -354,7 +354,7 @@ ASSIGNMENT OF INTEREST
 Entity: ${formData.entityName || '[ENTITY NAME]'}
 Date: ${formData.assignmentDate || '[DATE]'}
 
-ASSIGNMENT OF INTEREST IN ${formData.entityName || '[ENTITY NAME]'}
+ASSIGNMENT OF INTEREST IN ${formData.entityName || '[ENTITY NAME]'} IN ${formData.entityName || '[ENTITY NAME]'}
 
 ASSIGNOR: ${formData.assignorName || '[ASSIGNOR NAME]'}
 ASSIGNEE: ${formData.assignorName || '[ASSIGNOR NAME]'}, Trustee, or his successors in interest, of The ${formData.trustName || '[TRUST NAME]'} dated ${formData.trustDate || '[TRUST DATE]'}, and any amendments thereto
@@ -1785,6 +1785,84 @@ This agreement is subject to California Business and Professions Code Section 61
                 type="date"
                 value={formData.bylawsDate || ''}
                 onChange={(e) => handleInputChange('bylawsDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'assignment':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Entity Name</label>
+              <input
+                type="text"
+                value={formData.entityName || ''}
+                onChange={(e) => handleInputChange('entityName', e.target.value)}
+                placeholder="Enter entity name (e.g., Comprehensive Sleep Centre Inc.)"
+              />
+            </div>
+            <div className="form-group">
+              <label>Entity Type</label>
+              <select
+                value={formData.entityType || 'Corporation'}
+                onChange={(e) => handleInputChange('entityType', e.target.value)}
+              >
+                <option value="Corporation">Corporation</option>
+                <option value="LLC">LLC</option>
+                <option value="Partnership">Partnership</option>
+                <option value="Sole Proprietorship">Sole Proprietorship</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Assignor Name</label>
+              <input
+                type="text"
+                value={formData.assignorName || ''}
+                onChange={(e) => handleInputChange('assignorName', e.target.value)}
+                placeholder="Enter assignor's full name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Trust Name</label>
+              <input
+                type="text"
+                value={formData.trustName || ''}
+                onChange={(e) => handleInputChange('trustName', e.target.value)}
+                placeholder="Enter trust name (e.g., The John Doe Living Trust)"
+              />
+            </div>
+            <div className="form-group">
+              <label>Trust Date</label>
+              <input
+                type="date"
+                value={formData.trustDate || ''}
+                onChange={(e) => handleInputChange('trustDate', e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Assignment Date</label>
+              <input
+                type="date"
+                value={formData.assignmentDate || ''}
+                onChange={(e) => handleInputChange('assignmentDate', e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Notary County</label>
+              <input
+                type="text"
+                value={formData.notaryCounty || 'Los Angeles'}
+                onChange={(e) => handleInputChange('notaryCounty', e.target.value)}
+                placeholder="Enter county for notarization"
+              />
+            </div>
+            <div className="form-group">
+              <label>Notary Date</label>
+              <input
+                type="date"
+                value={formData.notaryDate || ''}
+                onChange={(e) => handleInputChange('notaryDate', e.target.value)}
               />
             </div>
           </div>
