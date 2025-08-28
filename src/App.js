@@ -21,7 +21,6 @@ function App() {
     { id: 'contingency', name: 'Contingency Fee Agreement', icon: DollarSign },
     { id: 'articles', name: 'Articles of Incorporation', icon: Building },
     { id: 'bylaws', name: 'Corporate Bylaws', icon: FileText },
-    { id: 'assignment', name: 'Assignment of Interest to Trust', icon: FileText },
     { id: 'retainer', name: 'CA Retainer Agreement', icon: FileText }
   ];
 
@@ -47,9 +46,6 @@ function App() {
         break;
       case 'bylaws':
         template = generateBylawsDocument();
-        break;
-      case 'assignment':
-        template = generateAssignmentDocument();
         break;
       case 'retainer':
         template = generateRetainerDocument();
@@ -317,146 +313,6 @@ Cash: $${formData.member1Contribution || '50.00'}
 ${formData.member2Name || '[MEMBER 2 NAME]'}
 Contribution:
 Cash: $${formData.member2Contribution || '50.00'}
-  const generateAssignmentDocument = () => {
-    const entityTypeText = () => {
-      switch(formData.entityType) {
-        case 'Corporation':
-          return 'a California corporation';
-        case 'LLC':
-          return 'a California limited liability company';
-        case 'Partnership':
-          return 'a California partnership';
-        case 'Sole Proprietorship':
-          return 'a sole proprietorship';
-        default:
-          return 'a business entity';
-      }
-    };
-
-    const interestTypeText = () => {
-      switch(formData.entityType) {
-        case 'Corporation':
-          return 'shares of stock';
-        case 'LLC':
-          return 'membership interests';
-        case 'Partnership':
-          return 'partnership interests';
-        case 'Sole Proprietorship':
-          return 'ownership interests';
-        default:
-          return 'ownership interests';
-      }
-    };
-
-    return `
-ASSIGNMENT OF INTEREST
-
-Entity: ${formData.entityName || '[ENTITY NAME]'}
-Date: ${formData.assignmentDate || '[DATE]'}
-
-ASSIGNMENT OF INTEREST IN ${formData.entityName || '[ENTITY NAME]'} IN ${formData.entityName || '[ENTITY NAME]'}
-
-ASSIGNOR: ${formData.assignorName || '[ASSIGNOR NAME]'}
-ASSIGNEE: ${formData.assignorName || '[ASSIGNOR NAME]'}, Trustee, or his successors in interest, of The ${formData.trustName || '[TRUST NAME]'} dated ${formData.trustDate || '[TRUST DATE]'}, and any amendments thereto
-
-RECITALS
-
-WHEREAS, Assignor is the lawful owner of certain interests in ${formData.entityName || '[ENTITY NAME]'}, ${entityTypeText()} ("${formData.entityType === 'Sole Proprietorship' ? 'Business' : 'Company'}"); and
-
-WHEREAS, Assignor desires to assign, transfer, and convey all right, title, and interest in and to said interests to Assignee;
-
-NOW, THEREFORE, in consideration of the mutual covenants and agreements contained herein and other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:
-
-1. ASSIGNMENT AND TRANSFER
-
-Assignor hereby assigns, transfers, and conveys to Assignee all of Assignor's right, title, and interest in and to:
-
-a) All ${interestTypeText()}, ${formData.entityType === 'LLC' ? 'membership interests' : formData.entityType === 'Partnership' ? 'partnership interests' : formData.entityType === 'Corporation' ? 'or other ownership interests' : 'or other ownership interests'} in ${formData.entityName || '[ENTITY NAME]'};
-
-b) All voting rights associated with such interests;
-
-c) All rights to distributions, dividends, profits, and other economic benefits arising from such interests;
-
-d) All other rights, privileges, and benefits associated with ownership in the ${formData.entityType === 'Sole Proprietorship' ? 'Business' : 'Company'}.
-
-2. REPRESENTATIONS AND WARRANTIES
-
-Assignor represents and warrants that:
-
-a) Assignor has full power and authority to make this assignment;
-
-b) The interests being assigned are free and clear of all liens, encumbrances, and claims;
-
-c) No consent of any third party is required for this assignment, or if required, such consent has been obtained;
-
-d) This assignment does not violate any agreement to which Assignor is bound.
-
-3. FURTHER ASSURANCES
-
-Assignor agrees to execute and deliver such additional documents and instruments as may be reasonably necessary to effectuate the purposes of this Assignment.
-
-4. GOVERNING LAW
-
-This Assignment shall be governed by and construed in accordance with the laws of the State of California.
-
-5. BINDING EFFECT
-
-This Assignment shall be binding upon and inure to the benefit of the parties hereto and their respective heirs, successors, and assigns.
-
-6. EFFECTIVE DATE
-
-This Assignment shall be effective as of the date first written above.
-
-EXECUTION
-
-IN WITNESS WHEREOF, the parties have executed this Assignment of Interest as of the date first written above.
-
-ASSIGNOR:
-
-_______________________
-${formData.assignorName || '[ASSIGNOR NAME]'}
-Print Name: ${formData.assignorName || '[ASSIGNOR NAME]'}
-Date: _______________
-
-ASSIGNEE:
-
-_______________________
-${formData.assignorName || '[ASSIGNOR NAME]'}, Trustee
-${formData.trustName || '[TRUST NAME]'}
-Dated ${formData.trustDate || '[TRUST DATE]'}
-Date: _______________
-
-STATE OF CALIFORNIA
-COUNTY OF ${formData.notaryCounty || '[COUNTY]'}
-
-On ${formData.notaryDate || '[DATE]'}, 2025, before me, ________________________, a Notary Public, personally appeared ${formData.assignorName || '[ASSIGNOR NAME]'}, who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument.
-
-I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
-
-WITNESS my hand and official seal.
-
-Signature of Notary Public
-
-[Notary Seal]
-
-ACCEPTANCE BY ASSIGNEE
-
-The undersigned Assignee hereby accepts the foregoing assignment and agrees to be bound by the terms and conditions thereof.
-
-${formData.assignorName || '[ASSIGNOR NAME]'}, Trustee
-${formData.trustName || '[TRUST NAME]'}
-Dated ${formData.trustDate || '[TRUST DATE]'}
-Date: _______________
-
-A notary public or other officer completing this certificate verifies only the identity of the individual who signed the document to which this certificate is attached, and not the truthfulness, accuracy, or validity of that document.
-
-
-This document was prepared by:
-${firmInfo.name}
-${firmInfo.address}
-${firmInfo.city}
-${firmInfo.phone}
-Attorney for the Assignor
     `;
   };
 
@@ -1785,84 +1641,6 @@ This agreement is subject to California Business and Professions Code Section 61
                 type="date"
                 value={formData.bylawsDate || ''}
                 onChange={(e) => handleInputChange('bylawsDate', e.target.value)}
-              />
-            </div>
-          </div>
-        );
-
-      case 'assignment':
-        return (
-          <div className="form-grid">
-            <div className="form-group">
-              <label>Entity Name</label>
-              <input
-                type="text"
-                value={formData.entityName || ''}
-                onChange={(e) => handleInputChange('entityName', e.target.value)}
-                placeholder="Enter entity name (e.g., Comprehensive Sleep Centre Inc.)"
-              />
-            </div>
-            <div className="form-group">
-              <label>Entity Type</label>
-              <select
-                value={formData.entityType || 'Corporation'}
-                onChange={(e) => handleInputChange('entityType', e.target.value)}
-              >
-                <option value="Corporation">Corporation</option>
-                <option value="LLC">LLC</option>
-                <option value="Partnership">Partnership</option>
-                <option value="Sole Proprietorship">Sole Proprietorship</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>Assignor Name</label>
-              <input
-                type="text"
-                value={formData.assignorName || ''}
-                onChange={(e) => handleInputChange('assignorName', e.target.value)}
-                placeholder="Enter assignor's full name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Trust Name</label>
-              <input
-                type="text"
-                value={formData.trustName || ''}
-                onChange={(e) => handleInputChange('trustName', e.target.value)}
-                placeholder="Enter trust name (e.g., The John Doe Living Trust)"
-              />
-            </div>
-            <div className="form-group">
-              <label>Trust Date</label>
-              <input
-                type="date"
-                value={formData.trustDate || ''}
-                onChange={(e) => handleInputChange('trustDate', e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Assignment Date</label>
-              <input
-                type="date"
-                value={formData.assignmentDate || ''}
-                onChange={(e) => handleInputChange('assignmentDate', e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Notary County</label>
-              <input
-                type="text"
-                value={formData.notaryCounty || 'Los Angeles'}
-                onChange={(e) => handleInputChange('notaryCounty', e.target.value)}
-                placeholder="Enter county for notarization"
-              />
-            </div>
-            <div className="form-group">
-              <label>Notary Date</label>
-              <input
-                type="date"
-                value={formData.notaryDate || ''}
-                onChange={(e) => handleInputChange('notaryDate', e.target.value)}
               />
             </div>
           </div>
