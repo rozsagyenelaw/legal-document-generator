@@ -21,7 +21,8 @@ function App() {
     { id: 'contingency', name: 'Contingency Fee Agreement', icon: DollarSign },
     { id: 'articles', name: 'Articles of Incorporation', icon: Building },
     { id: 'bylaws', name: 'Corporate Bylaws', icon: FileText },
-    { id: 'retainer', name: 'CA Retainer Agreement', icon: FileText }
+    { id: 'retainer', name: 'CA Retainer Agreement', icon: FileText },
+    { id: 'assignment', name: 'Assignment of Interest', icon: FileText }
   ];
 
   const handleInputChange = (field, value) => {
@@ -49,6 +50,9 @@ function App() {
         break;
       case 'retainer':
         template = generateRetainerDocument();
+        break;
+      case 'assignment':
+        template = generateAssignmentDocument();
         break;
       default:
         template = 'Document type not found.';
@@ -295,6 +299,1270 @@ ${formData.member2Name || '[MEMBER 2 NAME]'}
 
 This document was prepared by:
 ${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+Attorney for the Corporation
+    `;
+  };
+
+  const generateRetainerDocument = () => {
+    return `
+RETAINER AGREEMENT FOR LEGAL SERVICES
+
+This Retainer Agreement ("Agreement") is entered into on ${formData.effectiveDate || '[DATE]'}, between:
+
+CLIENT: ${formData.clientName || '[CLIENT NAME]'} ("Client")
+ATTORNEY: ${firmInfo.name}, by Rozsa Gyene, Esq. (State Bar No. 208356) ("Attorney")
+
+1. SCOPE OF SERVICES
+
+Attorney agrees to represent Client in the following matter: ${formData.matterDescription || '[MATTER DESCRIPTION]'}
+
+The scope of representation includes the following services:
+• ${formData.scopeService1 || 'Initial consultation and case evaluation'}
+• ${formData.scopeService2 || 'Legal research and analysis'}
+• ${formData.scopeService3 || 'Preparation of legal documents'}
+• ${formData.scopeService4 || 'Negotiation on behalf of Client'}
+• ${formData.scopeService5 || 'Court appearances as necessary'}
+
+This Agreement does not include representation in appeals, post-judgment proceedings, or other matters not specifically described above unless agreed to in writing.
+
+2. ATTORNEY FEES AND BILLING
+
+A. Hourly Rate: Attorney's hourly rate is ${formData.hourlyRate || '$400'} per hour for attorney time. Time will be billed in increments of one-tenth (1/10) of an hour (6 minutes).
+
+B. Paralegal and Staff Rates: Paralegal time is billed at ${formData.paralegalRate || '$150'} per hour. Administrative assistant time is billed at ${formData.adminRate || '$75'} per hour.
+
+C. Minimum Billing: There is no minimum billing requirement for telephone conferences, but office conferences will be billed for a minimum of fifteen (15) minutes.
+
+D. Travel Time: Travel time for court appearances, depositions, meetings, and other case-related activities will be billed at full hourly rates.
+
+3. RETAINER
+
+Client agrees to pay a retainer of ${formData.retainerAmount || '[AMOUNT]'} upon execution of this Agreement. This retainer will be deposited in Attorney's trust account and will be applied against fees and costs as they are incurred.
+
+When the retainer is reduced to ${formData.replenishmentAmount || '500'}, Client agrees to replenish the retainer to the original amount within ten (10) days of written notice from Attorney.
+
+4. COSTS AND EXPENSES
+
+In addition to attorney fees, Client is responsible for all costs and expenses incurred in connection with this matter, including but not limited to:
+• Court filing fees
+• Service of process fees
+• Deposition costs
+• Court reporter fees
+• Expert witness fees
+• Investigation costs
+• Copying charges at ${formData.copyingRate || '0.25'} per page
+• Postage and courier fees
+• Long-distance telephone charges
+• Computer research charges (Westlaw, Lexis)
+• Travel expenses (mileage, parking, hotels, meals)
+
+5. BILLING AND PAYMENT
+
+Attorney will send Client monthly billing statements showing:
+• Services performed and time spent
+• Costs and expenses incurred
+• Payments received
+• Current trust account balance
+
+Payment is due within thirty (30) days of the billing date. If payment is not received within thirty (30) days, Attorney may charge interest at the rate of 1.5% per month (18% per annum) on the unpaid balance.
+
+6. TRUST ACCOUNT PROCEDURES
+
+The retainer and any advance cost deposits will be deposited in Attorney's Client Trust Account, which is maintained separate from Attorney's operating accounts. Fees will be withdrawn from the trust account only as they are earned. Costs will be withdrawn as they are incurred or advanced by Attorney.
+
+Client will receive quarterly trust account statements showing all deposits, withdrawals, and the current balance.
+
+7. TERMINATION
+
+A. Client's Right to Terminate: Client may terminate this Agreement at any time by giving written notice to Attorney. Upon termination, Client will pay for all services rendered and costs incurred to the date of termination.
+
+B. Attorney's Right to Terminate: Attorney may terminate this Agreement for good cause, including but not limited to:
+• Client's failure to pay fees or costs when due
+• Client's failure to cooperate or communicate
+• Conflict of interest
+• Client's insistence on pursuing frivolous claims
+• Breakdown in the attorney-client relationship
+
+C. Refund of Unused Retainer: Upon termination, any unused portion of the retainer will be refunded to Client within thirty (30) days, less any unpaid fees and costs.
+
+8. FILE RETENTION AND RETURN
+
+Attorney will maintain Client's file for seven (7) years after the conclusion of the matter. After seven years, Attorney may destroy the file unless Client requests its return. Client may obtain a copy of the file at any time upon payment of copying costs.
+
+Upon termination of representation, Attorney will provide Client with copies of all documents in the file that belong to Client or are necessary for Client's protection, regardless of whether Client has paid all fees and costs.
+
+9. COMMUNICATION
+
+Attorney will keep Client informed of significant developments in the case and will respond to Client's reasonable requests for information about the status of the matter. Client agrees to keep Attorney informed of any changes in address, telephone number, or other contact information.
+
+Client acknowledges that Attorney cannot guarantee the outcome of any legal matter and that no promises have been made regarding the results of representation.
+
+10. DISPUTE RESOLUTION
+
+Any dispute arising under this Agreement, including disputes over fees, shall be resolved by binding arbitration under the California Arbitration Act. The arbitration shall be conducted by a retired judge or experienced attorney agreed upon by the parties, or if no agreement can be reached, by an arbitrator appointed by the Los Angeles County Bar Association.
+
+11. CLIENT ACKNOWLEDGMENTS
+
+Client acknowledges:
+• The right to seek advice from independent counsel before signing this Agreement
+• Receipt of a copy of this Agreement
+• Understanding of all terms of this Agreement
+• That attorney fees are negotiable and not set by law
+• Receipt of the State Bar of California publication "The Attorney's Guide to Fee Agreements"
+
+12. LIEN
+
+Attorney shall have a lien on all files, documents, and property of Client in Attorney's possession for payment of fees and costs. Attorney also shall have a lien on any recovery obtained for Client in this matter to secure payment of fees and costs.
+
+13. GENERAL PROVISIONS
+
+A. Entire Agreement: This Agreement constitutes the entire agreement between the parties regarding the subject matter herein and supersedes all prior negotiations, representations, or agreements relating thereto.
+
+B. Modifications: Any modifications must be in writing and signed by both parties.
+
+C. Governing Law: This Agreement is governed by California law and the Rules of Professional Conduct of the State Bar of California.
+
+D. Severability: If any provision is invalid, the remainder shall continue in effect.
+
+E. Assignment: This Agreement may not be assigned by either party without the written consent of the other party.
+
+CLIENT ACKNOWLEDGMENT
+
+I have read and understood this entire Agreement. I have received a copy of this Agreement. I acknowledge that I have been advised of my right to seek independent legal advice regarding this Agreement. I agree to all terms stated herein.
+
+CLIENT:
+
+_________________________________    Date: _______________
+${formData.clientName || '[CLIENT NAME]'}
+
+Address: ${formData.clientAddress || '[CLIENT ADDRESS]'}
+Phone: ${formData.clientPhone || '[CLIENT PHONE]'}
+Email: ${formData.clientEmail || '[CLIENT EMAIL]'}
+
+ATTORNEY:
+
+_________________________________    Date: _______________
+Rozsa Gyene, Esq.
+State Bar No. 208356
+
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+${firmInfo.email}
+
+NOTICE TO CLIENT:
+
+This agreement is subject to California Business and Professions Code Section 6148, which requires that certain fee agreements be in writing. You have the right to cancel this agreement within three business days after you sign it by sending written notice to the attorney. If you cancel this agreement within three business days, you will not owe the attorney any fees, although you may be responsible for actual costs incurred by the attorney on your behalf.
+    `;
+  };
+
+  const generateAssignmentDocument = () => {
+    const entityTypeText = {
+      'LLC': 'Limited Liability Company',
+      'Corporation': 'Corporation',
+      'Partnership': 'Partnership',
+      'Sole Proprietorship': 'Sole Proprietorship'
+    };
+
+    const interestTypeText = {
+      'LLC': 'membership interest',
+      'Corporation': 'stock interest',
+      'Partnership': 'partnership interest',
+      'Sole Proprietorship': 'business interest'
+    };
+
+    const entityType = formData.entityType || 'LLC';
+    const interestType = interestTypeText[entityType];
+
+    return `
+ASSIGNMENT OF ${interestType.toUpperCase()}
+
+FOR GOOD AND VALUABLE CONSIDERATION, the receipt and sufficiency of which are hereby acknowledged, ${formData.assignorName || '[ASSIGNOR NAME]'} ("Assignor"), hereby assigns, transfers, and conveys to ${formData.assigneeName || '[ASSIGNEE NAME]'} ("Assignee"), all of Assignor's right, title, and interest in and to the following:
+
+ENTITY INFORMATION:
+Entity Name: ${formData.entityName || '[ENTITY NAME]'}
+Entity Type: ${entityTypeText[entityType]}
+${entityType === 'LLC' ? 'State of Formation: California' : ''}
+${entityType === 'Corporation' ? 'State of Incorporation: California' : ''}
+
+INTEREST BEING ASSIGNED:
+${entityType === 'LLC' ? `Membership Interest: ${formData.interestPercentage || '[PERCENTAGE]'}% membership interest in the above-named Limited Liability Company` : ''}
+${entityType === 'Corporation' ? `Stock Interest: ${formData.numberOfShares || '[NUMBER]'} shares of ${formData.stockClass || 'common'} stock of the above-named Corporation` : ''}
+${entityType === 'Partnership' ? `Partnership Interest: ${formData.interestPercentage || '[PERCENTAGE]'}% partnership interest in the above-named Partnership` : ''}
+${entityType === 'Sole Proprietorship' ? `Business Interest: ${formData.interestPercentage || '[PERCENTAGE]'}% interest in the assets and business of ${formData.entityName || '[BUSINESS NAME]'}` : ''}
+
+CONSIDERATION:
+The consideration for this assignment is: ${formData.consideration || '[CONSIDERATION DESCRIPTION]'}
+${formData.considerationAmount ? `Amount: ${formData.considerationAmount}` : ''}
+
+REPRESENTATIONS AND WARRANTIES:
+Assignor represents and warrants that:
+
+1. Assignor is the lawful owner of the ${interestType} being assigned and has full right, power, and authority to make this assignment;
+
+2. The ${interestType} is free and clear of all liens, encumbrances, and claims;
+
+3. ${entityType === 'LLC' ? 'This assignment complies with the terms of the LLC Operating Agreement' : ''}
+   ${entityType === 'Corporation' ? 'This assignment complies with the Corporate Bylaws and any applicable shareholder agreements' : ''}
+   ${entityType === 'Partnership' ? 'This assignment complies with the Partnership Agreement' : ''}
+   ${entityType === 'Sole Proprietorship' ? 'Assignor has the right to assign this business interest' : ''};
+
+4. ${entityType !== 'Sole Proprietorship' ? `All required consents from other ${entityType === 'LLC' ? 'members' : entityType === 'Corporation' ? 'shareholders' : 'partners'} have been obtained, or no such consents are required` : 'All necessary business licenses and permits are in good standing'};
+
+5. No person or entity has any agreement or option to purchase the ${interestType} being assigned;
+
+6. This assignment will not violate any law, regulation, court order, or agreement binding upon Assignor.
+
+ASSUMPTION OF OBLIGATIONS:
+${formData.assumeObligations === 'yes' ? `Assignee hereby assumes and agrees to perform all obligations and liabilities associated with the ${interestType} being assigned, including but not limited to:
+• ${entityType === 'LLC' ? 'Capital contribution obligations under the Operating Agreement' : ''}
+• ${entityType === 'Corporation' ? 'Any unpaid amounts on shares being assigned' : ''}
+• ${entityType === 'Partnership' ? 'Capital contribution and partnership obligations' : ''}
+• ${entityType === 'Sole Proprietorship' ? 'Business debts and obligations proportionate to interest assigned' : ''}
+• Compliance with all applicable laws and regulations` : `This assignment is made without assumption of any obligations or liabilities by Assignee. Assignor retains all obligations and liabilities associated with the ${interestType} prior to the effective date of this assignment.`}
+
+EFFECTIVE DATE:
+This assignment shall be effective as of ${formData.effectiveDate || '[DATE]'}.
+
+${entityType === 'LLC' ? `OPERATING AGREEMENT:
+This assignment is subject to all terms and conditions of the Operating Agreement of the LLC. Assignee agrees to be bound by all provisions of such Operating Agreement.` : ''}
+
+${entityType === 'Corporation' ? `CORPORATE DOCUMENTS:
+This assignment is subject to all terms and conditions of the Corporate Bylaws and Articles of Incorporation. Assignee agrees to be bound by all provisions of such corporate documents.` : ''}
+
+${entityType === 'Partnership' ? `PARTNERSHIP AGREEMENT:
+This assignment is subject to all terms and conditions of the Partnership Agreement. Assignee agrees to be bound by all provisions of such Partnership Agreement.` : ''}
+
+FURTHER ASSURANCES:
+Assignor agrees to execute and deliver such other documents and take such other actions as may be reasonably necessary to effectuate this assignment.
+
+BINDING EFFECT:
+This assignment shall be binding upon and inure to the benefit of the parties hereto and their respective heirs, successors, and assigns.
+
+GOVERNING LAW:
+This assignment shall be governed by and construed in accordance with the laws of the State of California.
+
+IN WITNESS WHEREOF, the parties have executed this Assignment as of the date first written above.
+
+ASSIGNOR:
+
+_________________________________    Date: _______________
+${formData.assignorName || '[ASSIGNOR NAME]'}
+${formData.assignorTitle ? formData.assignorTitle : ''}
+
+Address: ${formData.assignorAddress || '[ASSIGNOR ADDRESS]'}
+
+ASSIGNEE:
+
+_________________________________    Date: _______________
+${formData.assigneeName || '[ASSIGNEE NAME]'}
+${formData.assigneeTitle ? formData.assigneeTitle : ''}
+
+Address: ${formData.assigneeAddress || '[ASSIGNEE ADDRESS]'}
+
+${formData.notarization === 'yes' ? `
+STATE OF CALIFORNIA   )
+                     ) ss.
+COUNTY OF LOS ANGELES )
+
+On ${formData.notaryDate || '[DATE]'}, before me, _________________________, Notary Public, personally appeared ${formData.assignorName || '[ASSIGNOR NAME]'} and ${formData.assigneeName || '[ASSIGNEE NAME]'}, who proved to me on the basis of satisfactory evidence to be the persons whose names are subscribed to the within instrument and acknowledged to me that they executed the same in their authorized capacities, and that by their signatures on the instrument the persons, or the entity upon behalf of which the persons acted, executed the instrument.
+
+I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
+
+WITNESS my hand and official seal.
+
+Signature _________________________
+
+[Notary Seal]
+` : ''}
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+Attorney for the Parties
+
+${entityType === 'Corporation' ? `
+ATTACHMENT A - STOCK CERTIFICATE INFORMATION
+Certificate Number: ${formData.certificateNumber || '[CERTIFICATE NUMBER]'}
+Date of Original Issuance: ${formData.originalIssuanceDate || '[DATE]'}
+Par Value: ${formData.parValue || 'No Par Value'}
+` : ''}
+
+${formData.scheduleA ? `
+SCHEDULE A - DETAILED DESCRIPTION OF ASSETS
+${formData.scheduleA}
+` : ''}
+    `;
+  };
+
+  const renderFormFields = () => {
+    switch (selectedDocument) {
+      case 'llc':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>LLC Name</label>
+              <input
+                type="text"
+                value={formData.llcName || ''}
+                onChange={(e) => handleInputChange('llcName', e.target.value)}
+                placeholder="Enter LLC name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Business Address</label>
+              <input
+                type="text"
+                value={formData.businessAddress || ''}
+                onChange={(e) => handleInputChange('businessAddress', e.target.value)}
+                placeholder="Enter business address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Registered Agent Name</label>
+              <input
+                type="text"
+                value={formData.registeredAgent || ''}
+                onChange={(e) => handleInputChange('registeredAgent', e.target.value)}
+                placeholder="Enter registered agent name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Agent Address</label>
+              <input
+                type="text"
+                value={formData.agentAddress || ''}
+                onChange={(e) => handleInputChange('agentAddress', e.target.value)}
+                placeholder="Enter agent address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Business Purpose</label>
+              <textarea
+                value={formData.businessPurpose || ''}
+                onChange={(e) => handleInputChange('businessPurpose', e.target.value)}
+                placeholder="Describe the business purpose"
+              />
+            </div>
+            <div className="form-group">
+              <label>Formation Date</label>
+              <input
+                type="date"
+                value={formData.formationDate || ''}
+                onChange={(e) => handleInputChange('formationDate', e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Member 1 Name</label>
+              <input
+                type="text"
+                value={formData.member1Name || ''}
+                onChange={(e) => handleInputChange('member1Name', e.target.value)}
+                placeholder="Enter member 1 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Member 1 Percentage</label>
+              <input
+                type="number"
+                value={formData.member1Percentage || ''}
+                onChange={(e) => handleInputChange('member1Percentage', e.target.value)}
+                placeholder="Enter percentage"
+              />
+            </div>
+            <div className="form-group">
+              <label>Member 1 Contribution</label>
+              <input
+                type="text"
+                value={formData.member1Contribution || ''}
+                onChange={(e) => handleInputChange('member1Contribution', e.target.value)}
+                placeholder="Enter contribution amount"
+              />
+            </div>
+            <div className="form-group">
+              <label>Member 2 Name</label>
+              <input
+                type="text"
+                value={formData.member2Name || ''}
+                onChange={(e) => handleInputChange('member2Name', e.target.value)}
+                placeholder="Enter member 2 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Member 2 Percentage</label>
+              <input
+                type="number"
+                value={formData.member2Percentage || ''}
+                onChange={(e) => handleInputChange('member2Percentage', e.target.value)}
+                placeholder="Enter percentage"
+              />
+            </div>
+            <div className="form-group">
+              <label>Member 2 Contribution</label>
+              <input
+                type="text"
+                value={formData.member2Contribution || ''}
+                onChange={(e) => handleInputChange('member2Contribution', e.target.value)}
+                placeholder="Enter contribution amount"
+              />
+            </div>
+            <div className="form-group">
+              <label>Effective Date</label>
+              <input
+                type="date"
+                value={formData.effectiveDate || ''}
+                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'prenup':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Party 1 Name</label>
+              <input
+                type="text"
+                value={formData.party1Name || ''}
+                onChange={(e) => handleInputChange('party1Name', e.target.value)}
+                placeholder="Enter party 1 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 2 Name</label>
+              <input
+                type="text"
+                value={formData.party2Name || ''}
+                onChange={(e) => handleInputChange('party2Name', e.target.value)}
+                placeholder="Enter party 2 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 1 Business Interests</label>
+              <input
+                type="text"
+                value={formData.party1Business || ''}
+                onChange={(e) => handleInputChange('party1Business', e.target.value)}
+                placeholder="Describe business interests"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 2 Business Interests</label>
+              <input
+                type="text"
+                value={formData.party2Business || ''}
+                onChange={(e) => handleInputChange('party2Business', e.target.value)}
+                placeholder="Describe business interests"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 1 Real Estate</label>
+              <input
+                type="text"
+                value={formData.party1RealEstate || ''}
+                onChange={(e) => handleInputChange('party1RealEstate', e.target.value)}
+                placeholder="Property address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 2 Real Estate</label>
+              <input
+                type="text"
+                value={formData.party2RealEstate || ''}
+                onChange={(e) => handleInputChange('party2RealEstate', e.target.value)}
+                placeholder="Property address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 1 Annual Income</label>
+              <input
+                type="number"
+                value={formData.party1Income || ''}
+                onChange={(e) => handleInputChange('party1Income', e.target.value)}
+                placeholder="Enter annual income"
+              />
+            </div>
+            <div className="form-group">
+              <label>Party 2 Annual Income</label>
+              <input
+                type="number"
+                value={formData.party2Income || ''}
+                onChange={(e) => handleInputChange('party2Income', e.target.value)}
+                placeholder="Enter annual income"
+              />
+            </div>
+            <div className="form-group">
+              <label>Represented Party</label>
+              <select
+                value={formData.representedParty || 'Party 1'}
+                onChange={(e) => handleInputChange('representedParty', e.target.value)}
+              >
+                <option value="Party 1">Party 1</option>
+                <option value="Party 2">Party 2</option>
+                <option value="Both Parties">Both Parties</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Party 2 Counsel</label>
+              <input
+                type="text"
+                value={formData.party2Counsel || ''}
+                onChange={(e) => handleInputChange('party2Counsel', e.target.value)}
+                placeholder="Enter attorney name for Party 2"
+              />
+            </div>
+            <div className="form-group">
+              <label>Effective Date</label>
+              <input
+                type="date"
+                value={formData.effectiveDate || ''}
+                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Notary Date</label>
+              <input
+                type="date"
+                value={formData.notaryDate || ''}
+                onChange={(e) => handleInputChange('notaryDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'contingency':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Client Name</label>
+              <input
+                type="text"
+                value={formData.clientName || ''}
+                onChange={(e) => handleInputChange('clientName', e.target.value)}
+                placeholder="Enter client name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Case Description</label>
+              <textarea
+                value={formData.caseDescription || ''}
+                onChange={(e) => handleInputChange('caseDescription', e.target.value)}
+                placeholder="Describe the legal matter"
+              />
+            </div>
+            <div className="form-group">
+              <label>Pre-Trial Percentage</label>
+              <select
+                value={formData.preTrialPercentage || '33'}
+                onChange={(e) => handleInputChange('preTrialPercentage', e.target.value)}
+              >
+                <option value="25">25%</option>
+                <option value="33">33%</option>
+                <option value="40">40%</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Trial Percentage</label>
+              <select
+                value={formData.trialPercentage || '40'}
+                onChange={(e) => handleInputChange('trialPercentage', e.target.value)}
+              >
+                <option value="33">33%</option>
+                <option value="40">40%</option>
+                <option value="45">45%</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Property Address</label>
+              <input
+                type="text"
+                value={formData.propertyAddress || ''}
+                onChange={(e) => handleInputChange('propertyAddress', e.target.value)}
+                placeholder="Enter property address (if applicable)"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Address</label>
+              <input
+                type="text"
+                value={formData.clientAddress || ''}
+                onChange={(e) => handleInputChange('clientAddress', e.target.value)}
+                placeholder="Enter client address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Phone</label>
+              <input
+                type="tel"
+                value={formData.clientPhone || ''}
+                onChange={(e) => handleInputChange('clientPhone', e.target.value)}
+                placeholder="Enter client phone"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Email</label>
+              <input
+                type="email"
+                value={formData.clientEmail || ''}
+                onChange={(e) => handleInputChange('clientEmail', e.target.value)}
+                placeholder="Enter client email"
+              />
+            </div>
+            <div className="form-group">
+              <label>Effective Date</label>
+              <input
+                type="date"
+                value={formData.effectiveDate || ''}
+                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'articles':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Corporation Name</label>
+              <input
+                type="text"
+                value={formData.corpName || ''}
+                onChange={(e) => handleInputChange('corpName', e.target.value)}
+                placeholder="Enter corporation name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Business Purpose</label>
+              <textarea
+                value={formData.businessPurpose || ''}
+                onChange={(e) => handleInputChange('businessPurpose', e.target.value)}
+                placeholder="Describe the specific business purpose"
+              />
+            </div>
+            <div className="form-group">
+              <label>Registered Agent Name</label>
+              <input
+                type="text"
+                value={formData.registeredAgent || ''}
+                onChange={(e) => handleInputChange('registeredAgent', e.target.value)}
+                placeholder="Enter registered agent name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Agent Address</label>
+              <input
+                type="text"
+                value={formData.agentAddress || ''}
+                onChange={(e) => handleInputChange('agentAddress', e.target.value)}
+                placeholder="Enter agent address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Authorized Shares</label>
+              <input
+                type="number"
+                value={formData.authorizedShares || ''}
+                onChange={(e) => handleInputChange('authorizedShares', e.target.value)}
+                placeholder="Enter number of authorized shares"
+              />
+            </div>
+            <div className="form-group">
+              <label>Number of Directors</label>
+              <input
+                type="number"
+                value={formData.numberOfDirectors || ''}
+                onChange={(e) => handleInputChange('numberOfDirectors', e.target.value)}
+                placeholder="Enter number of directors"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 1 Name</label>
+              <input
+                type="text"
+                value={formData.director1Name || ''}
+                onChange={(e) => handleInputChange('director1Name', e.target.value)}
+                placeholder="Enter director 1 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 1 Address</label>
+              <input
+                type="text"
+                value={formData.director1Address || ''}
+                onChange={(e) => handleInputChange('director1Address', e.target.value)}
+                placeholder="Enter director 1 address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 2 Name</label>
+              <input
+                type="text"
+                value={formData.director2Name || ''}
+                onChange={(e) => handleInputChange('director2Name', e.target.value)}
+                placeholder="Enter director 2 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 2 Address</label>
+              <input
+                type="text"
+                value={formData.director2Address || ''}
+                onChange={(e) => handleInputChange('director2Address', e.target.value)}
+                placeholder="Enter director 2 address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 3 Name</label>
+              <input
+                type="text"
+                value={formData.director3Name || ''}
+                onChange={(e) => handleInputChange('director3Name', e.target.value)}
+                placeholder="Enter director 3 name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Director 3 Address</label>
+              <input
+                type="text"
+                value={formData.director3Address || ''}
+                onChange={(e) => handleInputChange('director3Address', e.target.value)}
+                placeholder="Enter director 3 address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Incorporator Name</label>
+              <input
+                type="text"
+                value={formData.incorporatorName || ''}
+                onChange={(e) => handleInputChange('incorporatorName', e.target.value)}
+                placeholder="Enter incorporator name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Incorporator Address</label>
+              <input
+                type="text"
+                value={formData.incorporatorAddress || ''}
+                onChange={(e) => handleInputChange('incorporatorAddress', e.target.value)}
+                placeholder="Enter incorporator address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Incorporation Date</label>
+              <input
+                type="date"
+                value={formData.incorporationDate || ''}
+                onChange={(e) => handleInputChange('incorporationDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'bylaws':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Corporation Name</label>
+              <input
+                type="text"
+                value={formData.corpName || ''}
+                onChange={(e) => handleInputChange('corpName', e.target.value)}
+                placeholder="Enter corporation name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Business Address</label>
+              <input
+                type="text"
+                value={formData.businessAddress || ''}
+                onChange={(e) => handleInputChange('businessAddress', e.target.value)}
+                placeholder="Enter business address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Annual Meeting Date</label>
+              <input
+                type="text"
+                value={formData.annualMeetingDate || ''}
+                onChange={(e) => handleInputChange('annualMeetingDate', e.target.value)}
+                placeholder="e.g., the first Monday in May"
+              />
+            </div>
+            <div className="form-group">
+              <label>Annual Meeting Time</label>
+              <input
+                type="text"
+                value={formData.annualMeetingTime || ''}
+                onChange={(e) => handleInputChange('annualMeetingTime', e.target.value)}
+                placeholder="e.g., 10:00 a.m."
+              />
+            </div>
+            <div className="form-group">
+              <label>Number of Directors</label>
+              <input
+                type="text"
+                value={formData.numberOfDirectors || ''}
+                onChange={(e) => handleInputChange('numberOfDirectors', e.target.value)}
+                placeholder="e.g., three (3)"
+              />
+            </div>
+            <div className="form-group">
+              <label>Secretary Name</label>
+              <input
+                type="text"
+                value={formData.secretaryName || ''}
+                onChange={(e) => handleInputChange('secretaryName', e.target.value)}
+                placeholder="Enter secretary name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Bylaws Adoption Date</label>
+              <input
+                type="date"
+                value={formData.bylawsDate || ''}
+                onChange={(e) => handleInputChange('bylawsDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'retainer':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Client Name</label>
+              <input
+                type="text"
+                value={formData.clientName || ''}
+                onChange={(e) => handleInputChange('clientName', e.target.value)}
+                placeholder="Enter client name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Matter Description</label>
+              <textarea
+                value={formData.matterDescription || ''}
+                onChange={(e) => handleInputChange('matterDescription', e.target.value)}
+                placeholder="Describe the legal matter"
+              />
+            </div>
+            <div className="form-group">
+              <label>Retainer Amount</label>
+              <input
+                type="number"
+                value={formData.retainerAmount || ''}
+                onChange={(e) => handleInputChange('retainerAmount', e.target.value)}
+                placeholder="Enter retainer amount"
+              />
+            </div>
+            <div className="form-group">
+              <label>Hourly Rate</label>
+              <input
+                type="text"
+                value={formData.hourlyRate || ''}
+                onChange={(e) => handleInputChange('hourlyRate', e.target.value)}
+                placeholder="e.g., $400"
+              />
+            </div>
+            <div className="form-group">
+              <label>Paralegal Rate</label>
+              <input
+                type="text"
+                value={formData.paralegalRate || ''}
+                onChange={(e) => handleInputChange('paralegalRate', e.target.value)}
+                placeholder="e.g., $150"
+              />
+            </div>
+            <div className="form-group">
+              <label>Admin Rate</label>
+              <input
+                type="text"
+                value={formData.adminRate || ''}
+                onChange={(e) => handleInputChange('adminRate', e.target.value)}
+                placeholder="e.g., $75"
+              />
+            </div>
+            <div className="form-group">
+              <label>Replenishment Amount</label>
+              <input
+                type="number"
+                value={formData.replenishmentAmount || ''}
+                onChange={(e) => handleInputChange('replenishmentAmount', e.target.value)}
+                placeholder="Amount to trigger retainer replenishment"
+              />
+            </div>
+            <div className="form-group">
+              <label>Copying Rate</label>
+              <input
+                type="text"
+                value={formData.copyingRate || ''}
+                onChange={(e) => handleInputChange('copyingRate', e.target.value)}
+                placeholder="e.g., 0.25"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Address</label>
+              <input
+                type="text"
+                value={formData.clientAddress || ''}
+                onChange={(e) => handleInputChange('clientAddress', e.target.value)}
+                placeholder="Enter client address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Phone</label>
+              <input
+                type="tel"
+                value={formData.clientPhone || ''}
+                onChange={(e) => handleInputChange('clientPhone', e.target.value)}
+                placeholder="Enter client phone"
+              />
+            </div>
+            <div className="form-group">
+              <label>Client Email</label>
+              <input
+                type="email"
+                value={formData.clientEmail || ''}
+                onChange={(e) => handleInputChange('clientEmail', e.target.value)}
+                placeholder="Enter client email"
+              />
+            </div>
+            <div className="form-group">
+              <label>Effective Date</label>
+              <input
+                type="date"
+                value={formData.effectiveDate || ''}
+                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case 'assignment':
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Entity Type</label>
+              <select
+                value={formData.entityType || 'LLC'}
+                onChange={(e) => handleInputChange('entityType', e.target.value)}
+              >
+                <option value="LLC">LLC</option>
+                <option value="Corporation">Corporation</option>
+                <option value="Partnership">Partnership</option>
+                <option value="Sole Proprietorship">Sole Proprietorship</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Entity Name</label>
+              <input
+                type="text"
+                value={formData.entityName || ''}
+                onChange={(e) => handleInputChange('entityName', e.target.value)}
+                placeholder="Enter entity/business name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Assignor Name</label>
+              <input
+                type="text"
+                value={formData.assignorName || ''}
+                onChange={(e) => handleInputChange('assignorName', e.target.value)}
+                placeholder="Person/entity assigning interest"
+              />
+            </div>
+            <div className="form-group">
+              <label>Assignor Title (if applicable)</label>
+              <input
+                type="text"
+                value={formData.assignorTitle || ''}
+                onChange={(e) => handleInputChange('assignorTitle', e.target.value)}
+                placeholder="e.g., Member, Shareholder"
+              />
+            </div>
+            <div className="form-group">
+              <label>Assignor Address</label>
+              <input
+                type="text"
+                value={formData.assignorAddress || ''}
+                onChange={(e) => handleInputChange('assignorAddress', e.target.value)}
+                placeholder="Enter assignor address"
+              />
+            </div>
+            <div className="form-group">
+              <label>Assignee Name</label>
+              <input
+                type="text"
+                value={formData.assigneeName || ''}
+                onChange={(e) => handleInputChange('assigneeName', e.target.value)}
+                placeholder="Person/entity receiving interest"
+              />
+            </div>
+            <div className="form-group">
+              <label>Assignee Title (if applicable)</label>
+              <input
+                type="text"
+                value={formData.assigneeTitle || ''}
+                onChange={(e) => handleInputChange('assigneeTitle', e.target.value)}
+                placeholder="e.g., New Member, New Shareholder"
+              />
+            </div>
+            <div className="form-group">
+              <label>Assignee Address</label>
+              <input
+                type="text"
+                value={formData.assigneeAddress || ''}
+                onChange={(e) => handleInputChange('assigneeAddress', e.target.value)}
+                placeholder="Enter assignee address"
+              />
+            </div>
+            {(formData.entityType === 'LLC' || formData.entityType === 'Partnership' || formData.entityType === 'Sole Proprietorship' || !formData.entityType) && (
+              <div className="form-group">
+                <label>Interest Percentage</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={formData.interestPercentage || ''}
+                  onChange={(e) => handleInputChange('interestPercentage', e.target.value)}
+                  placeholder="Enter percentage (e.g., 25.5)"
+                />
+              </div>
+            )}
+            {formData.entityType === 'Corporation' && (
+              <>
+                <div className="form-group">
+                  <label>Number of Shares</label>
+                  <input
+                    type="number"
+                    value={formData.numberOfShares || ''}
+                    onChange={(e) => handleInputChange('numberOfShares', e.target.value)}
+                    placeholder="Enter number of shares"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Stock Class</label>
+                  <input
+                    type="text"
+                    value={formData.stockClass || ''}
+                    onChange={(e) => handleInputChange('stockClass', e.target.value)}
+                    placeholder="e.g., common, preferred"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Certificate Number</label>
+                  <input
+                    type="text"
+                    value={formData.certificateNumber || ''}
+                    onChange={(e) => handleInputChange('certificateNumber', e.target.value)}
+                    placeholder="Stock certificate number"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Original Issuance Date</label>
+                  <input
+                    type="date"
+                    value={formData.originalIssuanceDate || ''}
+                    onChange={(e) => handleInputChange('originalIssuanceDate', e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Par Value</label>
+                  <input
+                    type="text"
+                    value={formData.parValue || ''}
+                    onChange={(e) => handleInputChange('parValue', e.target.value)}
+                    placeholder="e.g., $1.00 or No Par Value"
+                  />
+                </div>
+              </>
+            )}
+            <div className="form-group">
+              <label>Consideration Description</label>
+              <textarea
+                value={formData.consideration || ''}
+                onChange={(e) => handleInputChange('consideration', e.target.value)}
+                placeholder="Describe what is being paid/exchanged for the interest"
+              />
+            </div>
+            <div className="form-group">
+              <label>Consideration Amount (if monetary)</label>
+              <input
+                type="number"
+                step="0.01"
+                value={formData.considerationAmount || ''}
+                onChange={(e) => handleInputChange('considerationAmount', e.target.value)}
+                placeholder="Enter dollar amount"
+              />
+            </div>
+            <div className="form-group">
+              <label>Assume Obligations?</label>
+              <select
+                value={formData.assumeObligations || 'no'}
+                onChange={(e) => handleInputChange('assumeObligations', e.target.value)}
+              >
+                <option value="no">No - Assignor retains obligations</option>
+                <option value="yes">Yes - Assignee assumes obligations</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Require Notarization?</label>
+              <select
+                value={formData.notarization || 'no'}
+                onChange={(e) => handleInputChange('notarization', e.target.value)}
+              >
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+            {formData.notarization === 'yes' && (
+              <div className="form-group">
+                <label>Notary Date</label>
+                <input
+                  type="date"
+                  value={formData.notaryDate || ''}
+                  onChange={(e) => handleInputChange('notaryDate', e.target.value)}
+                />
+              </div>
+            )}
+            <div className="form-group">
+              <label>Effective Date</label>
+              <input
+                type="date"
+                value={formData.effectiveDate || ''}
+                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Schedule A - Asset Details (optional)</label>
+              <textarea
+                value={formData.scheduleA || ''}
+                onChange={(e) => handleInputChange('scheduleA', e.target.value)}
+                placeholder="Detailed description of specific assets being assigned (optional)"
+              />
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <div className="form-grid">
+            <div className="form-group">
+              <label>Client Name</label>
+              <input
+                type="text"
+                value={formData.clientName || ''}
+                onChange={(e) => handleInputChange('clientName', e.target.value)}
+                placeholder="Enter client name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Matter Description</label>
+              <textarea
+                value={formData.matterDescription || ''}
+                onChange={(e) => handleInputChange('matterDescription', e.target.value)}
+                placeholder="Describe the legal matter"
+              />
+            </div>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div className="App">
+      {/* Header */}
+      <div className="header">
+        <h1>{firmInfo.name}</h1>
+        <p>{firmInfo.address}, {firmInfo.city} • {firmInfo.phone}</p>
+        <div className="subtitle">Document Generation System</div>
+      </div>
+
+      {/* Document Type Selection */}
+      <div className="document-type-section">
+        <h2>Select Document Type</h2>
+        <div className="document-type-buttons">
+          {documentTypes.map((type) => {
+            const IconComponent = type.icon;
+            return (
+              <button
+                key={type.id}
+                onClick={() => setSelectedDocument(type.id)}
+                className={`document-type-button ${selectedDocument === type.id ? 'active' : ''}`}
+              >
+                <IconComponent size={20} />
+                {type.name}
+              </button>
+            );
+          })}
+        </div>
+
+        <button
+          onClick={generateDocument}
+          className="document-type-button"
+        >
+          <FileText size={20} />
+          Generate Document
+        </button>
+      </div>
+
+      {/* Form Section */}
+      <div className="form-section">
+        <h3>
+          {documentTypes.find(d => d.id === selectedDocument)?.name} Information
+        </h3>
+        {renderFormFields()}
+        
+        <button
+          onClick={generateDocument}
+          className="generate-button"
+        >
+          Generate Document
+        </button>
+      </div>
+
+      {/* Generated Document */}
+      {generatedDocument && (
+        <div className="generated-document">
+          <div className="document-actions">
+            <button 
+              className="action-button"
+              onClick={() => window.print()}
+            >
+              Print Document
+            </button>
+            <button 
+              className="action-button"
+              onClick={() => {
+                const element = document.createElement("a");
+                const file = new Blob([generatedDocument], {type: 'text/plain'});
+                element.href = URL.createObjectURL(file);
+                element.download = `${selectedDocument}_document.txt`;
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+              }}
+            >
+              Download
+            </button>
+          </div>
+          
+          <pre style={{whiteSpace: 'pre-wrap', fontFamily: 'serif'}}>
+            {generatedDocument}
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;firmInfo.name}
 ${firmInfo.address}
 ${firmInfo.city}
 ${firmInfo.phone}
@@ -929,922 +2197,4 @@ Secretary
 
 
 This document was prepared by:
-${firmInfo.name}
-${firmInfo.address}
-${firmInfo.city}
-${firmInfo.phone}
-Attorney for the Corporation
-    `;
-  };
-
-  const generateRetainerDocument = () => {
-    return `
-RETAINER AGREEMENT FOR LEGAL SERVICES
-
-This Retainer Agreement ("Agreement") is entered into on ${formData.effectiveDate || '[DATE]'}, between:
-
-CLIENT: ${formData.clientName || '[CLIENT NAME]'} ("Client")
-ATTORNEY: ${firmInfo.name}, by Rozsa Gyene, Esq. (State Bar No. 208356) ("Attorney")
-
-1. SCOPE OF SERVICES
-
-Attorney agrees to represent Client in the following matter: ${formData.matterDescription || '[MATTER DESCRIPTION]'}
-
-The scope of representation includes the following services:
-• ${formData.scopeService1 || 'Initial consultation and case evaluation'}
-• ${formData.scopeService2 || 'Legal research and analysis'}
-• ${formData.scopeService3 || 'Preparation of legal documents'}
-• ${formData.scopeService4 || 'Negotiation on behalf of Client'}
-• ${formData.scopeService5 || 'Court appearances as necessary'}
-
-This Agreement does not include representation in appeals, post-judgment proceedings, or other matters not specifically described above unless agreed to in writing.
-
-2. ATTORNEY FEES AND BILLING
-
-A. Hourly Rate: Attorney's hourly rate is ${formData.hourlyRate || '$400'} per hour for attorney time. Time will be billed in increments of one-tenth (1/10) of an hour (6 minutes).
-
-B. Paralegal and Staff Rates: Paralegal time is billed at ${formData.paralegalRate || '$150'} per hour. Administrative assistant time is billed at ${formData.adminRate || '$75'} per hour.
-
-C. Minimum Billing: There is no minimum billing requirement for telephone conferences, but office conferences will be billed for a minimum of fifteen (15) minutes.
-
-D. Travel Time: Travel time for court appearances, depositions, meetings, and other case-related activities will be billed at full hourly rates.
-
-3. RETAINER
-
-Client agrees to pay a retainer of ${formData.retainerAmount || '[AMOUNT]'} upon execution of this Agreement. This retainer will be deposited in Attorney's trust account and will be applied against fees and costs as they are incurred.
-
-When the retainer is reduced to ${formData.replenishmentAmount || '500'}, Client agrees to replenish the retainer to the original amount within ten (10) days of written notice from Attorney.
-
-4. COSTS AND EXPENSES
-
-In addition to attorney fees, Client is responsible for all costs and expenses incurred in connection with this matter, including but not limited to:
-• Court filing fees
-• Service of process fees
-• Deposition costs
-• Court reporter fees
-• Expert witness fees
-• Investigation costs
-• Copying charges at ${formData.copyingRate || '0.25'} per page
-• Postage and courier fees
-• Long-distance telephone charges
-• Computer research charges (Westlaw, Lexis)
-• Travel expenses (mileage, parking, hotels, meals)
-
-5. BILLING AND PAYMENT
-
-Attorney will send Client monthly billing statements showing:
-• Services performed and time spent
-• Costs and expenses incurred
-• Payments received
-• Current trust account balance
-
-Payment is due within thirty (30) days of the billing date. If payment is not received within thirty (30) days, Attorney may charge interest at the rate of 1.5% per month (18% per annum) on the unpaid balance.
-
-6. TRUST ACCOUNT PROCEDURES
-
-The retainer and any advance cost deposits will be deposited in Attorney's Client Trust Account, which is maintained separate from Attorney's operating accounts. Fees will be withdrawn from the trust account only as they are earned. Costs will be withdrawn as they are incurred or advanced by Attorney.
-
-Client will receive quarterly trust account statements showing all deposits, withdrawals, and the current balance.
-
-7. TERMINATION
-
-A. Client's Right to Terminate: Client may terminate this Agreement at any time by giving written notice to Attorney. Upon termination, Client will pay for all services rendered and costs incurred to the date of termination.
-
-B. Attorney's Right to Terminate: Attorney may terminate this Agreement for good cause, including but not limited to:
-• Client's failure to pay fees or costs when due
-• Client's failure to cooperate or communicate
-• Conflict of interest
-• Client's insistence on pursuing frivolous claims
-• Breakdown in the attorney-client relationship
-
-C. Refund of Unused Retainer: Upon termination, any unused portion of the retainer will be refunded to Client within thirty (30) days, less any unpaid fees and costs.
-
-8. FILE RETENTION AND RETURN
-
-Attorney will maintain Client's file for seven (7) years after the conclusion of the matter. After seven years, Attorney may destroy the file unless Client requests its return. Client may obtain a copy of the file at any time upon payment of copying costs.
-
-Upon termination of representation, Attorney will provide Client with copies of all documents in the file that belong to Client or are necessary for Client's protection, regardless of whether Client has paid all fees and costs.
-
-9. COMMUNICATION
-
-Attorney will keep Client informed of significant developments in the case and will respond to Client's reasonable requests for information about the status of the matter. Client agrees to keep Attorney informed of any changes in address, telephone number, or other contact information.
-
-Client acknowledges that Attorney cannot guarantee the outcome of any legal matter and that no promises have been made regarding the results of representation.
-
-10. DISPUTE RESOLUTION
-
-Any dispute arising under this Agreement, including disputes over fees, shall be resolved by binding arbitration under the California Arbitration Act. The arbitration shall be conducted by a retired judge or experienced attorney agreed upon by the parties, or if no agreement can be reached, by an arbitrator appointed by the Los Angeles County Bar Association.
-
-11. CLIENT ACKNOWLEDGMENTS
-
-Client acknowledges:
-• The right to seek advice from independent counsel before signing this Agreement
-• Receipt of a copy of this Agreement
-• Understanding of all terms of this Agreement
-• That attorney fees are negotiable and not set by law
-• Receipt of the State Bar of California publication "The Attorney's Guide to Fee Agreements"
-
-12. LIEN
-
-Attorney shall have a lien on all files, documents, and property of Client in Attorney's possession for payment of fees and costs. Attorney also shall have a lien on any recovery obtained for Client in this matter to secure payment of fees and costs.
-
-13. GENERAL PROVISIONS
-
-A. Entire Agreement: This Agreement constitutes the entire agreement between the parties regarding the subject matter herein and supersedes all prior negotiations, representations, or agreements relating thereto.
-
-B. Modifications: Any modifications must be in writing and signed by both parties.
-
-C. Governing Law: This Agreement is governed by California law and the Rules of Professional Conduct of the State Bar of California.
-
-D. Severability: If any provision is invalid, the remainder shall continue in effect.
-
-E. Assignment: This Agreement may not be assigned by either party without the written consent of the other party.
-
-CLIENT ACKNOWLEDGMENT
-
-I have read and understood this entire Agreement. I have received a copy of this Agreement. I acknowledge that I have been advised of my right to seek independent legal advice regarding this Agreement. I agree to all terms stated herein.
-
-CLIENT:
-
-_________________________________    Date: _______________
-${formData.clientName || '[CLIENT NAME]'}
-
-Address: ${formData.clientAddress || '[CLIENT ADDRESS]'}
-Phone: ${formData.clientPhone || '[CLIENT PHONE]'}
-Email: ${formData.clientEmail || '[CLIENT EMAIL]'}
-
-ATTORNEY:
-
-_________________________________    Date: _______________
-Rozsa Gyene, Esq.
-State Bar No. 208356
-
-${firmInfo.name}
-${firmInfo.address}
-${firmInfo.city}
-${firmInfo.phone}
-${firmInfo.email}
-
-NOTICE TO CLIENT:
-
-This agreement is subject to California Business and Professions Code Section 6148, which requires that certain fee agreements be in writing. You have the right to cancel this agreement within three business days after you sign it by sending written notice to the attorney. If you cancel this agreement within three business days, you will not owe the attorney any fees, although you may be responsible for actual costs incurred by the attorney on your behalf.
-    `;
-  };
-
-  const renderFormFields = () => {
-    switch (selectedDocument) {
-      case 'llc':
-        return (
-          <div className="form-grid">
-            <div className="form-group">
-              <label>LLC Name</label>
-              <input
-                type="text"
-                value={formData.llcName || ''}
-                onChange={(e) => handleInputChange('llcName', e.target.value)}
-                placeholder="Enter LLC name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Business Address</label>
-              <input
-                type="text"
-                value={formData.businessAddress || ''}
-                onChange={(e) => handleInputChange('businessAddress', e.target.value)}
-                placeholder="Enter business address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Registered Agent Name</label>
-              <input
-                type="text"
-                value={formData.registeredAgent || ''}
-                onChange={(e) => handleInputChange('registeredAgent', e.target.value)}
-                placeholder="Enter registered agent name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Agent Address</label>
-              <input
-                type="text"
-                value={formData.agentAddress || ''}
-                onChange={(e) => handleInputChange('agentAddress', e.target.value)}
-                placeholder="Enter agent address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Business Purpose</label>
-              <textarea
-                value={formData.businessPurpose || ''}
-                onChange={(e) => handleInputChange('businessPurpose', e.target.value)}
-                placeholder="Describe the business purpose"
-              />
-            </div>
-            <div className="form-group">
-              <label>Formation Date</label>
-              <input
-                type="date"
-                value={formData.formationDate || ''}
-                onChange={(e) => handleInputChange('formationDate', e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Member 1 Name</label>
-              <input
-                type="text"
-                value={formData.member1Name || ''}
-                onChange={(e) => handleInputChange('member1Name', e.target.value)}
-                placeholder="Enter member 1 name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Member 1 Percentage</label>
-              <input
-                type="number"
-                value={formData.member1Percentage || ''}
-                onChange={(e) => handleInputChange('member1Percentage', e.target.value)}
-                placeholder="Enter percentage"
-              />
-            </div>
-            <div className="form-group">
-              <label>Member 1 Contribution</label>
-              <input
-                type="text"
-                value={formData.member1Contribution || ''}
-                onChange={(e) => handleInputChange('member1Contribution', e.target.value)}
-                placeholder="Enter contribution amount"
-              />
-            </div>
-            <div className="form-group">
-              <label>Member 2 Name</label>
-              <input
-                type="text"
-                value={formData.member2Name || ''}
-                onChange={(e) => handleInputChange('member2Name', e.target.value)}
-                placeholder="Enter member 2 name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Member 2 Percentage</label>
-              <input
-                type="number"
-                value={formData.member2Percentage || ''}
-                onChange={(e) => handleInputChange('member2Percentage', e.target.value)}
-                placeholder="Enter percentage"
-              />
-            </div>
-            <div className="form-group">
-              <label>Member 2 Contribution</label>
-              <input
-                type="text"
-                value={formData.member2Contribution || ''}
-                onChange={(e) => handleInputChange('member2Contribution', e.target.value)}
-                placeholder="Enter contribution amount"
-              />
-            </div>
-            <div className="form-group">
-              <label>Effective Date</label>
-              <input
-                type="date"
-                value={formData.effectiveDate || ''}
-                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
-              />
-            </div>
-          </div>
-        );
-
-      default:
-        return (
-          <div className="form-grid">
-            <div className="form-group">
-              <label>Client Name</label>
-              <input
-                type="text"
-                value={formData.clientName || ''}
-                onChange={(e) => handleInputChange('clientName', e.target.value)}
-                placeholder="Enter client name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Matter Description</label>
-              <textarea
-                value={formData.matterDescription || ''}
-                onChange={(e) => handleInputChange('matterDescription', e.target.value)}
-                placeholder="Describe the legal matter"
-              />
-            </div>
-          </div>
-        );
-      
-      case 'prenup':
-        return (
-          <div className="form-grid">
-            <div className="form-group">
-              <label>Party 1 Name</label>
-              <input
-                type="text"
-                value={formData.party1Name || ''}
-                onChange={(e) => handleInputChange('party1Name', e.target.value)}
-                placeholder="Enter party 1 name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Party 2 Name</label>
-              <input
-                type="text"
-                value={formData.party2Name || ''}
-                onChange={(e) => handleInputChange('party2Name', e.target.value)}
-                placeholder="Enter party 2 name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Party 1 Business Interests</label>
-              <input
-                type="text"
-                value={formData.party1Business || ''}
-                onChange={(e) => handleInputChange('party1Business', e.target.value)}
-                placeholder="Describe business interests"
-              />
-            </div>
-            <div className="form-group">
-              <label>Party 2 Business Interests</label>
-              <input
-                type="text"
-                value={formData.party2Business || ''}
-                onChange={(e) => handleInputChange('party2Business', e.target.value)}
-                placeholder="Describe business interests"
-              />
-            </div>
-            <div className="form-group">
-              <label>Party 1 Real Estate</label>
-              <input
-                type="text"
-                value={formData.party1RealEstate || ''}
-                onChange={(e) => handleInputChange('party1RealEstate', e.target.value)}
-                placeholder="Property address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Party 2 Real Estate</label>
-              <input
-                type="text"
-                value={formData.party2RealEstate || ''}
-                onChange={(e) => handleInputChange('party2RealEstate', e.target.value)}
-                placeholder="Property address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Party 1 Annual Income</label>
-              <input
-                type="number"
-                value={formData.party1Income || ''}
-                onChange={(e) => handleInputChange('party1Income', e.target.value)}
-                placeholder="Enter annual income"
-              />
-            </div>
-            <div className="form-group">
-              <label>Party 2 Annual Income</label>
-              <input
-                type="number"
-                value={formData.party2Income || ''}
-                onChange={(e) => handleInputChange('party2Income', e.target.value)}
-                placeholder="Enter annual income"
-              />
-            </div>
-            <div className="form-group">
-              <label>Represented Party</label>
-              <select
-                value={formData.representedParty || 'Party 1'}
-                onChange={(e) => handleInputChange('representedParty', e.target.value)}
-              >
-                <option value="Party 1">Party 1</option>
-                <option value="Party 2">Party 2</option>
-                <option value="Both Parties">Both Parties</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>Party 2 Counsel</label>
-              <input
-                type="text"
-                value={formData.party2Counsel || ''}
-                onChange={(e) => handleInputChange('party2Counsel', e.target.value)}
-                placeholder="Enter attorney name for Party 2"
-              />
-            </div>
-            <div className="form-group">
-              <label>Effective Date</label>
-              <input
-                type="date"
-                value={formData.effectiveDate || ''}
-                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Notary Date</label>
-              <input
-                type="date"
-                value={formData.notaryDate || ''}
-                onChange={(e) => handleInputChange('notaryDate', e.target.value)}
-              />
-            </div>
-          </div>
-        );
-
-      case 'contingency':
-        return (
-          <div className="form-grid">
-            <div className="form-group">
-              <label>Client Name</label>
-              <input
-                type="text"
-                value={formData.clientName || ''}
-                onChange={(e) => handleInputChange('clientName', e.target.value)}
-                placeholder="Enter client name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Case Description</label>
-              <textarea
-                value={formData.caseDescription || ''}
-                onChange={(e) => handleInputChange('caseDescription', e.target.value)}
-                placeholder="Describe the legal matter"
-              />
-            </div>
-            <div className="form-group">
-              <label>Pre-Trial Percentage</label>
-              <select
-                value={formData.preTrialPercentage || '33'}
-                onChange={(e) => handleInputChange('preTrialPercentage', e.target.value)}
-              >
-                <option value="25">25%</option>
-                <option value="33">33%</option>
-                <option value="40">40%</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>Trial Percentage</label>
-              <select
-                value={formData.trialPercentage || '40'}
-                onChange={(e) => handleInputChange('trialPercentage', e.target.value)}
-              >
-                <option value="33">33%</option>
-                <option value="40">40%</option>
-                <option value="45">45%</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>Property Address</label>
-              <input
-                type="text"
-                value={formData.propertyAddress || ''}
-                onChange={(e) => handleInputChange('propertyAddress', e.target.value)}
-                placeholder="Enter property address (if applicable)"
-              />
-            </div>
-            <div className="form-group">
-              <label>Client Address</label>
-              <input
-                type="text"
-                value={formData.clientAddress || ''}
-                onChange={(e) => handleInputChange('clientAddress', e.target.value)}
-                placeholder="Enter client address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Client Phone</label>
-              <input
-                type="tel"
-                value={formData.clientPhone || ''}
-                onChange={(e) => handleInputChange('clientPhone', e.target.value)}
-                placeholder="Enter client phone"
-              />
-            </div>
-            <div className="form-group">
-              <label>Client Email</label>
-              <input
-                type="email"
-                value={formData.clientEmail || ''}
-                onChange={(e) => handleInputChange('clientEmail', e.target.value)}
-                placeholder="Enter client email"
-              />
-            </div>
-            <div className="form-group">
-              <label>Effective Date</label>
-              <input
-                type="date"
-                value={formData.effectiveDate || ''}
-                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
-              />
-            </div>
-          </div>
-        );
-
-      case 'articles':
-        return (
-          <div className="form-grid">
-            <div className="form-group">
-              <label>Corporation Name</label>
-              <input
-                type="text"
-                value={formData.corpName || ''}
-                onChange={(e) => handleInputChange('corpName', e.target.value)}
-                placeholder="Enter corporation name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Business Purpose</label>
-              <textarea
-                value={formData.businessPurpose || ''}
-                onChange={(e) => handleInputChange('businessPurpose', e.target.value)}
-                placeholder="Describe the specific business purpose"
-              />
-            </div>
-            <div className="form-group">
-              <label>Registered Agent Name</label>
-              <input
-                type="text"
-                value={formData.registeredAgent || ''}
-                onChange={(e) => handleInputChange('registeredAgent', e.target.value)}
-                placeholder="Enter registered agent name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Agent Address</label>
-              <input
-                type="text"
-                value={formData.agentAddress || ''}
-                onChange={(e) => handleInputChange('agentAddress', e.target.value)}
-                placeholder="Enter agent address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Authorized Shares</label>
-              <input
-                type="number"
-                value={formData.authorizedShares || ''}
-                onChange={(e) => handleInputChange('authorizedShares', e.target.value)}
-                placeholder="Enter number of authorized shares"
-              />
-            </div>
-            <div className="form-group">
-              <label>Number of Directors</label>
-              <input
-                type="number"
-                value={formData.numberOfDirectors || ''}
-                onChange={(e) => handleInputChange('numberOfDirectors', e.target.value)}
-                placeholder="Enter number of directors"
-              />
-            </div>
-            <div className="form-group">
-              <label>Director 1 Name</label>
-              <input
-                type="text"
-                value={formData.director1Name || ''}
-                onChange={(e) => handleInputChange('director1Name', e.target.value)}
-                placeholder="Enter director 1 name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Director 1 Address</label>
-              <input
-                type="text"
-                value={formData.director1Address || ''}
-                onChange={(e) => handleInputChange('director1Address', e.target.value)}
-                placeholder="Enter director 1 address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Director 2 Name</label>
-              <input
-                type="text"
-                value={formData.director2Name || ''}
-                onChange={(e) => handleInputChange('director2Name', e.target.value)}
-                placeholder="Enter director 2 name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Director 2 Address</label>
-              <input
-                type="text"
-                value={formData.director2Address || ''}
-                onChange={(e) => handleInputChange('director2Address', e.target.value)}
-                placeholder="Enter director 2 address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Director 3 Name</label>
-              <input
-                type="text"
-                value={formData.director3Name || ''}
-                onChange={(e) => handleInputChange('director3Name', e.target.value)}
-                placeholder="Enter director 3 name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Director 3 Address</label>
-              <input
-                type="text"
-                value={formData.director3Address || ''}
-                onChange={(e) => handleInputChange('director3Address', e.target.value)}
-                placeholder="Enter director 3 address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Incorporator Name</label>
-              <input
-                type="text"
-                value={formData.incorporatorName || ''}
-                onChange={(e) => handleInputChange('incorporatorName', e.target.value)}
-                placeholder="Enter incorporator name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Incorporator Address</label>
-              <input
-                type="text"
-                value={formData.incorporatorAddress || ''}
-                onChange={(e) => handleInputChange('incorporatorAddress', e.target.value)}
-                placeholder="Enter incorporator address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Incorporation Date</label>
-              <input
-                type="date"
-                value={formData.incorporationDate || ''}
-                onChange={(e) => handleInputChange('incorporationDate', e.target.value)}
-              />
-            </div>
-          </div>
-        );
-
-      case 'bylaws':
-        return (
-          <div className="form-grid">
-            <div className="form-group">
-              <label>Corporation Name</label>
-              <input
-                type="text"
-                value={formData.corpName || ''}
-                onChange={(e) => handleInputChange('corpName', e.target.value)}
-                placeholder="Enter corporation name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Business Address</label>
-              <input
-                type="text"
-                value={formData.businessAddress || ''}
-                onChange={(e) => handleInputChange('businessAddress', e.target.value)}
-                placeholder="Enter business address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Annual Meeting Date</label>
-              <input
-                type="text"
-                value={formData.annualMeetingDate || ''}
-                onChange={(e) => handleInputChange('annualMeetingDate', e.target.value)}
-                placeholder="e.g., the first Monday in May"
-              />
-            </div>
-            <div className="form-group">
-              <label>Annual Meeting Time</label>
-              <input
-                type="text"
-                value={formData.annualMeetingTime || ''}
-                onChange={(e) => handleInputChange('annualMeetingTime', e.target.value)}
-                placeholder="e.g., 10:00 a.m."
-              />
-            </div>
-            <div className="form-group">
-              <label>Number of Directors</label>
-              <input
-                type="text"
-                value={formData.numberOfDirectors || ''}
-                onChange={(e) => handleInputChange('numberOfDirectors', e.target.value)}
-                placeholder="e.g., three (3)"
-              />
-            </div>
-            <div className="form-group">
-              <label>Secretary Name</label>
-              <input
-                type="text"
-                value={formData.secretaryName || ''}
-                onChange={(e) => handleInputChange('secretaryName', e.target.value)}
-                placeholder="Enter secretary name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Bylaws Adoption Date</label>
-              <input
-                type="date"
-                value={formData.bylawsDate || ''}
-                onChange={(e) => handleInputChange('bylawsDate', e.target.value)}
-              />
-            </div>
-          </div>
-        );
-
-      case 'retainer':
-        return (
-          <div className="form-grid">
-            <div className="form-group">
-              <label>Client Name</label>
-              <input
-                type="text"
-                value={formData.clientName || ''}
-                onChange={(e) => handleInputChange('clientName', e.target.value)}
-                placeholder="Enter client name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Matter Description</label>
-              <textarea
-                value={formData.matterDescription || ''}
-                onChange={(e) => handleInputChange('matterDescription', e.target.value)}
-                placeholder="Describe the legal matter"
-              />
-            </div>
-            <div className="form-group">
-              <label>Retainer Amount</label>
-              <input
-                type="number"
-                value={formData.retainerAmount || ''}
-                onChange={(e) => handleInputChange('retainerAmount', e.target.value)}
-                placeholder="Enter retainer amount"
-              />
-            </div>
-            <div className="form-group">
-              <label>Hourly Rate</label>
-              <input
-                type="text"
-                value={formData.hourlyRate || ''}
-                onChange={(e) => handleInputChange('hourlyRate', e.target.value)}
-                placeholder="e.g., $400"
-              />
-            </div>
-            <div className="form-group">
-              <label>Paralegal Rate</label>
-              <input
-                type="text"
-                value={formData.paralegalRate || ''}
-                onChange={(e) => handleInputChange('paralegalRate', e.target.value)}
-                placeholder="e.g., $150"
-              />
-            </div>
-            <div className="form-group">
-              <label>Admin Rate</label>
-              <input
-                type="text"
-                value={formData.adminRate || ''}
-                onChange={(e) => handleInputChange('adminRate', e.target.value)}
-                placeholder="e.g., $75"
-              />
-            </div>
-            <div className="form-group">
-              <label>Replenishment Amount</label>
-              <input
-                type="number"
-                value={formData.replenishmentAmount || ''}
-                onChange={(e) => handleInputChange('replenishmentAmount', e.target.value)}
-                placeholder="Amount to trigger retainer replenishment"
-              />
-            </div>
-            <div className="form-group">
-              <label>Copying Rate</label>
-              <input
-                type="text"
-                value={formData.copyingRate || ''}
-                onChange={(e) => handleInputChange('copyingRate', e.target.value)}
-                placeholder="e.g., 0.25"
-              />
-            </div>
-            <div className="form-group">
-              <label>Client Address</label>
-              <input
-                type="text"
-                value={formData.clientAddress || ''}
-                onChange={(e) => handleInputChange('clientAddress', e.target.value)}
-                placeholder="Enter client address"
-              />
-            </div>
-            <div className="form-group">
-              <label>Client Phone</label>
-              <input
-                type="tel"
-                value={formData.clientPhone || ''}
-                onChange={(e) => handleInputChange('clientPhone', e.target.value)}
-                placeholder="Enter client phone"
-              />
-            </div>
-            <div className="form-group">
-              <label>Client Email</label>
-              <input
-                type="email"
-                value={formData.clientEmail || ''}
-                onChange={(e) => handleInputChange('clientEmail', e.target.value)}
-                placeholder="Enter client email"
-              />
-            </div>
-            <div className="form-group">
-              <label>Effective Date</label>
-              <input
-                type="date"
-                value={formData.effectiveDate || ''}
-                onChange={(e) => handleInputChange('effectiveDate', e.target.value)}
-              />
-            </div>
-          </div>
-        );
-    }
-  };
-
-  return (
-    <div className="App">
-      {/* Header */}
-      <div className="header">
-        <h1>{firmInfo.name}</h1>
-        <p>{firmInfo.address}, {firmInfo.city} • {firmInfo.phone}</p>
-        <div className="subtitle">Document Generation System</div>
-      </div>
-
-      {/* Document Type Selection */}
-      <div className="document-type-section">
-        <h2>Select Document Type</h2>
-        <div className="document-type-buttons">
-          {documentTypes.map((type) => {
-            const IconComponent = type.icon;
-            return (
-              <button
-                key={type.id}
-                onClick={() => setSelectedDocument(type.id)}
-                className={`document-type-button ${selectedDocument === type.id ? 'active' : ''}`}
-              >
-                <IconComponent size={20} />
-                {type.name}
-              </button>
-            );
-          })}
-        </div>
-
-        <button
-          onClick={generateDocument}
-          className="document-type-button"
-        >
-          <FileText size={20} />
-          Generate Document
-        </button>
-      </div>
-
-      {/* Form Section */}
-      <div className="form-section">
-        <h3>
-          {documentTypes.find(d => d.id === selectedDocument)?.name} Information
-        </h3>
-        {renderFormFields()}
-        
-        <button
-          onClick={generateDocument}
-          className="generate-button"
-        >
-          Generate Document
-        </button>
-      </div>
-
-      {/* Generated Document */}
-      {generatedDocument && (
-        <div className="generated-document">
-          <div className="document-actions">
-            <button 
-              className="action-button"
-              onClick={() => window.print()}
-            >
-              Print Document
-            </button>
-            <button 
-              className="action-button"
-              onClick={() => {
-                const element = document.createElement("a");
-                const file = new Blob([generatedDocument], {type: 'text/plain'});
-                element.href = URL.createObjectURL(file);
-                element.download = `${selectedDocument}_document.txt`;
-                document.body.appendChild(element);
-                element.click();
-                document.body.removeChild(element);
-              }}
-            >
-              Download
-            </button>
-          </div>
-          
-          <pre style={{whiteSpace: 'pre-wrap', fontFamily: 'serif'}}>
-            {generatedDocument}
-          </pre>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default App;
+${
