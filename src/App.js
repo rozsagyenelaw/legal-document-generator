@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Building, Users, Heart, FileText, DollarSign } from 'lucide-react';
+import { Building, Users, Heart, FileText, DollarSign, Shield } from 'lucide-react';
 
 function App() {
   const [selectedDocument, setSelectedDocument] = useState('llc');
@@ -22,8 +22,8 @@ function App() {
     { id: 'articles', name: 'Articles of Incorporation', icon: Building },
     { id: 'bylaws', name: 'Corporate Bylaws', icon: FileText },
     { id: 'retainer', name: 'CA Retainer Agreement', icon: FileText },
-    { id: 'assignment', name: 'Assignment of Interest', icon: FileText }
-    { id: 'trust', name: 'Irrevocable Trust', icon: Shield }
+    { id: 'assignment', name: 'Assignment of Interest', icon: FileText },
+    { id: 'trust', name: 'Irrevocable Trust', icon: Shield },
   ];
 
   const handleInputChange = (field, value) => {
