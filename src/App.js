@@ -70,6 +70,54 @@ function App() {
   };
 
 const generateTrustDocument = () => {
+    const trustType = formData.trustType || 'joint';
+    const isJoint = trustType === 'joint';
+    
+    // Handle dynamic arrays safely
+    const successorTrustees = formData.successorTrustees || [];
+    const children = formData.children || [];
+    const beneficiaries = formData.beneficiaries || [];
+    const specificGifts = formData.specificGifts || [];
+    
+    // Generate children list
+    const childrenList = children.map((child, index) => 
+        `${child.name || `[CHILD ${index + 1} NAME]`}, born on ${child.dob || '[DATE]'};`
+    ).join('\n');
+    
+    // Generate successor trustee list
+    const successorTrusteeList = successorTrustees.map((trustee, index) => 
+        trustee || `[SUCCESSOR TRUSTEE ${index + 1}]`
+    ).join(' and ');
+    
+    // Generate specific gifts section
+    const specificGiftsSection = specificGifts.length > 0 ? specificGifts.map((gift, index) => `
+Section 4.${index + 1} Specific Gift to ${gift.beneficiary || '[BENEFICIARY NAME]'}
+
+I give and bequeath to ${gift.beneficiary || '[BENEFICIARY NAME]'} the following specific gift:
+
+${gift.description || '[GIFT DESCRIPTION]'}
+
+If ${gift.beneficiary || '[BENEFICIARY NAME]'} does not survive me, this gift shall lapse and become part of the residuary estate.`).join('\n') : '';
+    
+    // Generate beneficiaries distribution sections
+    const beneficiariesSections = beneficiaries.map((beneficiary, index) => {
+        const sectionNum = specificGifts.length > 0 ? index + specificGifts.length + 2 : index + 2;
+        const pronoun = beneficiary.relationship === 'son' ? 'him' : beneficiary.relationship === 'daughter' ? 'her' : 'them';
+        const possessive = beneficiary.relationship === 'son' ? 'his' : beneficiary.relationship === 'daughter' ? 'her' : 'their';
+        
+        return `
+Section 4.${sectionNum} Distribution of the Share for ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`}
+
+The Trustee shall distribute the share set aside for ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`} to ${pronoun} outright and free of trust.
+
+If ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`} is deceased, ${beneficiary.contingent || `the Trustee shall distribute ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`}'s share per stirpes to ${possessive} descendants`}.`;
+    }).join('\n');
+    
+    // Generate beneficiaries list for division section
+    const beneficiariesList = beneficiaries.map((beneficiary, index) => 
+        `${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`} - ${beneficiary.relationship || '[RELATIONSHIP]'} - ${beneficiary.share || '25'}%`
+    ).join('\n');
+
     return `THE ${formData.trustName?.toUpperCase() || '[TRUST NAME]'} IRREVOCABLE TRUST
 
 ${formData.trustDate || '[DATE]'}
@@ -84,11 +132,13 @@ THE ${formData.trustName?.toUpperCase() || '[TRUST NAME]'} IRREVOCABLE TRUST
 Article One
 Establishing the Trust
 
-The date of this Irrevocable Trust Agreement is ${formData.trustDate || '[DATE]'}. The parties to the agreement are ${formData.grantor1Name || '[GRANTOR 1 NAME]'} and ${formData.grantor2Name || '[GRANTOR 2 NAME]'} ("Grantor"), and ${formData.trusteeName || '[TRUSTEE NAME]'} (the Trustee).
+The date of this Irrevocable Trust Agreement is ${formData.trustDate || '[DATE]'}. ${isJoint ? 
+    `The parties to the agreement are ${formData.grantor1Name || '[GRANTOR 1 NAME]'} and ${formData.grantor2Name || '[GRANTOR 2 NAME]'} ("Grantors"), and ${formData.trusteeName || '[TRUSTEE NAME]'} (the "Trustee").` : 
+    `The parties to the agreement are ${formData.grantor1Name || '[GRANTOR NAME]'} ("Grantor"), and ${formData.trusteeName || '[TRUSTEE NAME]'} (the "Trustee").`}
 
-I intend that this agreement create a valid trust under the laws of ${formData.governingState || 'California'} and under the laws of any state in which any trust created under this agreement is administered. The terms of this trust agreement prevail over any provision of ${formData.governingState || 'California'} law, except those provisions that are mandatory and may not be waived.
+${isJoint ? 'We intend' : 'I intend'} that this agreement create a valid trust under the laws of ${formData.governingState || 'California'} and under the laws of any state in which any trust created under this agreement is administered. The terms of this trust agreement prevail over any provision of ${formData.governingState || 'California'} law, except those provisions that are mandatory and may not be waived.
 
-I may not serve as Trustee of any trust created under this agreement at any time.
+${isJoint ? 'We may not serve' : 'I may not serve'} as Trustee of any trust created under this agreement at any time.
 
 Section 1.01 Identifying the Trust
 
@@ -102,58 +152,57 @@ A third party may rely upon an affidavit or certification of trust that is signe
 
 Section 1.03 An Irrevocable Trust
 
-This Trust is irrevocable, and I cannot alter, amend, revoke, or terminate it in any way, except as outlined below.
+This Trust is irrevocable, and ${isJoint ? 'we cannot' : 'I cannot'} alter, amend, revoke, or terminate it in any way, except as outlined below.
 
-Under Probate Code Section 15404, if the Grantor and all the beneficiaries of this trust consent, they may compel the modification or termination of this trust under Probate Code Section 15404 and no petition to the court is required.
+Under Probate Code Section 15404, if the ${isJoint ? 'Grantors' : 'Grantor'} and all the beneficiaries of this trust consent, they may compel the modification or termination of this trust under Probate Code Section 15404 and no petition to the court is required.
 
-In the event this Trust holds residential real property used by the Grantor, then Grantor shall have the exclusive right to occupy and use such real property and shall not be required to pay rent for the use of such property.
+In the event this Trust holds residential real property used by the ${isJoint ? 'Grantors' : 'Grantor'}, then ${isJoint ? 'Grantors' : 'Grantor'} shall have the exclusive right to occupy and use such real property and shall not be required to pay rent for the use of such property.
 
 Section 1.04 Transfers to the Trust
 
-I transfer to the Trustee the property listed in Schedule A, attached to this agreement, to be held on the terms and conditions set forth in this instrument. I retain no right, title or interest in the income or principal of this trust or any other incident of ownership in any trust property.
+${isJoint ? 'We transfer' : 'I transfer'} to the Trustee the property listed in Schedule A, attached to this agreement, to be held on the terms and conditions set forth in this instrument. ${isJoint ? 'We retain' : 'I retain'} no right, title or interest in the income or principal of this trust or any other incident of ownership in any trust property.
 
-Section 1.05 Statement of My Intent
+Section 1.05 Statement of ${isJoint ? 'Our' : 'My'} Intent
 
-I am creating this trust with the intent that assets transferred to the trust be held for the benefit of my trust beneficiaries on the terms and conditions set forth in this agreement. My specific objectives in creating this trust include:
+${isJoint ? 'We are' : 'I am'} creating this trust with the intent that assets transferred to the trust be held for the benefit of ${isJoint ? 'our' : 'my'} trust beneficiaries on the terms and conditions set forth in this agreement. ${isJoint ? 'Our' : 'My'} specific objectives in creating this trust include:
 
 - Any gift made to the trust be treated as a completed gift for federal estate and gift tax purposes;
-- The assets of the trust estate be excluded for federal estate tax purposes from my gross estate;
-- The assets in this trust not be subject to the claims of my creditors and any beneficiary's creditors.
+- The assets of the trust estate be excluded for federal estate tax purposes from ${isJoint ? 'our' : 'my'} gross estate;
+- The assets in this trust not be subject to the claims of ${isJoint ? 'our' : 'my'} creditors and any beneficiary's creditors.
 
 Section 1.06 Not a Grantor Trust
 
-I intend that I not be taxed as owner of any portion of this trust for federal income tax purposes. All provisions of this trust agreement are to be construed consistent with this intent.
+${isJoint ? 'We intend that we' : 'I intend that I'} not be taxed as owner of any portion of this trust for federal income tax purposes. All provisions of this trust agreement are to be construed consistent with this intent.
 
 (a) Transactions for Less than Adequate Consideration
 No one may buy, exchange, or otherwise deal with any trust income or principal for less than full and adequate consideration in money or money's worth.
 
 (b) No Power to Borrow without Adequate Interest or Security
-Neither I nor any Trustee nor any entity in which I have a substantial interest may borrow from any trust created under this agreement, either directly or indirectly, without adequate interest or security.
+Neither ${isJoint ? 'we' : 'I'} nor any Trustee nor any entity in which ${isJoint ? 'we have' : 'I have'} a substantial interest may borrow from any trust created under this agreement, either directly or indirectly, without adequate interest or security.
 
 (c) Specific Administrative Powers Exercisable Only in Fiduciary Capacity
-If any trust created under this agreement includes corporate shares or other securities in which the holdings of the Grantor and the trust are significant from the viewpoint of voting control, only an Independent Trustee may vote or direct the voting of those corporate shares or other securities.
+If any trust created under this agreement includes corporate shares or other securities in which the holdings of the ${isJoint ? 'Grantors' : 'Grantor'} and the trust are significant from the viewpoint of voting control, only an Independent Trustee may vote or direct the voting of those corporate shares or other securities.
 
 (d) No Payment of Life Insurance Premiums from Trust Income
-The Trustee may not use the income of this trust to pay the premiums on any life insurance policies insuring my life.
+The Trustee may not use the income of this trust to pay the premiums on any life insurance policies insuring ${isJoint ? 'our lives' : 'my life'}.
 
 Article Two
-Our Children
+${isJoint ? 'Our' : 'My'} Children
 
-We have ${formData.numberOfChildren || '[NUMBER]'} children. They are:
-${formData.child1Name || '[CHILD 1 NAME]'}, born on ${formData.child1DOB || '[DATE]'};
-${formData.child2Name || '[CHILD 2 NAME]'}, born on ${formData.child2DOB || '[DATE]'};
+${isJoint ? 'We have' : 'I have'} ${formData.numberOfChildren || children.length || '[NUMBER]'} children. They are:
+${childrenList || '[CHILDREN LIST]'}
 
 Article Three
 Trustee Succession Provisions
 
 Section 3.01 Resignation of a Trustee
 
-A Trustee may resign by submitting a written notice of resignation. If I am incapacitated or deceased, a resigning Trustee shall give written notice to the Income Beneficiaries of the trust and to any other then-serving Trustee.
+A Trustee may resign by submitting a written notice of resignation. If ${isJoint ? 'we are' : 'I am'} incapacitated or deceased, a resigning Trustee shall give written notice to the Income Beneficiaries of the trust and to any other then-serving Trustee.
 
 Section 3.02 Trustee Succession
 
 (a) Appointment of Successor Trustees
-If ${formData.trusteeName || '[TRUSTEE NAME]'} ceases to serve I name the following, in the order named, to serve as successor Trustee: ${formData.successorTrustee1 || '[SUCCESSOR TRUSTEE 1]'} and ${formData.successorTrustee2 || '[SUCCESSOR TRUSTEE 2]'} jointly or the survivor of them.
+If ${formData.trusteeName || '[TRUSTEE NAME]'} ceases to serve ${isJoint ? 'we name' : 'I name'} the following, in the order named, to serve as successor Trustee: ${successorTrusteeList || '[SUCCESSOR TRUSTEES]'}.
 
 (b) Removal by Beneficiaries
 A Trustee may be removed only for cause, which removal must be approved by a court of competent jurisdiction upon the petition of any beneficiary.
@@ -172,47 +221,24 @@ Any individual Trustee may appoint an individual or a corporate fiduciary as a C
 Article Four
 Administration of Trust Property
 
-Distribution for Our Beneficiaries
+${specificGifts.length > 0 ? 'Specific Gifts and ' : ''}Distribution for ${isJoint ? 'Our' : 'My'} Beneficiaries
 
-Upon the death of the survivor of us, the Trustee shall administer and distribute our remaining trust property.
+Upon the death of ${isJoint ? 'the survivor of us' : 'the Grantor'}, the Trustee shall ${specificGifts.length > 0 ? 'first make the specific gifts set forth below, and then ' : ''}administer and distribute ${isJoint ? 'our' : 'my'} remaining trust property.
 
-Section 4.01 Division of Remaining Trust Property
+${specificGiftsSection}
 
-The Trustee shall divide our remaining trust property into shares as follows:
+Section 4.${specificGifts.length + 1} Division of Remaining Trust Property
 
-${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'} - ${formData.beneficiary1Relationship || '[RELATIONSHIP]'} - ${formData.beneficiary1Share || '25'}%
-${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'} - ${formData.beneficiary2Relationship || '[RELATIONSHIP]'} - ${formData.beneficiary2Share || '25'}%
-${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'} - ${formData.beneficiary3Relationship || '[RELATIONSHIP]'} - ${formData.beneficiary3Share || '25'}%
-${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'} - ${formData.beneficiary4Relationship || '[RELATIONSHIP]'} - ${formData.beneficiary4Share || '25'}%
+The Trustee shall divide ${isJoint ? 'our' : 'my'} remaining trust property into shares as follows:
 
-Section 4.02 Distribution of the Share for ${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'}
+${beneficiariesList || '[BENEFICIARIES LIST]'}
 
-The Trustee shall distribute the share set aside for ${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'} to ${formData.beneficiary1Relationship === 'son' ? 'him' : 'her'} outright and free of trust.
-
-If ${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'} is deceased, the Trustee shall distribute ${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'}'s share per stirpes to ${formData.beneficiary1Relationship === 'son' ? 'his' : 'her'} descendants.
-
-Section 4.03 Distribution of the Share for ${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'}
-
-The Trustee shall distribute the share set aside for ${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'} to ${formData.beneficiary2Relationship === 'son' ? 'him' : 'her'} outright and free of trust.
-
-If ${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'} is deceased, the Trustee shall distribute ${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'}'s share per stirpes to ${formData.beneficiary2Relationship === 'son' ? 'his' : 'her'} descendants.
-
-Section 4.04 Distribution of the Share for ${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'}
-
-The Trustee shall distribute the share set aside for ${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'} to ${formData.beneficiary3Relationship === 'son' ? 'him' : 'her'} outright and free of trust.
-
-If ${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'} is deceased, the Trustee shall distribute ${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'}'s share per stirpes to ${formData.beneficiary3Relationship === 'son' ? 'his' : 'her'} descendants.
-
-Section 4.05 Distribution of the Share for ${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'}
-
-The Trustee shall distribute the share set aside for ${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'} to ${formData.beneficiary4Relationship === 'son' ? 'him' : 'her'} outright and free of trust.
-
-If ${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'} is deceased, the Trustee shall distribute ${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'}'s share per stirpes to ${formData.beneficiary4Relationship === 'son' ? 'his' : 'her'} descendants.
+${beneficiariesSections}
 
 Article Five
 Remote Contingent Distribution
 
-If at any time no person or entity is qualified to receive final distribution of any part of my trust estate, this portion of my trust estate must be distributed to those persons who would inherit it had I then died intestate owning the property, as determined and in the proportions provided by the laws of ${formData.governingState || 'California'} then in effect.
+If at any time no person or entity is qualified to receive final distribution of any part of ${isJoint ? 'our' : 'my'} trust estate, this portion of ${isJoint ? 'our' : 'my'} trust estate must be distributed to those persons who would inherit it had ${isJoint ? 'we' : 'I'} then died intestate owning the property, as determined and in the proportions provided by the laws of ${formData.governingState || 'California'} then in effect.
 
 Article Six
 Distributions to Underage and Incapacitated Beneficiaries
@@ -304,7 +330,7 @@ General Provisions
 
 Section 9.01 Maximum Term for Trusts
 
-Each trust created under this trust document will terminate 21 years after the death of the last to die of the descendants of my paternal and maternal grandparents who are living at the time this agreement is signed.
+Each trust created under this trust document will terminate 21 years after the death of the last to die of the descendants of ${isJoint ? 'our' : 'my'} paternal and maternal grandparents who are living at the time this agreement is signed.
 
 Section 9.02 Spendthrift Provision
 
@@ -336,16 +362,16 @@ This trust may be executed in any number of counterparts, each of which will be 
 (b) Governing State Law
 This trust is governed, construed, and administered according to the laws of ${formData.governingState || 'California'}.
 
-I have executed this trust on ${formData.trustDate || '[DATE]'}. This Irrevocable Trust Agreement is effective when signed by me, whether or not now signed by a Trustee.
+${isJoint ? 'We have' : 'I have'} executed this trust on ${formData.trustDate || '[DATE]'}. This Irrevocable Trust Agreement is effective when signed by ${isJoint ? 'us' : 'me'}, whether or not now signed by a Trustee.
 
 ${formData.grantor1Name || '[GRANTOR 1 NAME]'}, Grantor
-${formData.grantor2Name || '[GRANTOR 2 NAME]'}, Grantor
+${isJoint ? `${formData.grantor2Name || '[GRANTOR 2 NAME]'}, Grantor` : ''}
 ${formData.trusteeName || '[TRUSTEE NAME]'}, Trustee
 
 STATE OF ${formData.notaryState || '[STATE]'}
 COUNTY OF ${formData.notaryCounty || '[COUNTY]'}
 
-On ${formData.trustDate || '[DATE]'}, before me, _________________, a Notary Public, personally appeared ${formData.grantor1Name || '[GRANTOR 1 NAME]'} and ${formData.grantor2Name || '[GRANTOR 2 NAME]'}, who proved to me on the basis of satisfactory evidence to be the persons whose names are subscribed to the within instrument and acknowledged to me that they executed the same.
+On ${formData.trustDate || '[DATE]'}, before me, _________________, a Notary Public, personally appeared ${formData.grantor1Name || '[GRANTOR 1 NAME]'}${isJoint ? ` and ${formData.grantor2Name || '[GRANTOR 2 NAME]'}` : ''}, who proved to me on the basis of satisfactory evidence to be the person${isJoint ? 's' : ''} whose name${isJoint ? 's are' : ' is'} subscribed to the within instrument and acknowledged to me that ${isJoint ? 'they' : 'he/she'} executed the same.
 
 I certify under PENALTY OF PERJURY under the laws of the State of ${formData.notaryState || '[STATE]'} that the foregoing paragraph is true and correct.
 
@@ -364,7 +390,7 @@ ${firmInfo.city}
 ${firmInfo.phone}
 ${firmInfo.email}
 `;
-  };
+};
 
 const generateCertTrustDocument = () => {
   const grantorNames = formData.grantor2Name 
@@ -1600,6 +1626,16 @@ ${formData.scheduleA}
   return (
     <div className="form-grid">
       <div className="form-group">
+        <label>Trust Type</label>
+        <select
+          value={formData.trustType || 'joint'}
+          onChange={(e) => handleInputChange('trustType', e.target.value)}
+        >
+          <option value="joint">Joint Trust (Married Couple)</option>
+          <option value="single">Single Person Trust</option>
+        </select>
+      </div>
+      <div className="form-group">
         <label>Trust Name</label>
         <input
           type="text"
@@ -1633,6 +1669,8 @@ ${formData.scheduleA}
           placeholder="Describe the property being placed in trust"
         />
       </div>
+      
+      {/* Grantors Section */}
       <div className="form-group">
         <label>Grantor 1 Name</label>
         <input
@@ -1642,17 +1680,21 @@ ${formData.scheduleA}
           placeholder="Enter first grantor name"
         />
       </div>
+      {formData.trustType === 'joint' && (
+        <div className="form-group">
+          <label>Grantor 2 Name (Spouse)</label>
+          <input
+            type="text"
+            value={formData.grantor2Name || ''}
+            onChange={(e) => handleInputChange('grantor2Name', e.target.value)}
+            placeholder="Enter spouse's name"
+          />
+        </div>
+      )}
+
+      {/* Trustees Section */}
       <div className="form-group">
-        <label>Grantor 2 Name</label>
-        <input
-          type="text"
-          value={formData.grantor2Name || ''}
-          onChange={(e) => handleInputChange('grantor2Name', e.target.value)}
-          placeholder="Enter second grantor name"
-        />
-      </div>
-      <div className="form-group">
-        <label>Trustee Name</label>
+        <label>Primary Trustee Name</label>
         <input
           type="text"
           value={formData.trusteeName || ''}
@@ -1660,24 +1702,48 @@ ${formData.scheduleA}
           placeholder="Enter trustee name"
         />
       </div>
-      <div className="form-group">
-        <label>Successor Trustee 1</label>
-        <input
-          type="text"
-          value={formData.successorTrustee1 || ''}
-          onChange={(e) => handleInputChange('successorTrustee1', e.target.value)}
-          placeholder="Enter first successor trustee"
-        />
-      </div>
-      <div className="form-group">
-        <label>Successor Trustee 2</label>
-        <input
-          type="text"
-          value={formData.successorTrustee2 || ''}
-          onChange={(e) => handleInputChange('successorTrustee2', e.target.value)}
-          placeholder="Enter second successor trustee"
-        />
-      </div>
+      
+      {/* Dynamic Successor Trustees */}
+      {(formData.successorTrustees || []).map((trustee, index) => (
+        <div key={index} className="form-group">
+          <label>Successor Trustee {index + 1}</label>
+          <div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+            <input
+              type="text"
+              value={trustee || ''}
+              onChange={(e) => {
+                const newTrustees = [...(formData.successorTrustees || [])];
+                newTrustees[index] = e.target.value;
+                handleInputChange('successorTrustees', newTrustees);
+              }}
+              placeholder="Enter successor trustee name"
+            />
+            <button 
+              type="button"
+              onClick={() => {
+                const newTrustees = (formData.successorTrustees || []).filter((_, i) => i !== index);
+                handleInputChange('successorTrustees', newTrustees);
+              }}
+              style={{background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px'}}
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      ))}
+      
+      <button
+        type="button"
+        onClick={() => {
+          const newTrustees = [...(formData.successorTrustees || []), ''];
+          handleInputChange('successorTrustees', newTrustees);
+        }}
+        style={{background: '#28a745', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '3px', marginBottom: '15px'}}
+      >
+        Add Another Successor Trustee
+      </button>
+
+      {/* Children Section */}
       <div className="form-group">
         <label>Number of Children</label>
         <input
@@ -1687,164 +1753,206 @@ ${formData.scheduleA}
           placeholder="Enter number of children"
         />
       </div>
-      <div className="form-group">
-        <label>Child 1 Name</label>
-        <input
-          type="text"
-          value={formData.child1Name || ''}
-          onChange={(e) => handleInputChange('child1Name', e.target.value)}
-          placeholder="Enter first child's name"
-        />
-      </div>
-      <div className="form-group">
-        <label>Child 1 Date of Birth</label>
-        <input
-          type="date"
-          value={formData.child1DOB || ''}
-          onChange={(e) => handleInputChange('child1DOB', e.target.value)}
-        />
-      </div>
-      <div className="form-group">
-        <label>Child 2 Name</label>
-        <input
-          type="text"
-          value={formData.child2Name || ''}
-          onChange={(e) => handleInputChange('child2Name', e.target.value)}
-          placeholder="Enter second child's name"
-        />
-      </div>
-      <div className="form-group">
-        <label>Child 2 Date of Birth</label>
-        <input
-          type="date"
-          value={formData.child2DOB || ''}
-          onChange={(e) => handleInputChange('child2DOB', e.target.value)}
-        />
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 1 Name</label>
-        <input
-          type="text"
-          value={formData.beneficiary1Name || ''}
-          onChange={(e) => handleInputChange('beneficiary1Name', e.target.value)}
-          placeholder="Enter beneficiary name"
-        />
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 1 Relationship</label>
-        <select
-          value={formData.beneficiary1Relationship || ''}
-          onChange={(e) => handleInputChange('beneficiary1Relationship', e.target.value)}
-        >
-          <option value="">Select Relationship</option>
-          <option value="son">Son</option>
-          <option value="daughter">Daughter</option>
-          <option value="spouse">Spouse</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 1 Share %</label>
-        <input
-          type="number"
-          value={formData.beneficiary1Share || ''}
-          onChange={(e) => handleInputChange('beneficiary1Share', e.target.value)}
-          placeholder="Enter percentage"
-        />
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 2 Name</label>
-        <input
-          type="text"
-          value={formData.beneficiary2Name || ''}
-          onChange={(e) => handleInputChange('beneficiary2Name', e.target.value)}
-          placeholder="Enter beneficiary name"
-        />
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 2 Relationship</label>
-        <select
-          value={formData.beneficiary2Relationship || ''}
-          onChange={(e) => handleInputChange('beneficiary2Relationship', e.target.value)}
-        >
-          <option value="">Select Relationship</option>
-          <option value="son">Son</option>
-          <option value="daughter">Daughter</option>
-          <option value="spouse">Spouse</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 2 Share %</label>
-        <input
-          type="number"
-          value={formData.beneficiary2Share || ''}
-          onChange={(e) => handleInputChange('beneficiary2Share', e.target.value)}
-          placeholder="Enter percentage"
-        />
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 3 Name</label>
-        <input
-          type="text"
-          value={formData.beneficiary3Name || ''}
-          onChange={(e) => handleInputChange('beneficiary3Name', e.target.value)}
-          placeholder="Enter beneficiary name"
-        />
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 3 Relationship</label>
-        <select
-          value={formData.beneficiary3Relationship || ''}
-          onChange={(e) => handleInputChange('beneficiary3Relationship', e.target.value)}
-        >
-          <option value="">Select Relationship</option>
-          <option value="son">Son</option>
-          <option value="daughter">Daughter</option>
-          <option value="spouse">Spouse</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 3 Share %</label>
-        <input
-          type="number"
-          value={formData.beneficiary3Share || ''}
-          onChange={(e) => handleInputChange('beneficiary3Share', e.target.value)}
-          placeholder="Enter percentage"
-        />
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 4 Name</label>
-        <input
-          type="text"
-          value={formData.beneficiary4Name || ''}
-          onChange={(e) => handleInputChange('beneficiary4Name', e.target.value)}
-          placeholder="Enter beneficiary name"
-        />
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 4 Relationship</label>
-        <select
-          value={formData.beneficiary4Relationship || ''}
-          onChange={(e) => handleInputChange('beneficiary4Relationship', e.target.value)}
-        >
-          <option value="">Select Relationship</option>
-          <option value="son">Son</option>
-          <option value="daughter">Daughter</option>
-          <option value="spouse">Spouse</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div className="form-group">
-        <label>Beneficiary 4 Share %</label>
-        <input
-          type="number"
-          value={formData.beneficiary4Share || ''}
-          onChange={(e) => handleInputChange('beneficiary4Share', e.target.value)}
-          placeholder="Enter percentage"
-        />
-      </div>
+      
+      {/* Dynamic Children */}
+      {(formData.children || []).map((child, index) => (
+        <div key={index} style={{display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px'}}>
+          <div className="form-group" style={{margin: 0, flex: 1}}>
+            <label>Child {index + 1} Name</label>
+            <input
+              type="text"
+              value={child.name || ''}
+              onChange={(e) => {
+                const newChildren = [...(formData.children || [])];
+                newChildren[index] = {...newChildren[index], name: e.target.value};
+                handleInputChange('children', newChildren);
+              }}
+              placeholder="Enter child's name"
+            />
+          </div>
+          <div className="form-group" style={{margin: 0, flex: 1}}>
+            <label>Date of Birth</label>
+            <input
+              type="date"
+              value={child.dob || ''}
+              onChange={(e) => {
+                const newChildren = [...(formData.children || [])];
+                newChildren[index] = {...newChildren[index], dob: e.target.value};
+                handleInputChange('children', newChildren);
+              }}
+            />
+          </div>
+          <button 
+            type="button"
+            onClick={() => {
+              const newChildren = (formData.children || []).filter((_, i) => i !== index);
+              handleInputChange('children', newChildren);
+            }}
+            style={{background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', alignSelf: 'flex-end'}}
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+      
+      <button
+        type="button"
+        onClick={() => {
+          const newChildren = [...(formData.children || []), {name: '', dob: ''}];
+          handleInputChange('children', newChildren);
+        }}
+        style={{background: '#28a745', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '3px', marginBottom: '15px'}}
+      >
+        Add Another Child
+      </button>
+
+      {/* Primary Beneficiaries Section */}
+      <h4 style={{margin: '20px 0 10px 0'}}>Primary Beneficiaries</h4>
+      {(formData.beneficiaries || []).map((beneficiary, index) => (
+        <div key={index} style={{border: '1px solid #ddd', padding: '15px', marginBottom: '15px', borderRadius: '5px'}}>
+          <div style={{display: 'flex', gap: '10px', marginBottom: '10px'}}>
+            <div className="form-group" style={{margin: 0, flex: 1}}>
+              <label>Beneficiary {index + 1} Name</label>
+              <input
+                type="text"
+                value={beneficiary.name || ''}
+                onChange={(e) => {
+                  const newBeneficiaries = [...(formData.beneficiaries || [])];
+                  newBeneficiaries[index] = {...newBeneficiaries[index], name: e.target.value};
+                  handleInputChange('beneficiaries', newBeneficiaries);
+                }}
+                placeholder="Enter beneficiary name"
+              />
+            </div>
+            <div className="form-group" style={{margin: 0, flex: 1}}>
+              <label>Relationship</label>
+              <select
+                value={beneficiary.relationship || ''}
+                onChange={(e) => {
+                  const newBeneficiaries = [...(formData.beneficiaries || [])];
+                  newBeneficiaries[index] = {...newBeneficiaries[index], relationship: e.target.value};
+                  handleInputChange('beneficiaries', newBeneficiaries);
+                }}
+              >
+                <option value="">Select Relationship</option>
+                <option value="son">Son</option>
+                <option value="daughter">Daughter</option>
+                <option value="spouse">Spouse</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="form-group" style={{margin: 0, flex: 1}}>
+              <label>Share %</label>
+              <input
+                type="number"
+                value={beneficiary.share || ''}
+                onChange={(e) => {
+                  const newBeneficiaries = [...(formData.beneficiaries || [])];
+                  newBeneficiaries[index] = {...newBeneficiaries[index], share: e.target.value};
+                  handleInputChange('beneficiaries', newBeneficiaries);
+                }}
+                placeholder="Enter percentage"
+              />
+            </div>
+          </div>
+          
+          <div className="form-group" style={{margin: 0}}>
+            <label>Contingent Beneficiaries (if primary beneficiary is deceased)</label>
+            <textarea
+              value={beneficiary.contingent || ''}
+              onChange={(e) => {
+                const newBeneficiaries = [...(formData.beneficiaries || [])];
+                newBeneficiaries[index] = {...newBeneficiaries[index], contingent: e.target.value};
+                handleInputChange('beneficiaries', newBeneficiaries);
+              }}
+              placeholder="Enter contingent beneficiaries (e.g., 'per stirpes to descendants' or specific names)"
+              rows="2"
+            />
+          </div>
+          
+          <button 
+            type="button"
+            onClick={() => {
+              const newBeneficiaries = (formData.beneficiaries || []).filter((_, i) => i !== index);
+              handleInputChange('beneficiaries', newBeneficiaries);
+            }}
+            style={{background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', marginTop: '10px'}}
+          >
+            Remove Beneficiary
+          </button>
+        </div>
+      ))}
+      
+      <button
+        type="button"
+        onClick={() => {
+          const newBeneficiaries = [...(formData.beneficiaries || []), {name: '', relationship: '', share: '', contingent: ''}];
+          handleInputChange('beneficiaries', newBeneficiaries);
+        }}
+        style={{background: '#28a745', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '3px', marginBottom: '15px'}}
+      >
+        Add Another Beneficiary
+      </button>
+
+      {/* Specific Gifts Section */}
+      <h4 style={{margin: '20px 0 10px 0'}}>Specific Gifts</h4>
+      {(formData.specificGifts || []).map((gift, index) => (
+        <div key={index} style={{border: '1px solid #ddd', padding: '15px', marginBottom: '15px', borderRadius: '5px'}}>
+          <div style={{display: 'flex', gap: '10px', marginBottom: '10px'}}>
+            <div className="form-group" style={{margin: 0, flex: 1}}>
+              <label>Beneficiary Name</label>
+              <input
+                type="text"
+                value={gift.beneficiary || ''}
+                onChange={(e) => {
+                  const newGifts = [...(formData.specificGifts || [])];
+                  newGifts[index] = {...newGifts[index], beneficiary: e.target.value};
+                  handleInputChange('specificGifts', newGifts);
+                }}
+                placeholder="Enter beneficiary name"
+              />
+            </div>
+          </div>
+          
+          <div className="form-group" style={{margin: 0}}>
+            <label>Gift Description</label>
+            <textarea
+              value={gift.description || ''}
+              onChange={(e) => {
+                const newGifts = [...(formData.specificGifts || [])];
+                newGifts[index] = {...newGifts[index], description: e.target.value};
+                handleInputChange('specificGifts', newGifts);
+              }}
+              placeholder="Describe the specific gift (e.g., 'my diamond wedding ring', 'the family home located at...', '$10,000 in cash')"
+              rows="3"
+            />
+          </div>
+          
+          <button 
+            type="button"
+            onClick={() => {
+              const newGifts = (formData.specificGifts || []).filter((_, i) => i !== index);
+              handleInputChange('specificGifts', newGifts);
+            }}
+            style={{background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', marginTop: '10px'}}
+          >
+            Remove Gift
+          </button>
+        </div>
+      ))}
+      
+      <button
+        type="button"
+        onClick={() => {
+          const newGifts = [...(formData.specificGifts || []), {beneficiary: '', description: ''}];
+          handleInputChange('specificGifts', newGifts);
+        }}
+        style={{background: '#28a745', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '3px', marginBottom: '15px'}}
+      >
+        Add Another Specific Gift
+      </button>
+
+      {/* Notary Information */}
       <div className="form-group">
         <label>Notary State</label>
         <input
@@ -1864,8 +1972,8 @@ ${formData.scheduleA}
         />
       </div>
     </div>
-  );       
-     
+  );
+        
      case 'cert_trust':
   return (
     <div className="form-grid">
