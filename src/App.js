@@ -262,19 +262,22 @@ Each successor Trustee serving under this agreement, whether corporate or indivi
 Article Four
 Administration of Trust Property
 
-${specificGifts.length > 0 ? 'Specific Gifts and ' : ''}Distribution for ${isJoint ? 'Our' : 'My'} Beneficiaries
+${beneficiaries.length > 0 ? beneficiaries.map((beneficiary, index) => 
+    `${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`} - ${beneficiary.relationship || '[RELATIONSHIP]'} - ${beneficiary.share || '25'}%`
+).join('\n') : '[BENEFICIARIES LIST]'}
 
-Upon the death of ${isJoint ? 'the survivor of us' : 'the Grantor'}, the Trustee shall ${specificGifts.length > 0 ? 'first make the specific gifts set forth below, and then ' : ''}administer and distribute ${isJoint ? 'our' : 'my'} remaining trust property.
+${beneficiaries.length > 0 ? beneficiaries.map((beneficiary, index) => {
+    const sectionNum = specificGifts.length + index + 2;
+    const pronoun = beneficiary.relationship === 'son' ? 'him' : beneficiary.relationship === 'daughter' ? 'her' : 'them';
+    const possessive = beneficiary.relationship === 'son' ? 'his' : beneficiary.relationship === 'daughter' ? 'her' : 'their';
+    
+    return `
+Section 4.${sectionNum} Distribution of the Share for ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`}
 
-${specificGiftsSection}
+The Trustee shall distribute the share set aside for ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`} to ${pronoun} outright and free of trust.
 
-Section 4.${specificGifts.length + 1} Division of Remaining Trust Property
-
-The Trustee shall divide ${isJoint ? 'our' : 'my'} remaining trust property into shares as follows:
-
-${beneficiariesList || '[BENEFICIARIES LIST]'}
-
-${beneficiariesSections}
+If ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`} is deceased, ${beneficiary.contingent ? beneficiary.contingent : `the Trustee shall distribute ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`}'s share per stirpes to ${possessive} descendants`}. If ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`} has no descendants, the Trustee shall distribute ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`}'s share pro rata to the other beneficiaries named in this Article. If no other named beneficiaries exist, the Trustee shall distribute ${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`}'s share under the terms of this Trust Agreement.`;
+}).join('\n') : ‘'}
 
 Article Five
 Remote Contingent Distribution
