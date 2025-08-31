@@ -1539,246 +1539,275 @@ ${formData.scheduleA}
 
   const renderFormFields = () => {
     switch (selectedDocument) {
-       case 'trust':
-        return (
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-gray-800">Irrevocable Trust Information</h3>
-            
-            {/* Basic Trust Info */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="text-md font-semibold text-gray-700 mb-3">Basic Trust Information</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Trust Name"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('trustName', e.target.value)}
-                />
-                <input
-                  type="date"
-                  placeholder="Trust Date"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('trustDate', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Governing State (e.g., California)"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('governingState', e.target.value)}
-                />
-                <textarea
-                  placeholder="Trust Property Description"
-                  rows="2"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('trustProperty', e.target.value)}
-                />
-              </div>
-            </div>
-
-            {/* Grantors */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="text-md font-semibold text-gray-700 mb-3">Grantors</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Grantor 1 Name"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('grantor1Name', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Grantor 2 Name"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('grantor2Name', e.target.value)}
-                />
-              </div>
-            </div>
-
-            {/* Trustees */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="text-md font-semibold text-gray-700 mb-3">Trustees</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input
-                  type="text"
-                  placeholder="Trustee Name"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('trusteeName', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Successor Trustee 1"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('successorTrustee1', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Successor Trustee 2"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('successorTrustee2', e.target.value)}
-                />
-              </div>
-            </div>
-
-            {/* Children */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="text-md font-semibold text-gray-700 mb-3">Children</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input
-                  type="text"
-                  placeholder="Number of Children"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('numberOfChildren', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Child 1 Name"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('child1Name', e.target.value)}
-                />
-                <input
-                  type="date"
-                  placeholder="Child 1 DOB"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('child1DOB', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Child 2 Name"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('child2Name', e.target.value)}
-                />
-                <input
-                  type="date"
-                  placeholder="Child 2 DOB"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('child2DOB', e.target.value)}
-                />
-              </div>
-            </div>
-            
-            {/* Beneficiaries */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="text-md font-semibold text-gray-700 mb-3">Beneficiaries</h4>
-              <div className="space-y-3">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Beneficiary 1 Name"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary1Name', e.target.value)}
-                  />
-                  <select
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary1Relationship', e.target.value)}
-                  >
-                    <option value="">Select Relationship</option>
-                    <option value="son">Son</option>
-                    <option value="daughter">Daughter</option>
-                    <option value="spouse">Spouse</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <input
-                    type="number"
-                    placeholder="Share Percentage"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary1Share', e.target.value)}
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Beneficiary 2 Name"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary2Name', e.target.value)}
-                  />
-                  <select
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary2Relationship', e.target.value)}
-                  >
-                    <option value="">Select Relationship</option>
-                    <option value="son">Son</option>
-                    <option value="daughter">Daughter</option>
-                    <option value="spouse">Spouse</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <input
-                    type="number"
-                    placeholder="Share Percentage"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary2Share', e.target.value)}
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Beneficiary 3 Name"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary3Name', e.target.value)}
-                  />
-                  <select
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary3Relationship', e.target.value)}
-                  >
-                    <option value="">Select Relationship</option>
-                    <option value="son">Son</option>
-                    <option value="daughter">Daughter</option>
-                    <option value="spouse">Spouse</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <input
-                    type="number"
-                    placeholder="Share Percentage"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary3Share', e.target.value)}
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Beneficiary 4 Name"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary4Name', e.target.value)}
-                  />
-                  <select
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary4Relationship', e.target.value)}
-                  >
-                    <option value="">Select Relationship</option>
-                    <option value="son">Son</option>
-                    <option value="daughter">Daughter</option>
-                    <option value="spouse">Spouse</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <input
-                    type="number"
-                    placeholder="Share Percentage"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    onChange={(e) => handleInputChange('beneficiary4Share', e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Notary Info */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="text-md font-semibold text-gray-700 mb-3">Notary Information</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Notary State"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('notaryState', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Notary County"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => handleInputChange('notaryCounty', e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
-        );
+    case 'trust':
+  return (
+    <div className="form-grid">
+      <div className="form-group">
+        <label>Trust Name</label>
+        <input
+          type="text"
+          value={formData.trustName || ''}
+          onChange={(e) => handleInputChange('trustName', e.target.value)}
+          placeholder="Enter trust name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Trust Date</label>
+        <input
+          type="date"
+          value={formData.trustDate || ''}
+          onChange={(e) => handleInputChange('trustDate', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Governing State</label>
+        <input
+          type="text"
+          value={formData.governingState || ''}
+          onChange={(e) => handleInputChange('governingState', e.target.value)}
+          placeholder="e.g., California"
+        />
+      </div>
+      <div className="form-group">
+        <label>Trust Property Description</label>
+        <textarea
+          value={formData.trustProperty || ''}
+          onChange={(e) => handleInputChange('trustProperty', e.target.value)}
+          placeholder="Describe the property being placed in trust"
+        />
+      </div>
+      <div className="form-group">
+        <label>Grantor 1 Name</label>
+        <input
+          type="text"
+          value={formData.grantor1Name || ''}
+          onChange={(e) => handleInputChange('grantor1Name', e.target.value)}
+          placeholder="Enter first grantor name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Grantor 2 Name</label>
+        <input
+          type="text"
+          value={formData.grantor2Name || ''}
+          onChange={(e) => handleInputChange('grantor2Name', e.target.value)}
+          placeholder="Enter second grantor name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Trustee Name</label>
+        <input
+          type="text"
+          value={formData.trusteeName || ''}
+          onChange={(e) => handleInputChange('trusteeName', e.target.value)}
+          placeholder="Enter trustee name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Successor Trustee 1</label>
+        <input
+          type="text"
+          value={formData.successorTrustee1 || ''}
+          onChange={(e) => handleInputChange('successorTrustee1', e.target.value)}
+          placeholder="Enter first successor trustee"
+        />
+      </div>
+      <div className="form-group">
+        <label>Successor Trustee 2</label>
+        <input
+          type="text"
+          value={formData.successorTrustee2 || ''}
+          onChange={(e) => handleInputChange('successorTrustee2', e.target.value)}
+          placeholder="Enter second successor trustee"
+        />
+      </div>
+      <div className="form-group">
+        <label>Number of Children</label>
+        <input
+          type="number"
+          value={formData.numberOfChildren || ''}
+          onChange={(e) => handleInputChange('numberOfChildren', e.target.value)}
+          placeholder="Enter number of children"
+        />
+      </div>
+      <div className="form-group">
+        <label>Child 1 Name</label>
+        <input
+          type="text"
+          value={formData.child1Name || ''}
+          onChange={(e) => handleInputChange('child1Name', e.target.value)}
+          placeholder="Enter first child's name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Child 1 Date of Birth</label>
+        <input
+          type="date"
+          value={formData.child1DOB || ''}
+          onChange={(e) => handleInputChange('child1DOB', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Child 2 Name</label>
+        <input
+          type="text"
+          value={formData.child2Name || ''}
+          onChange={(e) => handleInputChange('child2Name', e.target.value)}
+          placeholder="Enter second child's name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Child 2 Date of Birth</label>
+        <input
+          type="date"
+          value={formData.child2DOB || ''}
+          onChange={(e) => handleInputChange('child2DOB', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 1 Name</label>
+        <input
+          type="text"
+          value={formData.beneficiary1Name || ''}
+          onChange={(e) => handleInputChange('beneficiary1Name', e.target.value)}
+          placeholder="Enter beneficiary name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 1 Relationship</label>
+        <select
+          value={formData.beneficiary1Relationship || ''}
+          onChange={(e) => handleInputChange('beneficiary1Relationship', e.target.value)}
+        >
+          <option value="">Select Relationship</option>
+          <option value="son">Son</option>
+          <option value="daughter">Daughter</option>
+          <option value="spouse">Spouse</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 1 Share %</label>
+        <input
+          type="number"
+          value={formData.beneficiary1Share || ''}
+          onChange={(e) => handleInputChange('beneficiary1Share', e.target.value)}
+          placeholder="Enter percentage"
+        />
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 2 Name</label>
+        <input
+          type="text"
+          value={formData.beneficiary2Name || ''}
+          onChange={(e) => handleInputChange('beneficiary2Name', e.target.value)}
+          placeholder="Enter beneficiary name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 2 Relationship</label>
+        <select
+          value={formData.beneficiary2Relationship || ''}
+          onChange={(e) => handleInputChange('beneficiary2Relationship', e.target.value)}
+        >
+          <option value="">Select Relationship</option>
+          <option value="son">Son</option>
+          <option value="daughter">Daughter</option>
+          <option value="spouse">Spouse</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 2 Share %</label>
+        <input
+          type="number"
+          value={formData.beneficiary2Share || ''}
+          onChange={(e) => handleInputChange('beneficiary2Share', e.target.value)}
+          placeholder="Enter percentage"
+        />
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 3 Name</label>
+        <input
+          type="text"
+          value={formData.beneficiary3Name || ''}
+          onChange={(e) => handleInputChange('beneficiary3Name', e.target.value)}
+          placeholder="Enter beneficiary name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 3 Relationship</label>
+        <select
+          value={formData.beneficiary3Relationship || ''}
+          onChange={(e) => handleInputChange('beneficiary3Relationship', e.target.value)}
+        >
+          <option value="">Select Relationship</option>
+          <option value="son">Son</option>
+          <option value="daughter">Daughter</option>
+          <option value="spouse">Spouse</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 3 Share %</label>
+        <input
+          type="number"
+          value={formData.beneficiary3Share || ''}
+          onChange={(e) => handleInputChange('beneficiary3Share', e.target.value)}
+          placeholder="Enter percentage"
+        />
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 4 Name</label>
+        <input
+          type="text"
+          value={formData.beneficiary4Name || ''}
+          onChange={(e) => handleInputChange('beneficiary4Name', e.target.value)}
+          placeholder="Enter beneficiary name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 4 Relationship</label>
+        <select
+          value={formData.beneficiary4Relationship || ''}
+          onChange={(e) => handleInputChange('beneficiary4Relationship', e.target.value)}
+        >
+          <option value="">Select Relationship</option>
+          <option value="son">Son</option>
+          <option value="daughter">Daughter</option>
+          <option value="spouse">Spouse</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Beneficiary 4 Share %</label>
+        <input
+          type="number"
+          value={formData.beneficiary4Share || ''}
+          onChange={(e) => handleInputChange('beneficiary4Share', e.target.value)}
+          placeholder="Enter percentage"
+        />
+      </div>
+      <div className="form-group">
+        <label>Notary State</label>
+        <input
+          type="text"
+          value={formData.notaryState || ''}
+          onChange={(e) => handleInputChange('notaryState', e.target.value)}
+          placeholder="Enter state"
+        />
+      </div>
+      <div className="form-group">
+        <label>Notary County</label>
+        <input
+          type="text"
+          value={formData.notaryCounty || ''}
+          onChange={(e) => handleInputChange('notaryCounty', e.target.value)}
+          placeholder="Enter county"
+        />
+      </div>
+    </div>
+  );       
 
       case 'llc':
         return (
