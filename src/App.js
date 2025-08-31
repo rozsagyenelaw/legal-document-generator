@@ -262,36 +262,58 @@ Each successor Trustee serving under this agreement, whether corporate or indivi
 Article Four
 Administration of Trust Property
 
-${specificGifts.length > 0 ? 'Specific Gifts and ' : ''}Distribution for ${isJoint ? 'Our' : 'My'} Beneficiaries
+Distribution for ${isJoint ? 'Our' : 'My'} Beneficiaries
 
-Upon the death of ${isJoint ? 'the survivor of us' : 'the Grantor'}, the Trustee shall ${specificGifts.length > 0 ? 'first make the specific gifts set forth below, and then ' : ''}administer and distribute ${isJoint ? 'our' : 'my'} remaining trust property.
+Upon the death of ${isJoint ? 'the survivor of us' : 'the Grantor'}, the Trustee shall administer and distribute ${isJoint ? 'our' : 'my'} remaining trust property.
 
-${specificGifts.map((gift, index) => 
-'Section 4.' + (index + 1) + ' Specific Gift to ' + (gift.beneficiary || '[BENEFICIARY NAME]') + '\\n\\n' +
-'I give and bequeath to ' + (gift.beneficiary || '[BENEFICIARY NAME]') + ' the following specific gift:\\n\\n' +
-(gift.description || '[GIFT DESCRIPTION]') + '\\n\\n' +
-'If ' + (gift.beneficiary || '[BENEFICIARY NAME]') + ' does not survive me, this gift shall lapse and become part of the residuary estate.'
-).join('\\n\\n')}
-
-Section 4.${specificGifts.length + 1} Division of Remaining Trust Property
+Section 4.1 Division of Remaining Trust Property
 
 The Trustee shall divide ${isJoint ? 'our' : 'my'} remaining trust property into shares as follows:
 
-${beneficiaries.map((beneficiary, index) => 
-    (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + ' - ' + (beneficiary.relationship || '[RELATIONSHIP]') + ' - ' + (beneficiary.share || '25') + '%'
-).join('\\n')}
+${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'} - ${formData.beneficiary1Relationship || '[RELATIONSHIP]'} - ${formData.beneficiary1Share || '25'}%
+${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'} - ${formData.beneficiary2Relationship || '[RELATIONSHIP]'} - ${formData.beneficiary2Share || '25'}%
+${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'} - ${formData.beneficiary3Relationship || '[RELATIONSHIP]'} - ${formData.beneficiary3Share || '25'}%
+${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'} - ${formData.beneficiary4Relationship || '[RELATIONSHIP]'} - ${formData.beneficiary4Share || '25'}%
 
-${beneficiaries.map((beneficiary, index) => {
-    const sectionNum = specificGifts.length + index + 2;
-    const pronoun = beneficiary.relationship === 'son' ? 'him' : beneficiary.relationship === 'daughter' ? 'her' : 'them';
-    const possessive = beneficiary.relationship === 'son' ? 'his' : beneficiary.relationship === 'daughter' ? 'her' : 'their';
-    
-    return 'Section 4.' + sectionNum + ' Distribution of the Share for ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + '\\n\\n' +
-    'The Trustee shall distribute the share set aside for ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + ' to ' + pronoun + ' outright and free of trust.\\n\\n' +
-    'If ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + ' is deceased, ' + 
-    (beneficiary.contingent ? beneficiary.contingent : 'the Trustee shall distribute ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + "'s share per stirpes to " + possessive + ' descendants') + 
-    '. If ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + ' has no descendants, the Trustee shall distribute ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + "'s share pro rata to the other beneficiaries named in this Article. If no other named beneficiaries exist, the Trustee shall distribute " + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + "'s share under the terms of this Trust Agreement.";
-}).join(‘\\n\\n')}
+Section 4.2 Distribution of the Share for ${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'}
+
+The Trustee shall distribute the share set aside for ${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'} to him/her outright and free of trust.
+
+If ${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'} is deceased, ${formData.beneficiary1Contingent || 'the Trustee shall distribute his/her share per stirpes to his/her descendants'}. If ${formData.beneficiary1Name || '[BENEFICIARY 1 NAME]'} has no descendants, the Trustee shall distribute the share pro rata to the other beneficiaries named in this Article.
+
+Section 4.3 Distribution of the Share for ${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'}
+
+The Trustee shall distribute the share set aside for ${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'} to him/her outright and free of trust.
+
+If ${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'} is deceased, ${formData.beneficiary2Contingent || 'the Trustee shall distribute his/her share per stirpes to his/her descendants'}. If ${formData.beneficiary2Name || '[BENEFICIARY 2 NAME]'} has no descendants, the Trustee shall distribute the share pro rata to the other beneficiaries named in this Article.
+
+Section 4.4 Distribution of the Share for ${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'}
+
+The Trustee shall distribute the share set aside for ${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'} to him/her outright and free of trust.
+
+If ${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'} is deceased, ${formData.beneficiary3Contingent || 'the Trustee shall distribute his/her share per stirpes to his/her descendants'}. If ${formData.beneficiary3Name || '[BENEFICIARY 3 NAME]'} has no descendants, the Trustee shall distribute the share pro rata to the other beneficiaries named in this Article.
+
+Section 4.5 Distribution of the Share for ${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'}
+
+The Trustee shall distribute the share set aside for ${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'} to him/her outright and free of trust.
+
+If ${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'} is deceased, ${formData.beneficiary4Contingent || 'the Trustee shall distribute his/her share per stirpes to his/her descendants'}. If ${formData.beneficiary4Name || '[BENEFICIARY 4 NAME]'} has no descendants, the Trustee shall distribute the share pro rata to the other beneficiaries named in this Article.
+
+Section 4.6 Specific Gift to ${formData.specificGift1Beneficiary || '[BENEFICIARY NAME]'}
+
+I give and bequeath to ${formData.specificGift1Beneficiary || '[BENEFICIARY NAME]'} the following specific gift:
+
+${formData.specificGift1Description || '[GIFT DESCRIPTION]'}
+
+If ${formData.specificGift1Beneficiary || '[BENEFICIARY NAME]'} does not survive me, this gift shall lapse and become part of the residuary estate.
+
+Section 4.7 Specific Gift to ${formData.specificGift2Beneficiary || '[BENEFICIARY NAME]'}
+
+I give and bequeath to ${formData.specificGift2Beneficiary || '[BENEFICIARY NAME]'} the following specific gift:
+
+${formData.specificGift2Description || '[GIFT DESCRIPTION]'}
+
+If ${formData.specificGift2Beneficiary || '[BENEFICIARY NAME]'} does not survive me, this gift shall lapse and become part of the residuary estate.
 
 Article Five
 Remote Contingent Distribution
