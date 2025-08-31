@@ -90,7 +90,7 @@ const generateTrustDocument = () => {
     ).join(' and ');
     
     // Generate specific gifts section
-    const specificGiftsSection = specificGifts.length > 0 ? specificGifts.map((gift, index) => `
+
 Section 4.${index + 1} Specific Gift to ${gift.beneficiary || '[BENEFICIARY NAME]'}
 
 I give and bequeath to ${gift.beneficiary || '[BENEFICIARY NAME]'} the following specific gift:
@@ -100,12 +100,12 @@ ${gift.description || '[GIFT DESCRIPTION]'}
 If ${gift.beneficiary || '[BENEFICIARY NAME]'} does not survive me, this gift shall lapse and become part of the residuary estate.`).join('\n') : '';
     
     // Generate beneficiaries list for division section
-    const beneficiariesList = beneficiaries.map((beneficiary, index) => 
+    
         `${beneficiary.name || `[BENEFICIARY ${index + 1} NAME]`} - ${beneficiary.relationship || '[RELATIONSHIP]'} - ${beneficiary.share || '25'}%`
     ).join('\n');
 
     // Generate beneficiaries distribution sections
-    const beneficiariesSections = beneficiaries.map((beneficiary, index) => {
+   
         const sectionNum = specificGifts.length + index + 2;
         const pronoun = beneficiary.relationship === 'son' ? 'him' : beneficiary.relationship === 'daughter' ? 'her' : 'them';
         const possessive = beneficiary.relationship === 'son' ? 'his' : beneficiary.relationship === 'daughter' ? 'her' : 'their';
