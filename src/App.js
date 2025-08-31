@@ -294,7 +294,7 @@ ${beneficiaries.length > 0 ? beneficiaries.map((beneficiary, index) => {
 The Trustee shall distribute the share set aside for ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'} to ${pronoun} outright and free of trust.
 
 If ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'} is deceased, ${beneficiary.contingent ? beneficiary.contingent : 'the Trustee shall distribute ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + "'s share per stirpes to " + possessive + ' descendants'}. If ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'} has no descendants, the Trustee shall distribute ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'}'s share pro rata to the other beneficiaries named in this Article. If no other named beneficiaries exist, the Trustee shall distribute ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'}'s share under the terms of this Trust Agreement.`;
-}).join('\n') : ‘'}
+}).join('\n') : ''};
 
 Article Five
 Remote Contingent Distribution
