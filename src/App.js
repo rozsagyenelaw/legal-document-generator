@@ -1707,7 +1707,7 @@ ${formData.scheduleA}
       {(formData.successorTrustees || []).map((trustee, index) => (
         <div key={index} className="form-group">
           <label>Successor Trustee {index + 1}</label>
-          <div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+          <div style={{display: 'flex', gap: '5px', alignItems: 'center'}}>
             <input
               type="text"
               value={trustee || ''}
@@ -1717,6 +1717,7 @@ ${formData.scheduleA}
                 handleInputChange('successorTrustees', newTrustees);
               }}
               placeholder="Enter successor trustee name"
+              style={{flex: '1'}}
             />
             <button 
               type="button"
@@ -1724,7 +1725,8 @@ ${formData.scheduleA}
                 const newTrustees = (formData.successorTrustees || []).filter((_, i) => i !== index);
                 handleInputChange('successorTrustees', newTrustees);
               }}
-              style={{background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px'}}
+              className="action-button"
+              style={{background: '#dc3545', fontSize: '12px', padding: '4px 8px', minWidth: 'auto', width: 'auto'}}
             >
               Remove
             </button>
@@ -1732,16 +1734,19 @@ ${formData.scheduleA}
         </div>
       ))}
       
-      <button
-        type="button"
-        onClick={() => {
-          const newTrustees = [...(formData.successorTrustees || []), ''];
-          handleInputChange('successorTrustees', newTrustees);
-        }}
-        style={{background: '#28a745', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '3px', marginBottom: '15px'}}
-      >
-        Add Another Successor Trustee
-      </button>
+      <div className="form-group">
+        <button
+          type="button"
+          onClick={() => {
+            const newTrustees = [...(formData.successorTrustees || []), ''];
+            handleInputChange('successorTrustees', newTrustees);
+          }}
+          className="action-button"
+          style={{width: '100%'}}
+        >
+          Add Another Successor Trustee
+        </button>
+      </div>
 
       {/* Children Section */}
       <div className="form-group">
@@ -1756,151 +1761,164 @@ ${formData.scheduleA}
       
       {/* Dynamic Children */}
       {(formData.children || []).map((child, index) => (
-        <div key={index} style={{display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px'}}>
-          <div className="form-group" style={{margin: 0, flex: 1}}>
-            <label>Child {index + 1} Name</label>
-            <input
-              type="text"
-              value={child.name || ''}
-              onChange={(e) => {
-                const newChildren = [...(formData.children || [])];
-                newChildren[index] = {...newChildren[index], name: e.target.value};
-                handleInputChange('children', newChildren);
-              }}
-              placeholder="Enter child's name"
-            />
-          </div>
-          <div className="form-group" style={{margin: 0, flex: 1}}>
-            <label>Date of Birth</label>
-            <input
-              type="date"
-              value={child.dob || ''}
-              onChange={(e) => {
-                const newChildren = [...(formData.children || [])];
-                newChildren[index] = {...newChildren[index], dob: e.target.value};
-                handleInputChange('children', newChildren);
-              }}
-            />
-          </div>
-          <button 
-            type="button"
-            onClick={() => {
-              const newChildren = (formData.children || []).filter((_, i) => i !== index);
-              handleInputChange('children', newChildren);
-            }}
-            style={{background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', alignSelf: 'flex-end'}}
-          >
-            Remove
-          </button>
-        </div>
-      ))}
-      
-      <button
-        type="button"
-        onClick={() => {
-          const newChildren = [...(formData.children || []), {name: '', dob: ''}];
-          handleInputChange('children', newChildren);
-        }}
-        style={{background: '#28a745', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '3px', marginBottom: '15px'}}
-      >
-        Add Another Child
-      </button>
-
-      {/* Primary Beneficiaries Section */}
-      <h4 style={{margin: '20px 0 10px 0'}}>Primary Beneficiaries</h4>
-      {(formData.beneficiaries || []).map((beneficiary, index) => (
-        <div key={index} style={{border: '1px solid #ddd', padding: '15px', marginBottom: '15px', borderRadius: '5px'}}>
-          <div style={{display: 'flex', gap: '10px', marginBottom: '10px'}}>
-            <div className="form-group" style={{margin: 0, flex: 1}}>
-              <label>Beneficiary {index + 1} Name</label>
+        <div key={index} className="form-group">
+          <label>Child {index + 1}</label>
+          <div style={{display: 'flex', gap: '5px', alignItems: 'flex-end'}}>
+            <div style={{flex: 1}}>
+              <label style={{fontSize: '12px', marginBottom: '2px'}}>Name</label>
               <input
                 type="text"
-                value={beneficiary.name || ''}
+                value={child.name || ''}
                 onChange={(e) => {
-                  const newBeneficiaries = [...(formData.beneficiaries || [])];
-                  newBeneficiaries[index] = {...newBeneficiaries[index], name: e.target.value};
-                  handleInputChange('beneficiaries', newBeneficiaries);
+                  const newChildren = [...(formData.children || [])];
+                  newChildren[index] = {...newChildren[index], name: e.target.value};
+                  handleInputChange('children', newChildren);
                 }}
-                placeholder="Enter beneficiary name"
+                placeholder="Enter child's name"
               />
             </div>
-            <div className="form-group" style={{margin: 0, flex: 1}}>
-              <label>Relationship</label>
-              <select
-                value={beneficiary.relationship || ''}
-                onChange={(e) => {
-                  const newBeneficiaries = [...(formData.beneficiaries || [])];
-                  newBeneficiaries[index] = {...newBeneficiaries[index], relationship: e.target.value};
-                  handleInputChange('beneficiaries', newBeneficiaries);
-                }}
-              >
-                <option value="">Select Relationship</option>
-                <option value="son">Son</option>
-                <option value="daughter">Daughter</option>
-                <option value="spouse">Spouse</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div className="form-group" style={{margin: 0, flex: 1}}>
-              <label>Share %</label>
+            <div style={{flex: 1}}>
+              <label style={{fontSize: '12px', marginBottom: '2px'}}>Date of Birth</label>
               <input
-                type="number"
-                value={beneficiary.share || ''}
+                type="date"
+                value={child.dob || ''}
                 onChange={(e) => {
-                  const newBeneficiaries = [...(formData.beneficiaries || [])];
-                  newBeneficiaries[index] = {...newBeneficiaries[index], share: e.target.value};
-                  handleInputChange('beneficiaries', newBeneficiaries);
+                  const newChildren = [...(formData.children || [])];
+                  newChildren[index] = {...newChildren[index], dob: e.target.value};
+                  handleInputChange('children', newChildren);
                 }}
-                placeholder="Enter percentage"
               />
             </div>
-          </div>
-          
-          <div className="form-group" style={{margin: 0}}>
-            <label>Contingent Beneficiaries (if primary beneficiary is deceased)</label>
-            <textarea
-              value={beneficiary.contingent || ''}
-              onChange={(e) => {
-                const newBeneficiaries = [...(formData.beneficiaries || [])];
-                newBeneficiaries[index] = {...newBeneficiaries[index], contingent: e.target.value};
-                handleInputChange('beneficiaries', newBeneficiaries);
+            <button 
+              type="button"
+              onClick={() => {
+                const newChildren = (formData.children || []).filter((_, i) => i !== index);
+                handleInputChange('children', newChildren);
               }}
-              placeholder="Enter contingent beneficiaries (e.g., 'per stirpes to descendants' or specific names)"
-              rows="2"
-            />
+              className="action-button"
+              style={{background: '#dc3545', fontSize: '12px', padding: '4px 8px', minWidth: 'auto', width: 'auto'}}
+            >
+              Remove
+            </button>
           </div>
-          
-          <button 
-            type="button"
-            onClick={() => {
-              const newBeneficiaries = (formData.beneficiaries || []).filter((_, i) => i !== index);
-              handleInputChange('beneficiaries', newBeneficiaries);
-            }}
-            style={{background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', marginTop: '10px'}}
-          >
-            Remove Beneficiary
-          </button>
         </div>
       ))}
       
-      <button
-        type="button"
-        onClick={() => {
-          const newBeneficiaries = [...(formData.beneficiaries || []), {name: '', relationship: '', share: '', contingent: ''}];
-          handleInputChange('beneficiaries', newBeneficiaries);
-        }}
-        style={{background: '#28a745', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '3px', marginBottom: '15px'}}
-      >
-        Add Another Beneficiary
-      </button>
+      <div className="form-group">
+        <button
+          type="button"
+          onClick={() => {
+            const newChildren = [...(formData.children || []), {name: '', dob: ''}];
+            handleInputChange('children', newChildren);
+          }}
+          className="action-button"
+          style={{width: '100%'}}
+        >
+          Add Another Child
+        </button>
+      </div>
+
+      {/* Primary Beneficiaries Section */}
+      {(formData.beneficiaries || []).map((beneficiary, index) => (
+        <div key={index} className="form-group" style={{gridColumn: '1 / -1'}}>
+          <div style={{border: '1px solid #ddd', padding: '15px', borderRadius: '5px'}}>
+            <h4 style={{margin: '0 0 15px 0'}}>Beneficiary {index + 1}</h4>
+            <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px', marginBottom: '10px'}}>
+              <div>
+                <label style={{fontSize: '12px', marginBottom: '2px'}}>Name</label>
+                <input
+                  type="text"
+                  value={beneficiary.name || ''}
+                  onChange={(e) => {
+                    const newBeneficiaries = [...(formData.beneficiaries || [])];
+                    newBeneficiaries[index] = {...newBeneficiaries[index], name: e.target.value};
+                    handleInputChange('beneficiaries', newBeneficiaries);
+                  }}
+                  placeholder="Enter beneficiary name"
+                />
+              </div>
+              <div>
+                <label style={{fontSize: '12px', marginBottom: '2px'}}>Relationship</label>
+                <select
+                  value={beneficiary.relationship || ''}
+                  onChange={(e) => {
+                    const newBeneficiaries = [...(formData.beneficiaries || [])];
+                    newBeneficiaries[index] = {...newBeneficiaries[index], relationship: e.target.value};
+                    handleInputChange('beneficiaries', newBeneficiaries);
+                  }}
+                >
+                  <option value="">Select Relationship</option>
+                  <option value="son">Son</option>
+                  <option value="daughter">Daughter</option>
+                  <option value="spouse">Spouse</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label style={{fontSize: '12px', marginBottom: '2px'}}>Share %</label>
+                <input
+                  type="number"
+                  value={beneficiary.share || ''}
+                  onChange={(e) => {
+                    const newBeneficiaries = [...(formData.beneficiaries || [])];
+                    newBeneficiaries[index] = {...newBeneficiaries[index], share: e.target.value};
+                    handleInputChange('beneficiaries', newBeneficiaries);
+                  }}
+                  placeholder="Enter percentage"
+                />
+              </div>
+            </div>
+            
+            <div style={{marginBottom: '10px'}}>
+              <label style={{fontSize: '12px', marginBottom: '2px'}}>Contingent Beneficiaries (if primary beneficiary is deceased)</label>
+              <textarea
+                value={beneficiary.contingent || ''}
+                onChange={(e) => {
+                  const newBeneficiaries = [...(formData.beneficiaries || [])];
+                  newBeneficiaries[index] = {...newBeneficiaries[index], contingent: e.target.value};
+                  handleInputChange('beneficiaries', newBeneficiaries);
+                }}
+                placeholder="Enter contingent beneficiaries (e.g., 'per stirpes to descendants' or specific names)"
+                rows="2"
+              />
+            </div>
+            
+            <button 
+              type="button"
+              onClick={() => {
+                const newBeneficiaries = (formData.beneficiaries || []).filter((_, i) => i !== index);
+                handleInputChange('beneficiaries', newBeneficiaries);
+              }}
+              className="action-button"
+              style={{background: '#dc3545', fontSize: '12px', padding: '4px 8px', minWidth: 'auto', width: 'auto'}}
+            >
+              Remove Beneficiary
+            </button>
+          </div>
+        </div>
+      ))}
+      
+      <div className="form-group">
+        <button
+          type="button"
+          onClick={() => {
+            const newBeneficiaries = [...(formData.beneficiaries || []), {name: '', relationship: '', share: '', contingent: ''}];
+            handleInputChange('beneficiaries', newBeneficiaries);
+          }}
+          className="action-button"
+          style={{width: '100%'}}
+        >
+          Add Another Beneficiary
+        </button>
+      </div>
 
       {/* Specific Gifts Section */}
-      <h4 style={{margin: '20px 0 10px 0'}}>Specific Gifts</h4>
       {(formData.specificGifts || []).map((gift, index) => (
-        <div key={index} style={{border: '1px solid #ddd', padding: '15px', marginBottom: '15px', borderRadius: '5px'}}>
-          <div style={{display: 'flex', gap: '10px', marginBottom: '10px'}}>
-            <div className="form-group" style={{margin: 0, flex: 1}}>
-              <label>Beneficiary Name</label>
+        <div key={index} className="form-group" style={{gridColumn: '1 / -1'}}>
+          <div style={{border: '1px solid #ddd', padding: '15px', borderRadius: '5px'}}>
+            <h4 style={{margin: '0 0 15px 0'}}>Specific Gift {index + 1}</h4>
+            <div style={{marginBottom: '10px'}}>
+              <label style={{fontSize: '12px', marginBottom: '2px'}}>Beneficiary Name</label>
               <input
                 type="text"
                 value={gift.beneficiary || ''}
@@ -1910,47 +1928,53 @@ ${formData.scheduleA}
                   handleInputChange('specificGifts', newGifts);
                 }}
                 placeholder="Enter beneficiary name"
+                style={{width: '100%'}}
               />
             </div>
-          </div>
-          
-          <div className="form-group" style={{margin: 0}}>
-            <label>Gift Description</label>
-            <textarea
-              value={gift.description || ''}
-              onChange={(e) => {
-                const newGifts = [...(formData.specificGifts || [])];
-                newGifts[index] = {...newGifts[index], description: e.target.value};
+            
+            <div style={{marginBottom: '10px'}}>
+              <label style={{fontSize: '12px', marginBottom: '2px'}}>Gift Description</label>
+              <textarea
+                value={gift.description || ''}
+                onChange={(e) => {
+                  const newGifts = [...(formData.specificGifts || [])];
+                  newGifts[index] = {...newGifts[index], description: e.target.value};
+                  handleInputChange('specificGifts', newGifts);
+                }}
+                placeholder="Describe the specific gift (e.g., 'my diamond wedding ring', 'the family home located at...', '$10,000 in cash')"
+                rows="3"
+                style={{width: '100%'}}
+              />
+            </div>
+            
+            <button 
+              type="button"
+              onClick={() => {
+                const newGifts = (formData.specificGifts || []).filter((_, i) => i !== index);
                 handleInputChange('specificGifts', newGifts);
               }}
-              placeholder="Describe the specific gift (e.g., 'my diamond wedding ring', 'the family home located at...', '$10,000 in cash')"
-              rows="3"
-            />
+              className="action-button"
+              style={{background: '#dc3545', fontSize: '12px', padding: '4px 8px', minWidth: 'auto', width: 'auto'}}
+            >
+              Remove Gift
+            </button>
           </div>
-          
-          <button 
-            type="button"
-            onClick={() => {
-              const newGifts = (formData.specificGifts || []).filter((_, i) => i !== index);
-              handleInputChange('specificGifts', newGifts);
-            }}
-            style={{background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', marginTop: '10px'}}
-          >
-            Remove Gift
-          </button>
         </div>
       ))}
       
-      <button
-        type="button"
-        onClick={() => {
-          const newGifts = [...(formData.specificGifts || []), {beneficiary: '', description: ''}];
-          handleInputChange('specificGifts', newGifts);
-        }}
-        style={{background: '#28a745', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '3px', marginBottom: '15px'}}
-      >
-        Add Another Specific Gift
-      </button>
+      <div className="form-group">
+        <button
+          type="button"
+          onClick={() => {
+            const newGifts = [...(formData.specificGifts || []), {beneficiary: '', description: ''}];
+            handleInputChange('specificGifts', newGifts);
+          }}
+          className="action-button"
+          style={{width: '100%'}}
+        >
+          Add Another Specific Gift
+        </button>
+      </div>
 
       {/* Notary Information */}
       <div className="form-group">
@@ -1973,7 +1997,7 @@ ${formData.scheduleA}
       </div>
     </div>
   );
-        
+           
      case 'cert_trust':
   return (
     <div className="form-grid">
