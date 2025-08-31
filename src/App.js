@@ -91,7 +91,7 @@ const generateTrustDocument = () => {
     
     // Generate specific gifts section
 
-Section 4.${index + 1} Specific Gift to ${gift.beneficiary || '[BENEFICIARY NAME]'}
+Section 4.${index + 1}: Specific Gift to ${gift.beneficiary || '[BENEFICIARY NAME]'}
 
 I give and bequeath to ${gift.beneficiary || '[BENEFICIARY NAME]'} the following specific gift:
 
