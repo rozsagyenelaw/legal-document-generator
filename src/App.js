@@ -24,6 +24,7 @@ function App() {
     { id: 'retainer', name: 'CA Retainer Agreement', icon: FileText },
     { id: 'assignment', name: 'Assignment of Interest', icon: FileText },
     { id: 'trust', name: 'Irrevocable Trust', icon: Shield },
+    { id: 'cert_trust', name: 'Certificate of Trust', icon: FileText },
   ];
 
   const handleInputChange = (field, value) => {
@@ -57,6 +58,9 @@ function App() {
         break;
        case 'trust':
         template = generateTrustDocument();
+        break;
+       case 'cert_trust': 
+        template = generateCertTrustDocument(); 
         break;
       default:
         template = 'Document type not found.';
@@ -361,7 +365,61 @@ ${firmInfo.phone}
 ${firmInfo.email}
 `;
   };
-  
+const generateCertTrustDocument = () => { 
+    return
+const generateCertTrustDocument = () => {
+  const grantorNames = formData.grantor2Name 
+    ? `${formData.grantor1Name || '[GRANTOR 1 NAME]'} and ${formData.grantor2Name}`
+    : formData.grantor1Name || '[GRANTOR NAME]';
+    
+  return `CERTIFICATION OF TRUST FOR THE ${(formData.trustName || '[TRUST NAME]').toUpperCase()}
+
+Under California Probate Code § 18100.5, this Certification of Trust is signed by all the currently acting Trustee of The ${formData.trustName || '[TRUST NAME]'} dated ${formData.trustDate || '[TRUST DATE]'}, who declare as follows:
+
+1. The Grantor of the trust is ${grantorNames}.
+
+2. The Trustee of the trust is ${formData.trusteeName || '[TRUSTEE NAME]'}.
+
+3. The tax identification number of the trust is ${formData.trustTaxId || '________________________________'}.
+
+4. Title to assets held in the trust shall be titled as:
+
+   ${formData.trusteeName || '[TRUSTEE NAME]'}, Trustee of The ${formData.trustName || '[TRUST NAME]'}, dated ${formData.trustDate || '[TRUST DATE]'}
+
+5. Any alternative description shall be effective to title assets in the name of the trust or to designate the trust as a beneficiary if the description includes the name of at least one initial or successor trustee, any reference indicating that property is being held in a fiduciary capacity, and the date of the trust.
+
+6. Excerpts from the trust agreement that establish the trust, designate the Trustee and set forth the powers of the Trustee will be provided upon request. The powers of the Trustee include the power to acquire, sell, assign, convey, pledge, encumber, lease, borrow, manage and deal with real and personal property interests.
+
+7. The terms of the trust provide that a third party may rely upon this Certification of Trust as evidence of the existence of the trust and is specifically relieved of any obligation to inquire into the terms of this trust or the authority of my Trustee, or to see to the application that my Trustee makes of funds or other property received by my Trustee.
+
+8. The trust has not been amended or judicially reformed in any way that would cause the representations in this Certification of Trust to be incorrect.
+
+${formData.certificateDate || '[DATE]'}
+
+_______________________
+${formData.trusteeName || '[TRUSTEE NAME]'}, Trustee
+
+STATE OF CALIFORNIA   )
+                     ) ss.
+COUNTY OF ${(formData.notaryCounty || '[COUNTY]').toUpperCase()}   )
+
+On ${formData.certificateDate || '[DATE]'} before me, ______________________________ (here insert name and title of the officer), personally appeared ${formData.trusteeName || '[TRUSTEE NAME]'}, who proved to me on the basis of satisfactory evidence to be the person(s) whose name(s) is/are subscribed to the within instrument and acknowledged to me that he/she/they executed the same in his/her/their authorized capacity(ies), and that by his/her/their signature(s) on the instrument the person(s), or the entity upon behalf of which the person(s) acted, executed the instrument.
+
+I certify under PENALTY of PERJURY under the laws of the State of California that the foregoing paragraph is true and correct.
+
+WITNESS my hand and official seal.
+
+Signature _____________________________ (Seal)
+
+
+This document was prepared by:
+${firmInfo.name}
+${firmInfo.address}
+${firmInfo.city}
+${firmInfo.phone}
+${firmInfo.email}`;
+};
+
 const generateLLCDocument = () => {
     return `
 Limited Liability Company Agreement of ${formData.llcName || '[COMPANY NAME]'} LLC
@@ -1808,6 +1866,82 @@ ${formData.scheduleA}
       </div>
     </div>
   );       
+     
+     case 'cert_trust':
+  return (
+    <div className="form-grid">
+      <div className="form-group">
+        <label>Trust Name</label>
+        <input
+          type="text"
+          value={formData.trustName || ''}
+          onChange={(e) => handleInputChange('trustName', e.target.value)}
+          placeholder="Enter full trust name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Trust Date</label>
+        <input
+          type="date"
+          value={formData.trustDate || ''}
+          onChange={(e) => handleInputChange('trustDate', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Grantor 1 Name</label>
+        <input
+          type="text"
+          value={formData.grantor1Name || ''}
+          onChange={(e) => handleInputChange('grantor1Name', e.target.value)}
+          placeholder="Enter first grantor name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Grantor 2 Name (if applicable)</label>
+        <input
+          type="text"
+          value={formData.grantor2Name || ''}
+          onChange={(e) => handleInputChange('grantor2Name', e.target.value)}
+          placeholder="Enter second grantor name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Current Trustee Name</label>
+        <input
+          type="text"
+          value={formData.trusteeName || ''}
+          onChange={(e) => handleInputChange('trusteeName', e.target.value)}
+          placeholder="Enter current trustee name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Trust Tax ID Number</label>
+        <input
+          type="text"
+          value={formData.trustTaxId || ''}
+          onChange={(e) => handleInputChange('trustTaxId', e.target.value)}
+          placeholder="Enter tax identification number"
+        />
+      </div>
+      <div className="form-group">
+        <label>Certificate Date</label>
+        <input
+          type="date"
+          value={formData.certificateDate || ''}
+          onChange={(e) => handleInputChange('certificateDate', e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>County for Notary</label>
+        <input
+          type="text"
+          value={formData.notaryCounty || ''}
+          onChange={(e) => handleInputChange('notaryCounty', e.target.value)}
+          placeholder="Enter county name"
+        />
+      </div>
+    </div>
+  );
 
       case 'llc':
         return (
