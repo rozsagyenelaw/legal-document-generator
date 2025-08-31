@@ -142,7 +142,7 @@ ${isJoint ? 'We may not serve' : 'I may not serve'} as Trustee of any trust crea
 
 Section 1.01 Identifying the Trust
 
-The Trust may be referred to as ${formData.trusteeName || '[TRUSTEE NAME]'}, Trustee of The ${formData.trustName || '[TRUST NAME]'} Irrevocable Trust, dated ${formData.trustDate || ‘[DATE]'}.
+The Trust may be referred to as ${formData.trusteeName || '[TRUSTEE NAME]'}, Trustee of The ${formData.trustName || '[TRUST NAME]'} Irrevocable Trust, dated ${formData.trustDate || '[DATE]'}.
 
 For the purpose of transferring property to the trust, or identifying the trust in any beneficiary or death designation, any description referring to the  trust will be effective if identifies the trust.  Any  description that   contains   the  date  of  the  trust,   the   name of at least one initial of Trustee and   an indication  that the Trustee is holding the trust property in a fiduciary capacity is sufficient to reasonably identify the trust. 
 
