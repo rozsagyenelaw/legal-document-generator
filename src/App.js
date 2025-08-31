@@ -365,8 +365,7 @@ ${firmInfo.phone}
 ${firmInfo.email}
 `;
   };
-const generateCertTrustDocument = () => { 
-    return
+
 const generateCertTrustDocument = () => {
   const grantorNames = formData.grantor2Name 
     ? `${formData.grantor1Name || '[GRANTOR 1 NAME]'} and ${formData.grantor2Name}`
