@@ -266,35 +266,32 @@ ${specificGifts.length > 0 ? 'Specific Gifts and ' : ''}Distribution for ${isJoi
 
 Upon the death of ${isJoint ? 'the survivor of us' : 'the Grantor'}, the Trustee shall ${specificGifts.length > 0 ? 'first make the specific gifts set forth below, and then ' : ''}administer and distribute ${isJoint ? 'our' : 'my'} remaining trust property.
 
-${specificGifts.length > 0 ? specificGifts.map((gift, index) => 
-`Section 4.${index + 1} Specific Gift to ${gift.beneficiary || '[BENEFICIARY NAME]'}
-
-I give and bequeath to ${gift.beneficiary || '[BENEFICIARY NAME]'} the following specific gift:
-
-${gift.description || '[GIFT DESCRIPTION]'}
-
-If ${gift.beneficiary || '[BENEFICIARY NAME]'} does not survive me, this gift shall lapse and become part of the residuary estate.`
-).join('\n') : ''}
+${specificGifts.map((gift, index) => 
+'Section 4.' + (index + 1) + ' Specific Gift to ' + (gift.beneficiary || '[BENEFICIARY NAME]') + '\\n\\n' +
+'I give and bequeath to ' + (gift.beneficiary || '[BENEFICIARY NAME]') + ' the following specific gift:\\n\\n' +
+(gift.description || '[GIFT DESCRIPTION]') + '\\n\\n' +
+'If ' + (gift.beneficiary || '[BENEFICIARY NAME]') + ' does not survive me, this gift shall lapse and become part of the residuary estate.'
+).join('\\n\\n')}
 
 Section 4.${specificGifts.length + 1} Division of Remaining Trust Property
 
 The Trustee shall divide ${isJoint ? 'our' : 'my'} remaining trust property into shares as follows:
 
-${beneficiaries.length > 0 ? beneficiaries.map((beneficiary, index) => 
-    beneficiary.name + ' - ' + (beneficiary.relationship || '[RELATIONSHIP]') + ' - ' + (beneficiary.share || '25') + '%'
-).join('\n') : '[BENEFICIARIES LIST]'}
+${beneficiaries.map((beneficiary, index) => 
+    (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + ' - ' + (beneficiary.relationship || '[RELATIONSHIP]') + ' - ' + (beneficiary.share || '25') + '%'
+).join('\\n')}
 
-${beneficiaries.length > 0 ? beneficiaries.map((beneficiary, index) => {
+${beneficiaries.map((beneficiary, index) => {
     const sectionNum = specificGifts.length + index + 2;
     const pronoun = beneficiary.relationship === 'son' ? 'him' : beneficiary.relationship === 'daughter' ? 'her' : 'them';
     const possessive = beneficiary.relationship === 'son' ? 'his' : beneficiary.relationship === 'daughter' ? 'her' : 'their';
     
-    return `Section 4.${sectionNum} Distribution of the Share for ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'}
-
-The Trustee shall distribute the share set aside for ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'} to ${pronoun} outright and free of trust.
-
-If ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'} is deceased, ${beneficiary.contingent ? beneficiary.contingent : 'the Trustee shall distribute ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + "'s share per stirpes to " + possessive + ' descendants'}. If ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'} has no descendants, the Trustee shall distribute ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'}'s share pro rata to the other beneficiaries named in this Article. If no other named beneficiaries exist, the Trustee shall distribute ${beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]'}'s share under the terms of this Trust Agreement.`;
-}).join('\n') : ''};
+    return 'Section 4.' + sectionNum + ' Distribution of the Share for ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + '\\n\\n' +
+    'The Trustee shall distribute the share set aside for ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + ' to ' + pronoun + ' outright and free of trust.\\n\\n' +
+    'If ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + ' is deceased, ' + 
+    (beneficiary.contingent ? beneficiary.contingent : 'the Trustee shall distribute ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + "'s share per stirpes to " + possessive + ' descendants') + 
+    '. If ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + ' has no descendants, the Trustee shall distribute ' + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + "'s share pro rata to the other beneficiaries named in this Article. If no other named beneficiaries exist, the Trustee shall distribute " + (beneficiary.name || '[BENEFICIARY ' + (index + 1) + ' NAME]') + "'s share under the terms of this Trust Agreement.";
+}).join(‘\\n\\n')}
 
 Article Five
 Remote Contingent Distribution
