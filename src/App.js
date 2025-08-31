@@ -195,7 +195,7 @@ If any trust created under this agreement includes corporate shares or other sec
 No one may compel the Trustee to exchange trust property by substituting other property of equivalent value. The Trustee is not required to surrender any trust assets if substitute assets are offered, regardless of the relative value of the assets.
 
 (d) No Payment of Life Insurance Premiums from Trust Income
-The Trustee may not use the income of this trust to pay the premiums on any life insurance policies insuring ${isJoint ? 'our lives' : 'my life’}. The Trustee may use other assets of the  trust to pay such premiums. 
+The Trustee may not use the income of this trust to pay the premiums on any life insurance policies insuring ${isJoint ? 'our lives' : 'my life'}.
 
 Article Two
 ${isJoint ? 'Our' : 'My'} Children
